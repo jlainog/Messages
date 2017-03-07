@@ -18,6 +18,7 @@
 		F52ACAB91E6DFBCB007AB8EA /* MessagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAB81E6DFBCB007AB8EA /* MessagesTests.swift */; };
 		F52ACAC41E6DFBCB007AB8EA /* MessagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAC31E6DFBCB007AB8EA /* MessagesUITests.swift */; };
 		F52ACAD21E6DFDF1007AB8EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */; };
+		F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86525951E6F0C220024BDC9 /* Parseable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		F52ACAC31E6DFBCB007AB8EA /* MessagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITests.swift; sourceTree = "<group>"; };
 		F52ACAC51E6DFBCB007AB8EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F86525951E6F0C220024BDC9 /* Parseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parseable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 		F52ACAA21E6DFBCB007AB8EA /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				F86525941E6F0B880024BDC9 /* Protocols */,
 				F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */,
 				F52ACAA51E6DFBCB007AB8EA /* ViewController.swift */,
 				F52ACAA71E6DFBCB007AB8EA /* Main.storyboard */,
@@ -166,6 +169,14 @@
 				F52ACAC51E6DFBCB007AB8EA /* Info.plist */,
 			);
 			path = MessagesUITests;
+			sourceTree = "<group>";
+		};
+		F86525941E6F0B880024BDC9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F86525951E6F0C220024BDC9 /* Parseable.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,7 +331,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		21009E959A73FE66F2C3A98D /* [CP] Embed Pods Frameworks */ = {
@@ -365,7 +376,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		A55FC67FCB345559E7D29907 /* [CP] Embed Pods Frameworks */ = {
@@ -395,7 +406,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		ED55D45A7426866AC123215A /* [CP] Copy Pods Resources */ = {
@@ -452,6 +463,7 @@
 			files = (
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
+				F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +712,7 @@
 				F52ACACA1E6DFBCB007AB8EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F52ACACB1E6DFBCB007AB8EA /* Build configuration list for PBXNativeTarget "MessagesTests" */ = {
 			isa = XCConfigurationList;
@@ -708,6 +721,7 @@
 				F52ACACD1E6DFBCB007AB8EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F52ACACE1E6DFBCB007AB8EA /* Build configuration list for PBXNativeTarget "MessagesUITests" */ = {
 			isa = XCConfigurationList;
@@ -716,6 +730,7 @@
 				F52ACAD01E6DFBCB007AB8EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
