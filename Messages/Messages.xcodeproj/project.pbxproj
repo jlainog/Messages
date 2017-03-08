@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48E68D6C1E6F19F00046BD1A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E68D6B1E6F19F00046BD1A /* User.swift */; };
+		48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E68D6E1E706FD70046BD1A /* UserInfo.swift */; };
 		67EB2D91465A6E1A98337DF3 /* Pods_MessagesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAF9A6D08EB1C46CE43049A /* Pods_MessagesTests.framework */; };
 		AD86D6E1E109D7EBE0DE451E /* Pods_MessagesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EEBB4AA680A05F0B31217D /* Pods_MessagesUITests.framework */; };
 		E7990B3AC53507E7EBA4A497 /* Pods_Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4DCFF477758DF0F9824836 /* Pods_Messages.framework */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48E68D6B1E6F19F00046BD1A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		48E68D6E1E706FD70046BD1A /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		4FC6637519658E1272FCBFB3 /* Pods-MessagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesTests/Pods-MessagesTests.release.xcconfig"; sourceTree = "<group>"; };
 		5C298D3371EEB9649D79DE9E /* Pods-Messages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messages.release.xcconfig"; path = "Pods/Target Support Files/Pods-Messages/Pods-Messages.release.xcconfig"; sourceTree = "<group>"; };
 		7AAF9A6D08EB1C46CE43049A /* Pods_MessagesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +97,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48E68D6A1E6F19D80046BD1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				48E68D6B1E6F19F00046BD1A /* User.swift */,
+				48E68D6E1E706FD70046BD1A /* UserInfo.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		48E68D6D1E6F1A010046BD1A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				48E68D6A1E6F19D80046BD1A /* Model */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		7238C17174A21282D175331E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +162,7 @@
 		F52ACAA21E6DFBCB007AB8EA /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				48E68D6D1E6F1A010046BD1A /* Login */,
 				F86525941E6F0B880024BDC9 /* Protocols */,
 				F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */,
 				F52ACAA51E6DFBCB007AB8EA /* ViewController.swift */,
@@ -461,8 +483,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48E68D6C1E6F19F00046BD1A /* User.swift in Sources */,
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
+				48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */,
 				F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +639,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Messages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.Messages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -628,6 +653,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Messages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.Messages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
