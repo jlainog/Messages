@@ -18,6 +18,9 @@ class ChatViewController: JSQMessagesViewController {
         // Do any additional setup after loading the view.
     }
 
+    override var senderId: String!
+    override var senderDisplayName: String!
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
