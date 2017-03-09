@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gBo-wJ-H8Q">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Channel View Controller-->
+        <scene sceneID="ZSw-VS-67Z">
+            <objects>
+                <viewController id="gBo-wJ-H8Q" customClass="ChannelViewController" customModule="Messages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VKt-Ld-wOC"/>
+                        <viewControllerLayoutGuide type="bottom" id="epR-BQ-si9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9tn-G4-9LN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ahC-vB-2bE">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ahC-vB-2bE" firstAttribute="leading" secondItem="9tn-G4-9LN" secondAttribute="leading" id="4yh-tZ-8WN"/>
+                            <constraint firstAttribute="trailing" secondItem="ahC-vB-2bE" secondAttribute="trailing" id="FJY-kS-vTZ"/>
+                            <constraint firstItem="ahC-vB-2bE" firstAttribute="top" secondItem="VKt-Ld-wOC" secondAttribute="bottom" id="kqr-PZ-223"/>
+                            <constraint firstItem="epR-BQ-si9" firstAttribute="top" secondItem="ahC-vB-2bE" secondAttribute="bottom" id="nFB-o9-kOJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="channelsTable" destination="ahC-vB-2bE" id="OfX-y7-40k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A1F-xT-I1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-458.39999999999998" y="-328.78560719640183"/>
+        </scene>
+    </scenes>
+</document>
