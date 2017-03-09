@@ -9,9 +9,6 @@
 import UIKit
 
 class ChannelCell: UITableViewCell {
-
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var subtitleLbl: UILabel!
-    
-
 }

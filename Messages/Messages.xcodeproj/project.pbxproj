@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12271DED1E6F16EB00E87884 /* Channel.swift */; };
+		12271DF31E6F1EED00E87884 /* ChannelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12271DF21E6F1EED00E87884 /* ChannelService.swift */; };
+		12414D8A1E719B80002FC153 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12414D891E719B80002FC153 /* ChannelCell.xib */; };
+		12414D8C1E719C7B002FC153 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12414D8B1E719C7B002FC153 /* ChannelCell.swift */; };
+		12414D8E1E719DE5002FC153 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12414D8D1E719DE5002FC153 /* ChannelViewController.swift */; };
+		12414D971E71BB1B002FC153 /* ChannelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12414D961E71BB1B002FC153 /* ChannelStoryboard.storyboard */; };
+		12E412D81E70A81300063181 /* ChannelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E412D71E70A81300063181 /* ChannelsTests.swift */; };
 		67EB2D91465A6E1A98337DF3 /* Pods_MessagesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAF9A6D08EB1C46CE43049A /* Pods_MessagesTests.framework */; };
 		AD86D6E1E109D7EBE0DE451E /* Pods_MessagesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EEBB4AA680A05F0B31217D /* Pods_MessagesUITests.framework */; };
 		E7990B3AC53507E7EBA4A497 /* Pods_Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4DCFF477758DF0F9824836 /* Pods_Messages.framework */; };
 		F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */; };
-		F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAA51E6DFBCB007AB8EA /* ViewController.swift */; };
 		F52ACAA91E6DFBCB007AB8EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F52ACAA71E6DFBCB007AB8EA /* Main.storyboard */; };
 		F52ACAAB1E6DFBCB007AB8EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52ACAAA1E6DFBCB007AB8EA /* Assets.xcassets */; };
 		F52ACAAE1E6DFBCB007AB8EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F52ACAAC1E6DFBCB007AB8EA /* LaunchScreen.storyboard */; };
-		F52ACAB91E6DFBCB007AB8EA /* MessagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAB81E6DFBCB007AB8EA /* MessagesTests.swift */; };
 		F52ACAC41E6DFBCB007AB8EA /* MessagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAC31E6DFBCB007AB8EA /* MessagesUITests.swift */; };
 		F52ACAD21E6DFDF1007AB8EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */; };
 		F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86525951E6F0C220024BDC9 /* Parseable.swift */; };
@@ -39,6 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12271DED1E6F16EB00E87884 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		12271DF21E6F1EED00E87884 /* ChannelService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelService.swift; sourceTree = "<group>"; };
+		12414D891E719B80002FC153 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
+		12414D8B1E719C7B002FC153 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		12414D8D1E719DE5002FC153 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
+		12414D961E71BB1B002FC153 /* ChannelStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChannelStoryboard.storyboard; sourceTree = "<group>"; };
+		12E412D31E709CE600063181 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		12E412D71E70A81300063181 /* ChannelsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsTests.swift; sourceTree = "<group>"; };
 		4FC6637519658E1272FCBFB3 /* Pods-MessagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesTests/Pods-MessagesTests.release.xcconfig"; sourceTree = "<group>"; };
 		5C298D3371EEB9649D79DE9E /* Pods-Messages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messages.release.xcconfig"; path = "Pods/Target Support Files/Pods-Messages/Pods-Messages.release.xcconfig"; sourceTree = "<group>"; };
 		7AAF9A6D08EB1C46CE43049A /* Pods_MessagesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,13 +63,11 @@
 		EC2651C4040D82FEA39D650A /* Pods-MessagesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesUITests/Pods-MessagesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F52ACAA01E6DFBCB007AB8EA /* Messages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F52ACAA51E6DFBCB007AB8EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F52ACAA81E6DFBCB007AB8EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F52ACAAA1E6DFBCB007AB8EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F52ACAAD1E6DFBCB007AB8EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F52ACAAF1E6DFBCB007AB8EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F52ACAB41E6DFBCB007AB8EA /* MessagesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessagesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F52ACAB81E6DFBCB007AB8EA /* MessagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTests.swift; sourceTree = "<group>"; };
 		F52ACABA1E6DFBCB007AB8EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F52ACABF1E6DFBCB007AB8EA /* MessagesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessagesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52ACAC31E6DFBCB007AB8EA /* MessagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITests.swift; sourceTree = "<group>"; };
@@ -93,6 +104,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12271DEC1E6F168000E87884 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				12414D951E71B97B002FC153 /* Controller */,
+				12414D881E719B5C002FC153 /* View */,
+				12271DEF1E6F1DF000E87884 /* RestService */,
+				12271DED1E6F16EB00E87884 /* Channel.swift */,
+			);
+			name = Channel;
+			sourceTree = "<group>";
+		};
+		12271DEF1E6F1DF000E87884 /* RestService */ = {
+			isa = PBXGroup;
+			children = (
+				12271DF21E6F1EED00E87884 /* ChannelService.swift */,
+			);
+			name = RestService;
+			sourceTree = "<group>";
+		};
+		12414D881E719B5C002FC153 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12414D891E719B80002FC153 /* ChannelCell.xib */,
+				12414D8B1E719C7B002FC153 /* ChannelCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		12414D951E71B97B002FC153 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				12414D8D1E719DE5002FC153 /* ChannelViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		7238C17174A21282D175331E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +166,7 @@
 		F52ACA971E6DFBCB007AB8EA = {
 			isa = PBXGroup;
 			children = (
+				12E412D31E709CE600063181 /* MyPlayground.playground */,
 				F52ACAA21E6DFBCB007AB8EA /* Messages */,
 				F52ACAB71E6DFBCB007AB8EA /* MessagesTests */,
 				F52ACAC21E6DFBCB007AB8EA /* MessagesUITests */,
@@ -141,14 +189,15 @@
 		F52ACAA21E6DFBCB007AB8EA /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				12271DEC1E6F168000E87884 /* Channel */,
 				F86525941E6F0B880024BDC9 /* Protocols */,
 				F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */,
-				F52ACAA51E6DFBCB007AB8EA /* ViewController.swift */,
 				F52ACAA71E6DFBCB007AB8EA /* Main.storyboard */,
 				F52ACAAA1E6DFBCB007AB8EA /* Assets.xcassets */,
 				F52ACAAC1E6DFBCB007AB8EA /* LaunchScreen.storyboard */,
 				F52ACAAF1E6DFBCB007AB8EA /* Info.plist */,
 				F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */,
+				12414D961E71BB1B002FC153 /* ChannelStoryboard.storyboard */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -156,8 +205,8 @@
 		F52ACAB71E6DFBCB007AB8EA /* MessagesTests */ = {
 			isa = PBXGroup;
 			children = (
-				F52ACAB81E6DFBCB007AB8EA /* MessagesTests.swift */,
 				F52ACABA1E6DFBCB007AB8EA /* Info.plist */,
+				12E412D71E70A81300063181 /* ChannelsTests.swift */,
 			);
 			path = MessagesTests;
 			sourceTree = "<group>";
@@ -260,6 +309,7 @@
 					};
 					F52ACAB31E6DFBCB007AB8EA = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = F52ACA9F1E6DFBCB007AB8EA;
 					};
@@ -299,6 +349,8 @@
 				F52ACAD21E6DFDF1007AB8EA /* GoogleService-Info.plist in Resources */,
 				F52ACAAB1E6DFBCB007AB8EA /* Assets.xcassets in Resources */,
 				F52ACAA91E6DFBCB007AB8EA /* Main.storyboard in Resources */,
+				12414D971E71BB1B002FC153 /* ChannelStoryboard.storyboard in Resources */,
+				12414D8A1E719B80002FC153 /* ChannelCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,9 +513,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
+				12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
 				F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */,
+				12414D8C1E719C7B002FC153 /* ChannelCell.swift in Sources */,
+				12414D8E1E719DE5002FC153 /* ChannelViewController.swift in Sources */,
+				12271DF31E6F1EED00E87884 /* ChannelService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F52ACAB91E6DFBCB007AB8EA /* MessagesTests.swift in Sources */,
+				12E412D81E70A81300063181 /* ChannelsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,7 +613,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -601,7 +656,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -615,6 +670,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Messages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.Messages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -628,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Messages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.Messages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -641,10 +698,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MessagesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.MessagesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Messages.app/Messages";
 			};
@@ -656,10 +717,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MessagesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.MessagesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Messages.app/Messages";
 			};
@@ -671,6 +735,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = MessagesUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.MessagesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -685,6 +750,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = MessagesUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.MessagesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

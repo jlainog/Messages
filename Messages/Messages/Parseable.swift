@@ -9,5 +9,5 @@
 import Foundation
 
 protocol Parseable {
-    init(json: [String: Any])
+    init(json: NSDictionary)
 }

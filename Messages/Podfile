@@ -13,11 +13,6 @@ target 'Messages' do
   target 'MessagesTests' do
     inherit! :search_paths
     # Pods for testing
-     pod 'Firebase'
-     pod 'Firebase/Analytics'
-     pod 'Firebase/Core'
-     pod 'OHHTTPStubs'
-     pod 'OHHTTPStubs/Swift' # Adds the Swiftier API wrapper too
   end
 
   target 'MessagesUITests' do

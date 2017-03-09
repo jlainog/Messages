@@ -13,15 +13,15 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var channelsTable: UITableView!
     @IBOutlet weak var newItemTxtField: UITextField!
     
-    internal var channels: [ChannelProtocol] = []
-    
+    internal var channels: [ChannelProtocol]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         channelsTable.delegate = self
         channelsTable.dataSource = self
         channelsTable.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "cell")
-       
+        channels = []
+        
         let service = ChannelService()
         service.listChannels(){ channelsArray in
             self.channels = channelsArray
@@ -30,29 +30,22 @@ class ChannelViewController: UIViewController {
     }
     
     @IBAction func createChannel(_ sender: UIButton) {
-        let channel = PublicChannel(id:nil, name:newItemTxtField.text!)
+        let channel = PublicChannel(name:newItemTxtField.text!)
+        
         ChannelService().createChannel(channel: channel)
         channelsTable.reloadData()
     }
+    
 }
 
 extension ChannelViewController:UITableViewDataSource,UITableViewDelegate{
     
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let headerTitles = ["Public Channels"]
-        if section < headerTitles.count {
-            return headerTitles[section]
-        }
-        return nil
+        return "Public Channels"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channels.count
+        return channels?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
@@ -60,11 +53,11 @@ extension ChannelViewController:UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let channel = channels[indexPath.row]
+        let channel = channels?[indexPath.row]
         let cell = channelsTable.dequeueReusableCell(withIdentifier:"cell",for: indexPath) as! ChannelCell
-        cell.titleLbl.text = channel.name
-        return cell
         
+        cell.titleLbl.text = channel?.name
+        return cell
     }
     
 }
