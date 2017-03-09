@@ -19,6 +19,10 @@
 		F52ACAC41E6DFBCB007AB8EA /* MessagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAC31E6DFBCB007AB8EA /* MessagesUITests.swift */; };
 		F52ACAD21E6DFDF1007AB8EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */; };
 		F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86525951E6F0C220024BDC9 /* Parseable.swift */; };
+		F865259B1E6F11210024BDC9 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F865259A1E6F11210024BDC9 /* Chat.swift */; };
+		F865259D1E6F170B0024BDC9 /* ChatFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = F865259C1E6F170B0024BDC9 /* ChatFacade.swift */; };
+		F865259F1E719F870024BDC9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F865259E1E719F870024BDC9 /* Message.swift */; };
+		F86525A11E71A7F50024BDC9 /* ChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86525A01E71A7F50024BDC9 /* ChatResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +67,10 @@
 		F52ACAC51E6DFBCB007AB8EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F86525951E6F0C220024BDC9 /* Parseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parseable.swift; sourceTree = "<group>"; };
+		F865259A1E6F11210024BDC9 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		F865259C1E6F170B0024BDC9 /* ChatFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatFacade.swift; sourceTree = "<group>"; };
+		F865259E1E719F870024BDC9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		F86525A01E71A7F50024BDC9 /* ChatResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +149,7 @@
 		F52ACAA21E6DFBCB007AB8EA /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				F86525971E6F10AB0024BDC9 /* Chat */,
 				F86525941E6F0B880024BDC9 /* Protocols */,
 				F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */,
 				F52ACAA51E6DFBCB007AB8EA /* ViewController.swift */,
@@ -177,6 +186,33 @@
 				F86525951E6F0C220024BDC9 /* Parseable.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		F86525971E6F10AB0024BDC9 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				F86525991E6F10EF0024BDC9 /* Model */,
+				F86525981E6F10C00024BDC9 /* Facade */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		F86525981E6F10C00024BDC9 /* Facade */ = {
+			isa = PBXGroup;
+			children = (
+				F865259C1E6F170B0024BDC9 /* ChatFacade.swift */,
+				F86525A01E71A7F50024BDC9 /* ChatResponse.swift */,
+			);
+			name = Facade;
+			sourceTree = "<group>";
+		};
+		F86525991E6F10EF0024BDC9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F865259A1E6F11210024BDC9 /* Chat.swift */,
+				F865259E1E719F870024BDC9 /* Message.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,7 +497,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F86525A11E71A7F50024BDC9 /* ChatResponse.swift in Sources */,
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
+				F865259B1E6F11210024BDC9 /* Chat.swift in Sources */,
+				F865259D1E6F170B0024BDC9 /* ChatFacade.swift in Sources */,
+				F865259F1E719F870024BDC9 /* Message.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
 				F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */,
 			);
