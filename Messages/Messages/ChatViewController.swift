@@ -11,13 +11,13 @@ import Firebase
 import JSQMessagesViewController
 
 final class ChatViewController: JSQMessagesViewController {
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.senderId = FIRAuth.auth()?.currentUser?.uid
+        self.senderId = FIRAuth.auth()?.currentUser?.uid
 
-        // Do any additional setup after loading the view.
+        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
+        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
     }
     
     private var messages: [JSQMessage] = []
@@ -39,10 +39,10 @@ final class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let message = messages[indexPath.item] // 1
-        if message.senderId == senderId { // 2
+        let message = messages[indexPath.item]
+        if message.senderId == senderId {
             return outgoingBubbleImageView
-        } else { // 3
+        } else {
             return incomingBubbleImageView
         }
     }
@@ -52,10 +52,10 @@ final class ChatViewController: JSQMessagesViewController {
         
         let message = messages[indexPath.item]
         
-        if message.senderId == senderId { // 1
-            cell.textView?.textColor = UIColor.white // 2
+        if message.senderId == senderId {
+            cell.textView?.textColor = UIColor.white
         } else {
-            cell.textView?.textColor = UIColor.blue // 3
+            cell.textView?.textColor = UIColor.blue
         }
         
         return cell
@@ -78,7 +78,5 @@ final class ChatViewController: JSQMessagesViewController {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
-
-    
 }
 
