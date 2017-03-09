@@ -22,7 +22,6 @@
 		F865259B1E6F11210024BDC9 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F865259A1E6F11210024BDC9 /* Chat.swift */; };
 		F865259D1E6F170B0024BDC9 /* ChatFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = F865259C1E6F170B0024BDC9 /* ChatFacade.swift */; };
 		F865259F1E719F870024BDC9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F865259E1E719F870024BDC9 /* Message.swift */; };
-		F86525A11E71A7F50024BDC9 /* ChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86525A01E71A7F50024BDC9 /* ChatResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +69,6 @@
 		F865259A1E6F11210024BDC9 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		F865259C1E6F170B0024BDC9 /* ChatFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatFacade.swift; sourceTree = "<group>"; };
 		F865259E1E719F870024BDC9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		F86525A01E71A7F50024BDC9 /* ChatResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				F865259C1E6F170B0024BDC9 /* ChatFacade.swift */,
-				F86525A01E71A7F50024BDC9 /* ChatResponse.swift */,
 			);
 			name = Facade;
 			sourceTree = "<group>";
@@ -497,7 +494,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F86525A11E71A7F50024BDC9 /* ChatResponse.swift in Sources */,
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
 				F865259B1E6F11210024BDC9 /* Chat.swift in Sources */,
 				F865259D1E6F170B0024BDC9 /* ChatFacade.swift in Sources */,
