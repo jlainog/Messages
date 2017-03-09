@@ -13,9 +13,9 @@ class User {
     var name: String?
     var email: String?
     
-    init(identifier:Int, name:String, email: String){
+    init(identifier:Int, name:String, email: String? = nil){
         self.identifier = identifier
         self.name = name
-        self.email = nil
+        self.email = email
     }
 }

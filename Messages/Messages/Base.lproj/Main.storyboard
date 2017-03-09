@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,21 +19,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="msgIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DIq-uP-jIj">
-                                <frame key="frameInset" minX="114" minY="116" width="146" height="145"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your nickname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sDG-jJ-Tfc">
-                                <frame key="frameInset" minX="86" minY="323" width="203" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="msgIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DIq-uP-jIj"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your nickname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sDG-jJ-Tfc">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Zit-Ck-sra"/>
+                                </constraints>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ih1-YZ-wXH">
-                                <frame key="frameInset" minX="86" minY="392" width="203" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ih1-YZ-wXH">
                                 <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -40,6 +37,18 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.3529411764705882" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="sDG-jJ-Tfc" firstAttribute="leading" secondItem="ih1-YZ-wXH" secondAttribute="leading" id="7Fm-kT-kft"/>
+                            <constraint firstItem="DIq-uP-jIj" firstAttribute="centerX" secondItem="sDG-jJ-Tfc" secondAttribute="centerX" id="Dxd-tG-wR4"/>
+                            <constraint firstItem="ih1-YZ-wXH" firstAttribute="top" secondItem="sDG-jJ-Tfc" secondAttribute="bottom" constant="19" id="EcL-0j-8Vy"/>
+                            <constraint firstItem="sDG-jJ-Tfc" firstAttribute="centerX" secondItem="UZ7-6V-REq" secondAttribute="centerX" id="Nsb-gr-OJj"/>
+                            <constraint firstItem="ih1-YZ-wXH" firstAttribute="centerX" secondItem="UZ7-6V-REq" secondAttribute="centerX" id="bag-AQ-4u0"/>
+                            <constraint firstItem="sDG-jJ-Tfc" firstAttribute="top" secondItem="UZ7-6V-REq" secondAttribute="top" constant="323" id="c3g-yI-S0k"/>
+                            <constraint firstItem="DIq-uP-jIj" firstAttribute="top" secondItem="fED-Xr-Mle" secondAttribute="bottom" constant="96" id="qbx-yU-mTM"/>
+                            <constraint firstItem="sDG-jJ-Tfc" firstAttribute="leading" secondItem="UZ7-6V-REq" secondAttribute="leadingMargin" constant="70" id="r4s-gZ-SJq"/>
+                            <constraint firstItem="DIq-uP-jIj" firstAttribute="leading" secondItem="UZ7-6V-REq" secondAttribute="leadingMargin" constant="98" id="vpJ-f4-e1x"/>
+                            <constraint firstItem="sDG-jJ-Tfc" firstAttribute="top" secondItem="DIq-uP-jIj" secondAttribute="bottom" constant="62" id="zwy-F5-buZ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="userNameTextField" destination="sDG-jJ-Tfc" id="B4c-UM-Mhm"/>
