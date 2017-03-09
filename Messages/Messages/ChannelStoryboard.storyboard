@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gBo-wJ-H8Q">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Channel View Controller-->
+        <scene sceneID="ZSw-VS-67Z">
+            <objects>
+                <viewController id="gBo-wJ-H8Q" customClass="ChannelViewController" customModule="Messages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VKt-Ld-wOC"/>
+                        <viewControllerLayoutGuide type="bottom" id="epR-BQ-si9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9tn-G4-9LN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ahC-vB-2bE">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="601" id="MVW-EA-SSi"/>
+                                </constraints>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7yg-Fg-I2w">
+                                <frame key="frameInset" minX="16" minY="28" width="243" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QK1-cP-kSX">
+                                <frame key="frameInset" minX="267" minY="28" width="92" height="30"/>
+                                <state key="normal" title="New Channel"/>
+                                <connections>
+                                    <action selector="createChannel:" destination="gBo-wJ-H8Q" eventType="touchDown" id="ygZ-cV-x6P"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ahC-vB-2bE" firstAttribute="top" secondItem="QK1-cP-kSX" secondAttribute="bottom" constant="8" symbolic="YES" id="8EW-0Z-bNT"/>
+                            <constraint firstItem="7yg-Fg-I2w" firstAttribute="top" secondItem="VKt-Ld-wOC" secondAttribute="bottom" constant="8" id="Evi-SL-neQ"/>
+                            <constraint firstItem="ahC-vB-2bE" firstAttribute="top" secondItem="7yg-Fg-I2w" secondAttribute="bottom" constant="8" symbolic="YES" id="JbW-nD-1rJ"/>
+                            <constraint firstItem="ahC-vB-2bE" firstAttribute="bottom" secondItem="epR-BQ-si9" secondAttribute="top" id="JoI-vr-Mm9"/>
+                            <constraint firstItem="7yg-Fg-I2w" firstAttribute="leading" secondItem="9tn-G4-9LN" secondAttribute="leadingMargin" id="Y0q-n3-zwW"/>
+                            <constraint firstItem="QK1-cP-kSX" firstAttribute="leading" secondItem="7yg-Fg-I2w" secondAttribute="trailing" constant="8" id="fUJ-Ty-hYq"/>
+                            <constraint firstItem="QK1-cP-kSX" firstAttribute="top" secondItem="VKt-Ld-wOC" secondAttribute="bottom" constant="8" id="ppp-Hk-yEF"/>
+                            <constraint firstItem="ahC-vB-2bE" firstAttribute="leading" secondItem="9tn-G4-9LN" secondAttribute="leading" id="pyS-Km-n3P"/>
+                            <constraint firstItem="QK1-cP-kSX" firstAttribute="trailing" secondItem="9tn-G4-9LN" secondAttribute="trailingMargin" id="svQ-NA-c0N"/>
+                            <constraint firstAttribute="trailing" secondItem="ahC-vB-2bE" secondAttribute="trailing" id="ugS-cm-dMP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="channelsTable" destination="ahC-vB-2bE" id="OfX-y7-40k"/>
+                        <outlet property="newItemTxtField" destination="7yg-Fg-I2w" id="iMF-eM-w9k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A1F-xT-I1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-458.39999999999998" y="-328.78560719640183"/>
+        </scene>
+    </scenes>
+</document>
