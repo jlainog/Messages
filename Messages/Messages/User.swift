@@ -9,16 +9,13 @@
 import Foundation
 
 class User {
-    var userId: Int?
-    var userName: String?
-    var userEmail: String?
+    var identifier: Int?
+    var name: String?
+    var email: String?
     
-    init(userId:Int, userName:String, userEmail: String){
-        self.userId = userId
-        self.userName = userName
-        self.userEmail = nil
+    init(identifier:Int, name:String, email: String){
+        self.identifier = identifier
+        self.name = name
+        self.email = nil
     }
-    
-    
 }
-

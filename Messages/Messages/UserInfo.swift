@@ -9,7 +9,7 @@
 import Foundation
 
 protocol UserInfo {
-    var userId:Int?{get}
-    var userName:String?{get set}
-    var userEmail:String?{get}
+    var identifier : Int? { get }
+    var name : String? { get set }
+    var email : String? { get }
 }
