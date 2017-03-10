@@ -11,6 +11,8 @@ import Foundation
 protocol Identificable: Parseable {
     var id: String? { set get }
     var content: String? { set get }
+    
+    init(id: String, json: NSDictionary)
 }
 
 struct PublicChannel: Identificable {

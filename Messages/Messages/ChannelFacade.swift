@@ -14,10 +14,10 @@ protocol ChannelServiceProtocol {
     func delete(channel: Identificable)
 }
 
-struct  ChannelFacade: ChannelServiceProtocol{
+struct ChannelFacade: ChannelServiceProtocol {
     
-    var key: String
-    static var service = FireBaseService()
+    let key: String
+    static var service = FireBaseService<PublicChannel>()   
     
     func listChannels(completionHandler: @escaping channelHandler) {
         ChannelFacade.service.listObjects(completionHandler: completionHandler, dicKey: key)
@@ -25,12 +25,12 @@ struct  ChannelFacade: ChannelServiceProtocol{
     
     func create(channel: Identificable) {
         ChannelFacade.service.createObjectWith(dicKey: key) { () -> [String : Any] in
-            return ["dicKey" : channel.content!]
+            return ["content" : channel.content!]
         }
     }
     
     func delete(channel: Identificable) {
-        ChannelFacade.service.delete(object: channel, dicKey: key)
+        ChannelFacade.service.delete(object: channel as! PublicChannel, dicKey: key)
     }
     
 }
