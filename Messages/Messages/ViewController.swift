@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func sendMessage(_ sender: Any) {
         let date = Date().timeIntervalSince1970
         
-        let messageDictionary = ["userId": userId, "message" : messageTextField.text!, "messageType" : MessageType.text, "timestamp" : date] as NSDictionary
+        let messageDictionary = ["userId": userId, "userName": "Lucho", "message" : messageTextField.text!, "messageType" : MessageType.text, "timestamp" : date] as NSDictionary
         let message = Message(json: messageDictionary)
         
         ChatFacade.createMessage(channelId: "12334", message: message)
