@@ -50,7 +50,6 @@
 		12414D8B1E719C7B002FC153 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		12414D8D1E719DE5002FC153 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		12414D961E71BB1B002FC153 /* ChannelStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChannelStoryboard.storyboard; sourceTree = "<group>"; };
-		12E412D31E709CE600063181 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		12E412D71E70A81300063181 /* ChannelsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsTests.swift; sourceTree = "<group>"; };
 		4FC6637519658E1272FCBFB3 /* Pods-MessagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesTests/Pods-MessagesTests.release.xcconfig"; sourceTree = "<group>"; };
 		5C298D3371EEB9649D79DE9E /* Pods-Messages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messages.release.xcconfig"; path = "Pods/Target Support Files/Pods-Messages/Pods-Messages.release.xcconfig"; sourceTree = "<group>"; };
@@ -166,7 +165,6 @@
 		F52ACA971E6DFBCB007AB8EA = {
 			isa = PBXGroup;
 			children = (
-				12E412D31E709CE600063181 /* MyPlayground.playground */,
 				F52ACAA21E6DFBCB007AB8EA /* Messages */,
 				F52ACAB71E6DFBCB007AB8EA /* MessagesTests */,
 				F52ACAC21E6DFBCB007AB8EA /* MessagesUITests */,

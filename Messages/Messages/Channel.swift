@@ -8,21 +8,21 @@
 
 import Foundation
 
-protocol ChannelProtocol:Parseable {
+protocol ChannelProtocol: Parseable {
     var id:String? { set get }
     var name:String? { set get }
 }
 
-class PublicChannel: ChannelProtocol {
+struct PublicChannel: ChannelProtocol {
     
     internal var id:String?
     internal var name: String?
     
-    required init(json: NSDictionary) {
+    init(json: NSDictionary) {
         self.name = json["name"] as? String
     }
     
-    convenience init(id: String, json: NSDictionary) {
+    init(id: String, json: NSDictionary) {
         self.init(json:json)
         self.id = id
     }

@@ -18,27 +18,21 @@ class ChannelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         channelsTable.delegate = self
+        newItemTxtField.delegate = self
         channelsTable.dataSource = self
         channelsTable.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "cell")
-        channels = []
         
-        let service = ChannelService()
-        service.listChannels(){ channelsArray in
-            self.channels = channelsArray
-            self.channelsTable.reloadData()
-        }
     }
     
-    @IBAction func createChannel(_ sender: UIButton) {
-        let channel = PublicChannel(name:newItemTxtField.text!)
-        
-        ChannelService().createChannel(channel: channel)
-        channelsTable.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        newItemTxtField.becomeFirstResponder()
+        self.hideKeyboardWhenTappedAround()
     }
     
 }
 
-extension ChannelViewController:UITableViewDataSource,UITableViewDelegate{
+extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Public Channels"
@@ -61,3 +55,35 @@ extension ChannelViewController:UITableViewDataSource,UITableViewDelegate{
     }
     
 }
+
+extension ChannelViewController: UITextFieldDelegate {
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        if textField == self.newItemTxtField {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChannelViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
+}
+
+extension UITextField {
+    func shake() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.duration = 0.6
+        animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
+        layer.add(animation, forKey: "shake")
+    }
+}
+
