@@ -27,6 +27,9 @@
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7yg-Fg-I2w">
                                 <frame key="frameInset" minX="16" minY="28" width="243" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="iQd-wn-MkV"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -35,7 +38,7 @@
                                 <frame key="frameInset" minX="267" minY="28" width="92" height="30"/>
                                 <state key="normal" title="New Channel"/>
                                 <connections>
-                                    <action selector="createChannel:" destination="gBo-wJ-H8Q" eventType="touchDown" id="ygZ-cV-x6P"/>
+                                    <action selector="createChannel:" destination="gBo-wJ-H8Q" eventType="touchUpInside" id="xfE-2w-Qvx"/>
                                 </connections>
                             </button>
                         </subviews>

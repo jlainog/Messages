@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12271DED1E6F16EB00E87884 /* Channel.swift */; };
-		12271DF31E6F1EED00E87884 /* ChannelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12271DF21E6F1EED00E87884 /* ChannelService.swift */; };
 		12414D8A1E719B80002FC153 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12414D891E719B80002FC153 /* ChannelCell.xib */; };
 		12414D8C1E719C7B002FC153 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12414D8B1E719C7B002FC153 /* ChannelCell.swift */; };
 		12414D8E1E719DE5002FC153 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12414D8D1E719DE5002FC153 /* ChannelViewController.swift */; };
@@ -45,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		12271DED1E6F16EB00E87884 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		12271DF21E6F1EED00E87884 /* ChannelService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelService.swift; sourceTree = "<group>"; };
 		12414D891E719B80002FC153 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		12414D8B1E719C7B002FC153 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		12414D8D1E719DE5002FC153 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 		12271DEF1E6F1DF000E87884 /* RestService */ = {
 			isa = PBXGroup;
 			children = (
-				12271DF21E6F1EED00E87884 /* ChannelService.swift */,
 			);
 			name = RestService;
 			sourceTree = "<group>";
@@ -516,7 +513,6 @@
 				F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */,
 				12414D8C1E719C7B002FC153 /* ChannelCell.swift in Sources */,
 				12414D8E1E719DE5002FC153 /* ChannelViewController.swift in Sources */,
-				12271DF31E6F1EED00E87884 /* ChannelService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

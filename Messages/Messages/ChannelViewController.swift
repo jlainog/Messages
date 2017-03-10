@@ -13,7 +13,7 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var channelsTable: UITableView!
     @IBOutlet weak var newItemTxtField: UITextField!
     
-    internal var channels: [ChannelProtocol]?
+    internal var channels: [ChannelProtocol] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,6 @@ class ChannelViewController: UIViewController {
         newItemTxtField.delegate = self
         channelsTable.dataSource = self
         channelsTable.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "cell")
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +29,14 @@ class ChannelViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
     
+    @IBAction func createChannel(_ sender: UIButton) {
+        guard newItemTxtField.text != "" else {return newItemTxtField.shake() }
+        channels.append(PublicChannel(name: newItemTxtField.text!))
+        if textFieldShouldClear(newItemTxtField){
+            newItemTxtField.text = ""
+        }
+        channelsTable.reloadData()
+    }
 }
 
 extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
@@ -39,7 +46,8 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channels?.count ?? 0
+        return channels.count
+        //?? 0
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
@@ -47,10 +55,10 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let channel = channels?[indexPath.row]
+        let channel = channels[indexPath.row]
         let cell = channelsTable.dequeueReusableCell(withIdentifier:"cell",for: indexPath) as! ChannelCell
         
-        cell.titleLbl.text = channel?.name
+        cell.titleLbl.text = channel.name
         return cell
     }
     
