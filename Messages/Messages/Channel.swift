@@ -8,18 +8,18 @@
 
 import Foundation
 
-protocol ChannelProtocol: Parseable {
-    var id:String? { set get }
-    var name:String? { set get }
+protocol Identificable: Parseable {
+    var id: String? { set get }
+    var content: String? { set get }
 }
 
-struct PublicChannel: ChannelProtocol {
+struct PublicChannel: Identificable {
     
     internal var id: String?
-    internal var name: String?
+    internal var content: String?
     
     init(json: NSDictionary) {
-        self.name = json["name"] as? String
+        self.content = json[ "content" ] as? String
     }
     
     init(id: String, json: NSDictionary) {
@@ -27,8 +27,8 @@ struct PublicChannel: ChannelProtocol {
         self.id = id
     }
     
-    init(name:String) {
-        self.name = name
+    init(content: String) {
+        self.content = content
     }
     
 }
