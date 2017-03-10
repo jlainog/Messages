@@ -12,16 +12,14 @@ import Firebase
 typealias channelHandler  = (_ data:[ChannelProtocol]) -> Void
 
 protocol ChannelServiceProtocol {
-
     func listChannels(completionHandler: @escaping channelHandler)
-    func createChannel(channel:ChannelProtocol)
-    func deleteChannel(channel:ChannelProtocol)
-    
+    func createChannel(channel: ChannelProtocol)
+    func deleteChannel(channel: ChannelProtocol)
 }
 
-class ChannelService:ChannelServiceProtocol {
+struct ChannelService:ChannelServiceProtocol {
     
-    var ref: FIRDatabaseReference!
+    var ref =  FIRDatabase.database().reference()
 
     internal func deleteChannel(channel: ChannelProtocol)  {
         ref = FIRDatabase.database().reference()

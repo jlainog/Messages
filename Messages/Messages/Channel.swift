@@ -15,7 +15,7 @@ protocol ChannelProtocol: Parseable {
 
 struct PublicChannel: ChannelProtocol {
     
-    internal var id:String?
+    internal var id: String?
     internal var name: String?
     
     init(json: NSDictionary) {
