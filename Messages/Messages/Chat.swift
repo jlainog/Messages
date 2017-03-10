@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum MessageType {
+enum MessageType : String {
     case text
 }
 
@@ -19,7 +19,11 @@ protocol ChatInfo : Parseable {
 struct Chat : ChatInfo {
     var messages: [Message]
     
-    init(json: [String : Any]) {
-        self.messages = json["messages"] as? [Message] ?? [Message]()
+    init(json: NSDictionary) {
+        guard let chatMessages = json["messages"] as? NSDictionary else {
+            self.messages = [Message]()
+            return
+        }
+        self.messages = [Message(json: chatMessages)]
     }
 }
