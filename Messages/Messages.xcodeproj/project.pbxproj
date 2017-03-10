@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48CF92011E73432800071DB6 /* UserFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF92001E73432800071DB6 /* UserFacade.swift */; };
+		48DFCE911E70AFC10097CA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DFCE901E70AFC10097CA42 /* LoginViewController.swift */; };
 		48E68D6C1E6F19F00046BD1A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E68D6B1E6F19F00046BD1A /* User.swift */; };
 		48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E68D6E1E706FD70046BD1A /* UserInfo.swift */; };
 		67EB2D91465A6E1A98337DF3 /* Pods_MessagesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAF9A6D08EB1C46CE43049A /* Pods_MessagesTests.framework */; };
@@ -20,7 +22,6 @@
 		F52ACAB91E6DFBCB007AB8EA /* MessagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAB81E6DFBCB007AB8EA /* MessagesTests.swift */; };
 		F52ACAC41E6DFBCB007AB8EA /* MessagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAC31E6DFBCB007AB8EA /* MessagesUITests.swift */; };
 		F52ACAD21E6DFDF1007AB8EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */; };
-		F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86525951E6F0C220024BDC9 /* Parseable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48CF92001E73432800071DB6 /* UserFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFacade.swift; sourceTree = "<group>"; };
+		48DFCE901E70AFC10097CA42 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48E68D6B1E6F19F00046BD1A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		48E68D6E1E706FD70046BD1A /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		4FC6637519658E1272FCBFB3 /* Pods-MessagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesTests/Pods-MessagesTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,7 +69,6 @@
 		F52ACAC31E6DFBCB007AB8EA /* MessagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITests.swift; sourceTree = "<group>"; };
 		F52ACAC51E6DFBCB007AB8EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F86525951E6F0C220024BDC9 /* Parseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parseable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48CF91FD1E73370100071DB6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				48CF92001E73432800071DB6 /* UserFacade.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		48DFCE8F1E70AF9B0097CA42 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				48DFCE901E70AFC10097CA42 /* LoginViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		48E68D6A1E6F19D80046BD1A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +127,8 @@
 		48E68D6D1E6F1A010046BD1A /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				48CF91FD1E73370100071DB6 /* Services */,
+				48DFCE8F1E70AF9B0097CA42 /* Controller */,
 				48E68D6A1E6F19D80046BD1A /* Model */,
 			);
 			name = Login;
@@ -163,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				48E68D6D1E6F1A010046BD1A /* Login */,
-				F86525941E6F0B880024BDC9 /* Protocols */,
 				F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */,
 				F52ACAA51E6DFBCB007AB8EA /* ViewController.swift */,
 				F52ACAA71E6DFBCB007AB8EA /* Main.storyboard */,
@@ -191,14 +210,6 @@
 				F52ACAC51E6DFBCB007AB8EA /* Info.plist */,
 			);
 			path = MessagesUITests;
-			sourceTree = "<group>";
-		};
-		F86525941E6F0B880024BDC9 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				F86525951E6F0C220024BDC9 /* Parseable.swift */,
-			);
-			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,11 +494,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48CF92011E73432800071DB6 /* UserFacade.swift in Sources */,
+				48DFCE911E70AFC10097CA42 /* LoginViewController.swift in Sources */,
 				48E68D6C1E6F19F00046BD1A /* User.swift in Sources */,
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
 				48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */,
-				F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
