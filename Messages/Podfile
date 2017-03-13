@@ -7,10 +7,9 @@ target 'Messages' do
 
   # Pods for Messages
     pod 'Firebase/Core'
-    
     pod 'JSQMessagesViewController'
-    
     pod 'Firebase/Auth'
+    pod 'Firebase/Database'
 
   target 'MessagesTests' do
     inherit! :search_paths
