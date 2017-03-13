@@ -17,5 +17,10 @@ target 'Messages' do
     inherit! :search_paths
     # Pods for testing
   end
+  
+  # Pods for Authentication
+  
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
 end
