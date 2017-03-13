@@ -10,8 +10,6 @@ import Foundation
 import Firebase
 import UIKit
 
-
-
 struct UserFacade {
     var firebase: FIRDatabaseReference?
     
