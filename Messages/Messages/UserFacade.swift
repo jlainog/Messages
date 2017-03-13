@@ -17,13 +17,12 @@ struct UserFacade {
         FIRAuth.auth()?.signInAnonymously(completion: { (user, error)  in
             if (error != nil) {
                 completion(nil, error!)
-                print("Anonymous auth failed")
+    
                 return
             }
+            
             let userObj : User = User(identifier: user!.uid, name: userName)
             completion(userObj, nil)
-            
-            print("Congrats! you are in")
         })
     }
 }
