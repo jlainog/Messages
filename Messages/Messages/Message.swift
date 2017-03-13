@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import JSQMessagesViewController
 
 enum MessageType {
     case text
@@ -20,15 +21,15 @@ extension MessageType {
     }
 }
 
-protocol MessageInfo : Parseable {
-    var userId : String { get }
-    var userName : String { get }
+protocol MessageInfo : Parseable, JSQMessageData {
+    var userId: String { get }
+    var userName: String { get }
     var message: String { get }
     var messageType : MessageType { get }
-    var timestamp : Double { get }
+    var timestamp: Double { get }
 }
 
-class Message : MessageInfo {
+class Message : NSObject, MessageInfo {
     var userId: String
     var userName: String
     var message: String
@@ -43,6 +44,11 @@ class Message : MessageInfo {
         self.timestamp = json["timestamp"] as? Double ?? 0
     }
     
+    convenience init(userId: String, userName: String, message: String, messageType: MessageType = .text, timestamp: TimeInterval = Date().timeIntervalSince1970) {
+        let json = ["userId": userId, "userName": userName, "message": message, "messageType": messageType, "timestamp": timestamp] as NSDictionary
+        self.init(json: json)
+    }
+    
     func buildJSON() -> NSDictionary {
         var json = Dictionary<String, Any>()
         
@@ -52,5 +58,33 @@ class Message : MessageInfo {
         json["messageType"] = messageType.type
         json["timestamp"] = timestamp
         return json as NSDictionary
+    }
+}
+
+//MARK: JSQMessageData
+
+extension Message {
+    func senderId() -> String! {
+        return self.userId
+    }
+    
+    func senderDisplayName() -> String! {
+        return self.userName
+    }
+    
+    func text() -> String! {
+        return self.message
+    }
+    
+    func isMediaMessage() -> Bool {
+        return self.messageType != .text
+    }
+    
+    func date() -> Date! {
+        return Date(timeIntervalSince1970: self.timestamp)
+    }
+    
+    func messageHash() -> UInt {
+        return UInt(self.hashValue)
     }
 }

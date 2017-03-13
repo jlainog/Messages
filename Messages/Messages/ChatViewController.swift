@@ -13,7 +13,8 @@ import JSQMessagesViewController
 final class ChatViewController: JSQMessagesViewController {
     
  // MARK: Variable Definitions
-    private var messages: [JSQMessage] = []
+    private var messages: [Message] = []
+    var channelId: String = "123"
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
@@ -23,9 +24,18 @@ final class ChatViewController: JSQMessagesViewController {
         super.viewDidLoad()
         self.senderId = "some"
         self.senderDisplayName = "some"
-
+        
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
+        
+        loadDataToChat()
+    }
+    
+    func loadDataToChat() {
+        ChatFacade.retrieveChat(channelId: channelId) { response in
+            self.messages = response
+            self.collectionView.reloadData()
+        }
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
@@ -43,7 +53,7 @@ final class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
         
-        if message.senderId == senderId {
+        if message.userId == senderId {
             return outgoingBubbleImageView
         } else {
             return incomingBubbleImageView
@@ -54,7 +64,7 @@ final class ChatViewController: JSQMessagesViewController {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
         
-        if message.senderId == senderId {
+        if message.userId == senderId {
             cell.textView?.textColor = UIColor.white
         } else {
             cell.textView?.textColor = UIColor.blue
@@ -78,15 +88,23 @@ final class ChatViewController: JSQMessagesViewController {
         addMessage(withId: self.senderId,
                    name: self.senderDisplayName,
                    text: text)
+        loadDataToChat()
         finishSendingMessage()
     }
 
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        let refreshAlert = UIAlertController(title: "Function not yet implemented",
+                                             message: "This functionality is not yet implemented in the application.",
+                                             preferredStyle: UIAlertControllerStyle.alert)
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(refreshAlert, animated: true, completion: nil)
+    }
     
  // MARK: Private Methods
     private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            messages.append(message)
-        }
+        let message = Message(userId: id, userName: name, message: text)
+        ChatFacade.createMessage(channelId: channelId, message: message)
+        messages.append(message)
     }
     
 }
