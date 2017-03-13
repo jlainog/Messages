@@ -19,6 +19,7 @@
 		48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E68D6E1E706FD70046BD1A /* UserInfo.swift */; };
 		67EB2D91465A6E1A98337DF3 /* Pods_MessagesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAF9A6D08EB1C46CE43049A /* Pods_MessagesTests.framework */; };
 		AD86D6E1E109D7EBE0DE451E /* Pods_MessagesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EEBB4AA680A05F0B31217D /* Pods_MessagesUITests.framework */; };
+		E2C5A52A1E704460002D37EF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C5A5291E704460002D37EF /* ChatViewController.swift */; };
 		E7990B3AC53507E7EBA4A497 /* Pods_Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4DCFF477758DF0F9824836 /* Pods_Messages.framework */; };
 		F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */; };
 		F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAA51E6DFBCB007AB8EA /* ViewController.swift */; };
@@ -66,6 +67,7 @@
 		9F2127F2C7DA2640C99C63B6 /* Pods-Messages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Messages/Pods-Messages.debug.xcconfig"; sourceTree = "<group>"; };
 		D3EEBB4AA680A05F0B31217D /* Pods_MessagesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1469B52EE262D6C9FCFCB4 /* Pods-MessagesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesTests/Pods-MessagesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E2C5A5291E704460002D37EF /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		EC2651C4040D82FEA39D650A /* Pods-MessagesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesUITests/Pods-MessagesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F52ACAA01E6DFBCB007AB8EA /* Messages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +206,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E2A72F581E6F4355001EE4AD /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				E2A72F5A1E6F4365001EE4AD /* View */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		E2A72F5A1E6F4365001EE4AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E2C5A5291E704460002D37EF /* ChatViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		F52ACA971E6DFBCB007AB8EA = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +247,7 @@
 		F52ACAA21E6DFBCB007AB8EA /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				E2A72F581E6F4355001EE4AD /* Chat */,
 				1236DECA1E76FF8B006D42E5 /* Extensions */,
 				1236DEC71E76FF7B006D42E5 /* Protocols */,
 				48E68D6D1E6F1A010046BD1A /* Login */,
@@ -554,6 +573,8 @@
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
 				1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
+				E2C5A52A1E704460002D37EF /* ChatViewController.swift in Sources */,
+				F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */,
 				1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */,
 				48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */,
 			);
@@ -736,6 +757,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MessagesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.MessagesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -751,6 +773,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MessagesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.MessagesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -765,6 +788,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = MessagesUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.MessagesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -779,6 +803,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = MessagesUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.MessagesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
