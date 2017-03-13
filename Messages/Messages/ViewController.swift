@@ -78,14 +78,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 }
 
 extension ViewController {
-    func keyboardWillShow(notification: NSNotification) {
-        
+    func keyboardWillShow(notification: NSNotification) {        
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -= keyboardSize.height
             }
         }
-        
     }
     
     func keyboardWillHide(notification: NSNotification) {
