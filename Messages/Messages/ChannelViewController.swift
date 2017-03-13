@@ -13,6 +13,7 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var channelsTable: UITableView!
     @IBOutlet weak var newItemTxtField: UITextField!
     
+    var user: User!
     internal var channels: [ChannelProtocol] = []
     
     override func viewDidLoad() {

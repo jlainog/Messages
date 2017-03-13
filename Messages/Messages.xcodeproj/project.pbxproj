@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48CF92011E73432800071DB6 /* UserFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF92001E73432800071DB6 /* UserFacade.swift */; };
 		1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DEC51E76FF72006D42E5 /* ChannelViewController.swift */; };
 		1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DEC81E76FF88006D42E5 /* Parseable.swift */; };
 		1236DECC1E76FF9A006D42E5 /* UITextField+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48CF92001E73432800071DB6 /* UserFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFacade.swift; sourceTree = "<group>"; };
 		1236DEC51E76FF72006D42E5 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		1236DEC81E76FF88006D42E5 /* Parseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parseable.swift; sourceTree = "<group>"; };
 		1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Shake.swift"; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48CF91FD1E73370100071DB6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				48CF92001E73432800071DB6 /* UserFacade.swift */,
+			);
+			name = Services;
+            sourceTree = "<group>";
+        };
 		1236DEC11E76FEF7006D42E5 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +187,7 @@
 		48E68D6D1E6F1A010046BD1A /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				48CF91FD1E73370100071DB6 /* Services */,
 				48DFCE8F1E70AF9B0097CA42 /* Controller */,
 				48E68D6A1E6F19D80046BD1A /* Model */,
 			);
@@ -565,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48CF92011E73432800071DB6 /* UserFacade.swift in Sources */,
 				1236DECC1E76FF9A006D42E5 /* UITextField+Shake.swift in Sources */,
 				1236DED41E76FFBA006D42E5 /* Channel.swift in Sources */,
 				1236DED01E76FFA9006D42E5 /* ChannelCell.swift in Sources */,

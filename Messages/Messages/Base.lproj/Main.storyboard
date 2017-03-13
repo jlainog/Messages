@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SEC-EY-grY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ipX-6Z-MIX">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="h6F-Uq-RID">
             <objects>
-                <viewController id="SEC-EY-grY" customClass="LoginViewController" customModule="Messages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SEC-EY-grY" customClass="LoginViewController" customModule="Messages" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fED-Xr-Mle"/>
                         <viewControllerLayoutGuide type="bottom" id="nsY-bG-wpC"/>
@@ -30,11 +30,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ih1-YZ-wXH">
-                                <frame key="frameInset" minX="86" minY="392" width="203" height="42"/>
+                                <frame key="frameInset" minX="86" minY="381" width="203" height="42"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Log in"/>
+                                <connections>
+                                    <action selector="userLogIn:" destination="SEC-EY-grY" eventType="touchUpInside" id="P77-p3-b6L"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.3529411764705882" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,11 +54,30 @@
                             <constraint firstItem="sDG-jJ-Tfc" firstAttribute="top" secondItem="DIq-uP-jIj" secondAttribute="bottom" constant="62" id="zwy-F5-buZ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="NyJ-YD-tlr"/>
                     <connections>
                         <outlet property="userNameTextField" destination="sDG-jJ-Tfc" id="B4c-UM-Mhm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfy-dC-EfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1124" y="73.313343328335833"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="85g-iS-AtA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ipX-6Z-MIX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dIU-Yb-4DO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SEC-EY-grY" kind="relationship" relationship="rootViewController" id="I6E-Ut-PF4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GfY-tS-jST" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="184.80000000000001" y="73.313343328335833"/>
         </scene>
