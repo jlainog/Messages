@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseDatabase
 
 typealias channelHandler  = (_ data:[Identificable]) -> Void
 

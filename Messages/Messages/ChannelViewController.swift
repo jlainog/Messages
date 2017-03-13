@@ -38,11 +38,9 @@ class ChannelViewController: UIViewController {
     }
     
     @IBAction func createChannel(_ sender: UIButton) {
-        guard newItemTxtField.text != "" else {return newItemTxtField.shake() }
         service?.create(channel: PublicChannel(content: newItemTxtField.text!))
-        if textFieldShouldClear(newItemTxtField){
-            newItemTxtField.text = ""
-        }
+        guard newItemTxtField.text != "" else { return newItemTxtField.shake() }
+        textFieldClear(newItemTxtField)
         channelsTable.reloadData()
     }
 }
@@ -81,15 +79,14 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ChannelViewController: UITextFieldDelegate {
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        if textField == self.newItemTxtField {
-            textField.resignFirstResponder()
-        }
-        return true
+    func textFieldClear(_ textField: UITextField) {
+        textField.text = ""
+        textField.resignFirstResponder()
     }
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChannelViewController.dismissKeyboard))
+        
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -99,14 +96,3 @@ extension ChannelViewController: UITextFieldDelegate {
     }
 
 }
-
-extension UITextField {
-    func shake() {
-        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        animation.duration = 0.6
-        animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
-        layer.add(animation, forKey: "shake")
-    }
-}
-
