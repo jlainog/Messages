@@ -8,29 +8,24 @@
 
 import Foundation
 
-protocol Identificable: Parseable {
-    var id: String? { set get }
-    var content: String? { set get }
+struct PublicChannel: FirebaseObject {
     
-    init(id: String, json: NSDictionary)
-}
-
-struct PublicChannel: Identificable {
-    
-    internal var id: String?
-    internal var content: String?
-    
-    init(json: NSDictionary) {
-        self.content = json[ "content" ] as? String
-    }
+    var id: String?
+    var name: String
     
     init(id: String, json: NSDictionary) {
-        self.init(json:json)
+        self.name = json[ "channelName" ] as? String ?? "Unknow"
         self.id = id
     }
     
-    init(content: String) {
-        self.content = content
+    init(name: String) {
+        self.name = name
     }
-    
+  
+    func toDictionary() -> NSDictionary {
+        let dictionary = NSMutableDictionary()
+        
+        dictionary["channelName"] = name
+        return dictionary
+    }
 }

@@ -10,28 +10,47 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-typealias channelHandler  = (_ data:[Identificable]) -> Void
+typealias FirebaseListHandler  = ([FirebaseObject]) -> Void
 
-struct FireBaseService <Object: Identificable>{
+protocol FirebaseObject {
+    var id: String? { get }
+    
+    init(id: String, json: NSDictionary)
+    func toDictionary() -> NSDictionary
+}
+
+struct FireBaseService <Object: FirebaseObject> {
     
     var ref =  FIRDatabase.database().reference()
 
-    internal func delete(object: Object,dicKey: String)  {
-       ref.child(dicKey).child(object.id!).removeValue()
+    func delete(withNodeKey nodeKey: String, object: Object)  {
+       ref.child(nodeKey).child(object.id!).removeValue()
     }
 
-    internal func createObjectWith(dicKey: String, objectAsDic: () -> [String: Any]) {
-        ref.child(dicKey).childByAutoId().setValue(objectAsDic())
+    func create(withNodeKey nodeKey: String, object: Object) {
+        let dictionary = object.toDictionary()
+        
+        ref.child(nodeKey).childByAutoId().setValue(dictionary)
     }
 
-    internal func listObjects (completionHandler: @escaping channelHandler,dicKey: String) {
-        ref.observe(FIRDataEventType.value, with: { (snapshot) in
-            if let response = snapshot.value as? [String : Any],let objects = response[dicKey] as? [String:Any]{
-                let sortedObjects = objects.sorted(){ $0.0 < $1.0 }
-                let objectsArray = sortedObjects.map(){ Object(id: objects.keys.first!, json: $1 as! NSDictionary)}
-                completionHandler(objectsArray)
+    func list(withNodeKey nodeKey: String, completionHandler: @escaping FirebaseListHandler) {
+        ref.child(nodeKey).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let objects = snapshot.value as? [String : Any] {
+                let objectsList = objects.map { Object(id: $0, json: $1 as! NSDictionary) }
+                
+                completionHandler(objectsList)
             } else {
                 completionHandler([])
+            }
+        })
+    }
+    
+    func didAddObject(atNodeKey nodeKey: String, completionHandler: @escaping (FirebaseObject?) -> Void) {
+        ref.child(nodeKey).observe(.childAdded, with: { (snapshot) in
+            if let object = snapshot.value as? [String : Any] {
+                completionHandler(Object(id: snapshot.key, json: object as NSDictionary))
+            } else {
+                completionHandler(nil)
             }
         })
     }

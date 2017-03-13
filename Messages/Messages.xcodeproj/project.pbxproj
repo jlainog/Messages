@@ -120,8 +120,8 @@
 		1236DEC11E76FEF7006D42E5 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
-				12271DED1E6F16EB00E87884 /* Channel.swift */,
 				1236DED51E7728B7006D42E5 /* RestService */,
+				12271DED1E6F16EB00E87884 /* Channel.swift */,
 				12E80B831E73421C00D87B11 /* ChannelFacade.swift */,
 				1236DEC41E76FF37006D42E5 /* Controller */,
 				1236DEC31E76FF2F006D42E5 /* View */,

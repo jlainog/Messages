@@ -8,29 +8,40 @@
 
 import Foundation
 
+typealias ChannelListHandler  = ([PublicChannel]) -> Void
+
 protocol ChannelServiceProtocol {
-    func listChannels(completionHandler: @escaping channelHandler)
-    func create(channel: Identificable)
-    func delete(channel: Identificable)
+    func listChannels(completionHandler: @escaping ChannelListHandler)
+    func create(channel: PublicChannel)
+    func delete(channel: PublicChannel)
 }
 
 struct ChannelFacade: ChannelServiceProtocol {
     
-    let key: String
-    static var service = FireBaseService<PublicChannel>()   
+    let nodeKey: String = "channels"
+    let service = FireBaseService<PublicChannel>()
     
-    func listChannels(completionHandler: @escaping channelHandler) {
-        ChannelFacade.service.listObjects(completionHandler: completionHandler, dicKey: key)
-    }
-    
-    func create(channel: Identificable) {
-        ChannelFacade.service.createObjectWith(dicKey: key) { () -> [String : Any] in
-            return ["content" : channel.content!]
+    func listChannels(completionHandler: @escaping ChannelListHandler) {
+        service.list(withNodeKey: nodeKey) {
+            list in
+            completionHandler( list.map { $0 as! PublicChannel } )
         }
     }
     
-    func delete(channel: Identificable) {
-        ChannelFacade.service.delete(object: channel as! PublicChannel, dicKey: key)
+    func didAddChannel(completionHandler: @escaping (PublicChannel) -> Void) {
+        service.didAddObject(atNodeKey: nodeKey) { (firebaseObject) in
+            guard let newObject = firebaseObject else { return }
+            
+            completionHandler(newObject as! PublicChannel)
+        }
+    }
+    
+    func create(channel: PublicChannel) {
+        service.create(withNodeKey: nodeKey, object: channel)
+    }
+    
+    func delete(channel: PublicChannel) {
+        service.delete(withNodeKey: nodeKey, object: channel)
     }
     
 }

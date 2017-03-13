@@ -13,23 +13,27 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var channelsTable: UITableView!
     @IBOutlet weak var newItemTxtField: UITextField!
     
-    internal var channels: [Identificable]?
-    internal var service: ChannelFacade?
-    internal var user:User?
+    fileprivate var channels = [PublicChannel]()
+    fileprivate var service: ChannelFacade?
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         channelsTable.delegate = self
         newItemTxtField.delegate = self
         channelsTable.dataSource = self
-        service = ChannelFacade(key: "channels")
+        service = ChannelFacade()
         channelsTable.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "cell")
         
-        service?.listChannels(completionHandler: { (channelsArray) in
-            self.channels = channelsArray
+//        service?.listChannels(completionHandler: { (channelsArray) in
+//            self.channels = channelsArray
+//            self.channelsTable.reloadData()
+//        })
+        service?.didAddChannel() {
+            channel in
+            self.channels.append(channel)
             self.channelsTable.reloadData()
-        })
-        
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +43,9 @@ class ChannelViewController: UIViewController {
     }
     
     @IBAction func createChannel(_ sender: UIButton) {
-        service?.create(channel: PublicChannel(content: newItemTxtField.text!))
         guard newItemTxtField.text != "" else { return newItemTxtField.shake() }
+        
+        service?.create(channel: PublicChannel(name: newItemTxtField.text!))
         textFieldClear(newItemTxtField)
         channelsTable.reloadData()
     }
@@ -53,7 +58,7 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channels?.count ?? 0
+        return channels.count
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
@@ -61,16 +66,17 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let channel = channels?[indexPath.row]
+        let channel = channels[indexPath.row]
         let cell = channelsTable.dequeueReusableCell(withIdentifier:"cell",for: indexPath) as! ChannelCell
         
-        cell.titleLbl.text = channel?.content
+        cell.titleLbl.text = channel.name as String?
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let channel = channels![indexPath.row]
+            let channel = channels[indexPath.row]
+            
             service?.delete(channel: channel)
             channelsTable.reloadData()
         }
@@ -81,7 +87,7 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
         let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         
         chatViewController.user = self.user
-        chatViewController.channel = channels?[indexPath.row] as? PublicChannel
+        chatViewController.channel = channels[indexPath.row]
         self.navigationController?.pushViewController(chatViewController, animated: true)
     }
     
