@@ -28,4 +28,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return(true)
     }
+    
+    @IBAction func userLogIn(_ sender: AnyObject) {
+        let userFacade = UserFacade()
+        
+        if (self.userNameTextField.text?.isEmpty)! {
+            self.userNameTextField.shake()
+            return
+        }
+        
+        userFacade.anonymousLogIn(userName: userNameTextField.text!) { (user, error) in
+            guard let loggedUser = user else {
+                let alert = UIAlertController(title: "Try Again", message: nil, preferredStyle: .alert)
+               
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "ChannelStoryboard", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
+            
+            newViewController.user = loggedUser
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+        
+    }
 }
