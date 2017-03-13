@@ -2,7 +2,7 @@
 //  Message.swift
 //  Messages
 //
-//  Created by Jaime Laino on 3/9/17.
+//  Created by Luis Ramirez on 3/9/17.
 //  Copyright © 2017 JLainoG. All rights reserved.
 //
 
