@@ -11,12 +11,14 @@ import Firebase
 import JSQMessagesViewController
 
 final class ChatViewController: JSQMessagesViewController {
- // Deficion de variables
+    
+ // MARK: Variable Definitions
     private var messages: [JSQMessage] = []
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
+    
 
- // Metodos DataSource y Delegate
+ // MARK: DataSource & Delegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.senderId = "some"
@@ -78,11 +80,13 @@ final class ChatViewController: JSQMessagesViewController {
                    text: text)
         finishSendingMessage()
     }
+
     
- // Metodos privados
+ // MARK: Private Methods
     private func addMessage(withId id: String, name: String, text: String) {
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
             messages.append(message)
         }
     }
+    
 }
