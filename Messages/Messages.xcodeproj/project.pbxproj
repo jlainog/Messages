@@ -120,8 +120,8 @@
 		1236DEC11E76FEF7006D42E5 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
-				1236DED51E7728B7006D42E5 /* RestService */,
 				12271DED1E6F16EB00E87884 /* Channel.swift */,
+				1236DED51E7728B7006D42E5 /* RestService */,
 				12E80B831E73421C00D87B11 /* ChannelFacade.swift */,
 				1236DEC41E76FF37006D42E5 /* Controller */,
 				1236DEC31E76FF2F006D42E5 /* View */,
@@ -158,6 +158,7 @@
 		1236DECA1E76FF8B006D42E5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				48E68D6D1E6F1A010046BD1A /* Login */,
 				1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */,
 			);
 			name = Extensions;
@@ -264,7 +265,6 @@
 				E2A72F581E6F4355001EE4AD /* Chat */,
 				1236DECA1E76FF8B006D42E5 /* Extensions */,
 				1236DEC71E76FF7B006D42E5 /* Protocols */,
-				48E68D6D1E6F1A010046BD1A /* Login */,
 				1236DEC11E76FEF7006D42E5 /* Channel */,
 				F52ACAA31E6DFBCB007AB8EA /* AppDelegate.swift */,
 				F52ACAA51E6DFBCB007AB8EA /* ViewController.swift */,

@@ -15,6 +15,7 @@ class ChannelViewController: UIViewController {
     
     internal var channels: [Identificable]?
     internal var service: ChannelFacade?
+    internal var user:User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +74,15 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
             service?.delete(channel: channel)
             channelsTable.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        
+        chatViewController.user = self.user
+        chatViewController.channel = channels?[indexPath.row] as? PublicChannel
+        self.navigationController?.pushViewController(chatViewController, animated: true)
     }
     
 }
