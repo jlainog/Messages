@@ -81,6 +81,24 @@
             </objects>
             <point key="canvasLocation" x="184.80000000000001" y="73.313343328335833"/>
         </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="aEw-0q-S47">
+            <objects>
+                <viewController storyboardIdentifier="Chat" id="vqi-8Q-Ox8" customClass="ChatViewController" customModule="Messages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VM0-Ks-8b5"/>
+                        <viewControllerLayoutGuide type="bottom" id="65n-1L-Rqn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V0I-ht-XqE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2us-ae-LDC" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="884" y="73"/>
+        </scene>
     </scenes>
     <resources>
         <image name="msgIcon" width="490" height="498"/>

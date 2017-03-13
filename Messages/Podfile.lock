@@ -31,12 +31,16 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
-  - GTMSessionFetcher/Core (1.1.8)
+  - GTMSessionFetcher/Core (1.1.9)
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - JSQMessagesViewController
 
 SPEC CHECKSUMS:
   Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
@@ -46,8 +50,10 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
 
-PODFILE CHECKSUM: a3fe07eeb68a0d5be124ef3cec8337d18cb4a2d5
+PODFILE CHECKSUM: cc83cf13b69ed2a4ae66c4b99eeef5027c8f4f7d
 
 COCOAPODS: 1.2.0
