@@ -35,8 +35,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func loadDataToTable() {
-        ChatFacade.retrieveChat(channelId: "12334") { response in
-            self.messages = response
+        ChatFacade.observeMessages(byListingLast: 25, channelId: "1234") { response in
+            self.messages.append(response)
             self.tableViewMessages.reloadData()
         }
     }

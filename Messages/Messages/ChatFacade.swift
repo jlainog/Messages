@@ -9,24 +9,18 @@
 import Foundation
 import Firebase
 
-typealias ChatResponseHandler = (_ chatResponse : [Message]) -> Void
+typealias ChatResponseHandler = (_ chatResponse : Message) -> Void
 
 struct ChatFacade {
     static let ref : FIRDatabaseReference! = FIRDatabase.database().reference().child("messages")
-    
-    static func retrieveChat(channelId: String, completion: @escaping ChatResponseHandler) {
-        let refChat = ref.child(channelId).queryLimited(toLast: 25)
-        refChat.observe(.value, with: { (snapshot) in
-            var messages = [Message]()
+    static func observeMessages(byListingLast last: UInt, channelId: String, completion: @escaping ChatResponseHandler) {
+        let refChat = ref.child(channelId).queryLimited(toLast: last)
+        
+        refChat.observe(.childAdded, with: { (snapshot) in
             guard let value = snapshot.value as? [String : Any] else {
                 return
             }
-            let orderedDic = value.sorted(by: { $0.0 < $1.0 })
-            
-            for messageDic in orderedDic {
-                messages.append(Message(json: messageDic.value as! NSDictionary))
-            }
-            completion(messages)
+            completion(Message(json: value as NSDictionary))
         }) { (error) in
             print(error.localizedDescription)
         }

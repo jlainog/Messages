@@ -28,12 +28,12 @@ final class ChatViewController: JSQMessagesViewController {
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
-        loadDataToChat()
+        loadMessages()
     }
     
-    func loadDataToChat() {
-        ChatFacade.retrieveChat(channelId: channelId) { response in
-            self.messages = response
+    func loadMessages() {
+        ChatFacade.observeMessages(byListingLast: 25, channelId: channelId) { message in
+            self.messages.append(message)
             self.finishReceivingMessage()
         }
     }
@@ -88,7 +88,6 @@ final class ChatViewController: JSQMessagesViewController {
         addMessage(withId: self.senderId,
                    name: self.senderDisplayName,
                    text: text)
-        loadDataToChat()
         finishSendingMessage()
     }
 
@@ -104,7 +103,6 @@ final class ChatViewController: JSQMessagesViewController {
     private func addMessage(withId id: String, name: String, text: String) {
         let message = Message(userId: id, userName: name, message: text)
         ChatFacade.createMessage(channelId: channelId, message: message)
-        messages.append(message)
     }
     
 }
