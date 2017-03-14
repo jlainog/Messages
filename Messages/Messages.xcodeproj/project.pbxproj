@@ -30,6 +30,8 @@
 		F52ACAB91E6DFBCB007AB8EA /* MessagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAB81E6DFBCB007AB8EA /* MessagesTests.swift */; };
 		F52ACAC41E6DFBCB007AB8EA /* MessagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52ACAC31E6DFBCB007AB8EA /* MessagesUITests.swift */; };
 		F52ACAD21E6DFDF1007AB8EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */; };
+		F865259D1E6F170B0024BDC9 /* ChatFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = F865259C1E6F170B0024BDC9 /* ChatFacade.swift */; };
+		F865259F1E719F870024BDC9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F865259E1E719F870024BDC9 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		F52ACAC31E6DFBCB007AB8EA /* MessagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITests.swift; sourceTree = "<group>"; };
 		F52ACAC51E6DFBCB007AB8EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F52ACAD11E6DFDF1007AB8EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F865259C1E6F170B0024BDC9 /* ChatFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatFacade.swift; sourceTree = "<group>"; };
+		F865259E1E719F870024BDC9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,14 +221,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E2A72F581E6F4355001EE4AD /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				E2A72F5A1E6F4365001EE4AD /* View */,
-			);
-			name = Chat;
-			sourceTree = "<group>";
-		};
 		E2A72F5A1E6F4365001EE4AD /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,7 +254,7 @@
 		F52ACAA21E6DFBCB007AB8EA /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				E2A72F581E6F4355001EE4AD /* Chat */,
+				F86525971E6F10AB0024BDC9 /* Chat */,
 				1236DECA1E76FF8B006D42E5 /* Extensions */,
 				1236DEC71E76FF7B006D42E5 /* Protocols */,
 				48E68D6D1E6F1A010046BD1A /* Login */,
@@ -290,6 +286,32 @@
 				F52ACAC51E6DFBCB007AB8EA /* Info.plist */,
 			);
 			path = MessagesUITests;
+			sourceTree = "<group>";
+		};
+		F86525971E6F10AB0024BDC9 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				E2A72F5A1E6F4365001EE4AD /* View */,
+				F86525991E6F10EF0024BDC9 /* Model */,
+				F86525981E6F10C00024BDC9 /* Facade */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		F86525981E6F10C00024BDC9 /* Facade */ = {
+			isa = PBXGroup;
+			children = (
+				F865259C1E6F170B0024BDC9 /* ChatFacade.swift */,
+			);
+			name = Facade;
+			sourceTree = "<group>";
+		};
+		F86525991E6F10EF0024BDC9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F865259E1E719F870024BDC9 /* Message.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,10 +605,11 @@
 				48DFCE911E70AFC10097CA42 /* LoginViewController.swift in Sources */,
 				48E68D6C1E6F19F00046BD1A /* User.swift in Sources */,
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
+				F865259D1E6F170B0024BDC9 /* ChatFacade.swift in Sources */,
+				F865259F1E719F870024BDC9 /* Message.swift in Sources */,
 				1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
 				E2C5A52A1E704460002D37EF /* ChatViewController.swift in Sources */,
-				F86525961E6F0C220024BDC9 /* Parseable.swift in Sources */,
 				1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */,
 				48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */,
 			);
