@@ -11,24 +11,24 @@ import Foundation
 typealias ChannelListHandler  = ([PublicChannel]) -> Void
 
 protocol ChannelServiceProtocol {
-    func listChannels(completionHandler: @escaping ChannelListHandler)
-    func create(channel: PublicChannel)
-    func delete(channel: PublicChannel)
+    static func listChannels(completionHandler: @escaping ChannelListHandler)
+    static func create(channel: PublicChannel)
+    static func delete(channel: PublicChannel)
 }
 
 struct ChannelFacade: ChannelServiceProtocol {
     
-    let nodeKey: String = "channels"
-    let service = FireBaseService<PublicChannel>()
+    static let nodeKey: String = "channels"
+    static let service = FireBaseService<PublicChannel>()
     
-    func listChannels(completionHandler: @escaping ChannelListHandler) {
+     static func listChannels(completionHandler: @escaping ChannelListHandler) {
         service.list(withNodeKey: nodeKey) {
             list in
             completionHandler( list.map { $0 as! PublicChannel } )
         }
     }
     
-    func didAddChannel(completionHandler: @escaping (PublicChannel) -> Void) {
+     static func didAddChannel(completionHandler: @escaping (PublicChannel) -> Void) {
         service.didAddObject(atNodeKey: nodeKey) { (firebaseObject) in
             guard let newObject = firebaseObject else { return }
             
@@ -36,11 +36,19 @@ struct ChannelFacade: ChannelServiceProtocol {
         }
     }
     
-    func create(channel: PublicChannel) {
+    static func didRemoveChannel(completionHandler: @escaping (PublicChannel) -> Void) {
+        service.didRemoveObject(atNodeKey: nodeKey) { (firebaseObject) in
+            guard let newObject = firebaseObject else { return }
+            
+            completionHandler(newObject as! PublicChannel)
+        }
+    }
+    
+    static func create(channel: PublicChannel) {
         service.create(withNodeKey: nodeKey, object: channel)
     }
     
-    func delete(channel: PublicChannel) {
+    static func delete(channel: PublicChannel) {
         service.delete(withNodeKey: nodeKey, object: channel)
     }
     

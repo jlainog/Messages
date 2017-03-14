@@ -46,7 +46,27 @@ struct FireBaseService <Object: FirebaseObject> {
     }
     
     func didAddObject(atNodeKey nodeKey: String, completionHandler: @escaping (FirebaseObject?) -> Void) {
-        ref.child(nodeKey).observe(.childAdded, with: { (snapshot) in
+        ref.child(nodeKey).queryOrderedByKey().queryLimited(toLast: 1).observe(.childAdded, with: { (snapshot) in
+            if let object = snapshot.value as? [String : Any] {
+                completionHandler(Object(id: snapshot.key, json: object as NSDictionary))
+            } else {
+                completionHandler(nil)
+            }
+        })
+    }
+    
+    func didRemoveObject(atNodeKey nodeKey: String, completionHandler: @escaping (FirebaseObject?) -> Void) {
+        ref.child(nodeKey).observe(.childRemoved, with: { (snapshot) in
+            if let object = snapshot.value as? [String : Any] {
+                completionHandler(Object(id: snapshot.key, json: object as NSDictionary))
+            } else {
+                completionHandler(nil)
+            }
+        })
+    }
+    
+    func didChangeObject(atNodeKey nodeKey: String, completionHandler: @escaping (FirebaseObject?) -> Void) {
+        ref.child(nodeKey).observe(.childChanged, with: { (snapshot) in
             if let object = snapshot.value as? [String : Any] {
                 completionHandler(Object(id: snapshot.key, json: object as NSDictionary))
             } else {

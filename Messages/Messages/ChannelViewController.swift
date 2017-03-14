@@ -22,18 +22,29 @@ class ChannelViewController: UIViewController {
         channelsTable.delegate = self
         newItemTxtField.delegate = self
         channelsTable.dataSource = self
-        service = ChannelFacade()
         channelsTable.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "cell")
         
-//        service?.listChannels(completionHandler: { (channelsArray) in
-//            self.channels = channelsArray
-//            self.channelsTable.reloadData()
-//        })
-        service?.didAddChannel() {
+        ChannelFacade.listChannels(completionHandler: { (channelsArray) in
+            self.channels = channelsArray
+            self.channelsTable.reloadData()
+        })
+        
+        ChannelFacade.didAddChannel() {
             channel in
             self.channels.append(channel)
             self.channelsTable.reloadData()
         }
+        
+        ChannelFacade.didRemoveChannel(completionHandler: {
+            channel in
+            for (index, value) in self.channels.enumerated() {
+                if value.id ==  channel.id {
+                    self.channels.remove(at: index)
+                    self.channelsTable.reloadData()
+                    break
+                }
+            }
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +56,7 @@ class ChannelViewController: UIViewController {
     @IBAction func createChannel(_ sender: UIButton) {
         guard newItemTxtField.text != "" else { return newItemTxtField.shake() }
         
-        service?.create(channel: PublicChannel(name: newItemTxtField.text!))
+        ChannelFacade.create(channel: PublicChannel(name: newItemTxtField.text!))
         textFieldClear(newItemTxtField)
         channelsTable.reloadData()
     }
@@ -77,8 +88,7 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             let channel = channels[indexPath.row]
             
-            service?.delete(channel: channel)
-            channelsTable.reloadData()
+            ChannelFacade.delete(channel: channel)
         }
     }
     
