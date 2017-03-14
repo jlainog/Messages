@@ -14,16 +14,16 @@ final class ChatViewController: JSQMessagesViewController {
     
  // MARK: Variable Definitions
     private var messages: [Message] = []
-    var channelId: String = "123"
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
+    var user:User!
+    var channel:Channel!
     
-
  // MARK: DataSource & Delegate
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.senderId = "some"
-        self.senderDisplayName = "some"
+        self.senderId =  user.identifier
+        self.senderDisplayName =  user.name
         
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
@@ -32,7 +32,7 @@ final class ChatViewController: JSQMessagesViewController {
     }
     
     func configureObserver() {
-        ChatFacade.observeMessages(byListingLast: 25, channelId: channelId) { message in
+        ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { message in
             self.messages.append(message)
             self.finishReceivingMessage()
         }
@@ -103,7 +103,7 @@ final class ChatViewController: JSQMessagesViewController {
     private func addMessage(withId id: String, name: String, text: String) {
         let message = Message(userId: id, userName: name, message: text)
         
-        ChatFacade.createMessage(channelId: channelId, message: message)
+        ChatFacade.createMessage(channelId: channel.id!, message: message)
     }
     
 }
