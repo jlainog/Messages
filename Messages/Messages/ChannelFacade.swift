@@ -12,7 +12,7 @@ typealias ChannelListHandler  = ( [Channel] ) -> Void
 
 protocol ChannelServiceProtocol {
     static func didRemoveChannel(completionHandler: @escaping (Channel) -> Void)
-    static func inlclusiveListChannels(completionHandler: @escaping (Channel) -> Void)
+    static func listAndObserveChannels(completionHandler: @escaping (Channel) -> Void)
     static func dismmissChannelObservers()
     static func create(channel: Channel)
     static func delete(channel: Channel)
@@ -22,8 +22,8 @@ struct ChannelFacade: ChannelServiceProtocol {
     static let nodeKey: String = "channels"
     static let service = FireBaseService<Channel>()
 
-    static func inlclusiveListChannels(completionHandler: @escaping (Channel) -> Void) {
-        service.inlclusiveList(atNodeKey: nodeKey) { (firebaseObject) in
+    static func listAndObserveChannels(completionHandler: @escaping (Channel) -> Void) {
+        service.listAndObserve(atNodeKey: nodeKey) { (firebaseObject) in
             guard let newObject = firebaseObject else { return }
             
             completionHandler(newObject as! Channel)

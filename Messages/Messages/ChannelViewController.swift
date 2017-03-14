@@ -30,7 +30,7 @@ class ChannelViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
         channels = [Channel]()
         
-        ChannelFacade.inlclusiveListChannels() {
+        ChannelFacade.listAndObserveChannels() {
             channel in
             self.channels!.append(channel)
             self.channelsTable.reloadData()
