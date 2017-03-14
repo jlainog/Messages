@@ -34,7 +34,7 @@ final class ChatViewController: JSQMessagesViewController {
     func loadDataToChat() {
         ChatFacade.retrieveChat(channelId: channelId) { response in
             self.messages = response
-            self.collectionView.reloadData()
+            self.finishReceivingMessage()
         }
     }
     
