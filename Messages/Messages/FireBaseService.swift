@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-typealias FirebaseListHandler  = ([FirebaseObject]) -> Void
+typealias FirebaseListHandler  = ( [FirebaseObject] ) -> Void
 
 protocol FirebaseObject {
     var id: String? { get }
@@ -32,21 +32,9 @@ struct FireBaseService <Object: FirebaseObject> {
         
         ref.child(nodeKey).childByAutoId().setValue(dictionary)
     }
-
-    func list(withNodeKey nodeKey: String, completionHandler: @escaping FirebaseListHandler) {
-        ref.child(nodeKey).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let objects = snapshot.value as? [String : Any] {
-                let objectsList = objects.map { Object(id: $0, json: $1 as! NSDictionary) }
-                
-                completionHandler(objectsList)
-            } else {
-                completionHandler([])
-            }
-        })
-    }
     
-    func didAddObject(atNodeKey nodeKey: String, completionHandler: @escaping (FirebaseObject?) -> Void) {
-        ref.child(nodeKey).queryOrderedByKey().queryLimited(toLast: 1).observe(.childAdded, with: { (snapshot) in
+    func inlclusiveList(atNodeKey nodeKey: String, completionHandler: @escaping (FirebaseObject?) -> Void) {
+        ref.child(nodeKey).queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
             if let object = snapshot.value as? [String : Any] {
                 completionHandler(Object(id: snapshot.key, json: object as NSDictionary))
             } else {
@@ -73,5 +61,9 @@ struct FireBaseService <Object: FirebaseObject> {
                 completionHandler(nil)
             }
         })
+    }
+    
+    func dismmissObservers(){
+        ref.removeAllObservers()
     }
 }

@@ -13,8 +13,7 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var channelsTable: UITableView!
     @IBOutlet weak var newItemTxtField: UITextField!
     
-    fileprivate var channels = [PublicChannel]()
-    fileprivate var service: ChannelFacade?
+    fileprivate var channels: [Channel]?
     var user: User!
     
     override func viewDidLoad() {
@@ -23,40 +22,40 @@ class ChannelViewController: UIViewController {
         newItemTxtField.delegate = self
         channelsTable.dataSource = self
         channelsTable.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "cell")
-        
-        ChannelFacade.listChannels(completionHandler: { (channelsArray) in
-            self.channels = channelsArray
-            self.channelsTable.reloadData()
-        })
-        
-        ChannelFacade.didAddChannel() {
-            channel in
-            self.channels.append(channel)
-            self.channelsTable.reloadData()
-        }
-        
-        ChannelFacade.didRemoveChannel(completionHandler: {
-            channel in
-            for (index, value) in self.channels.enumerated() {
-                if value.id ==  channel.id {
-                    self.channels.remove(at: index)
-                    self.channelsTable.reloadData()
-                    break
-                }
-            }
-        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         newItemTxtField.becomeFirstResponder()
         self.hideKeyboardWhenTappedAround()
+        channels = [Channel]()
+        
+        ChannelFacade.inlclusiveListChannels() {
+            channel in
+            self.channels!.append(channel)
+            self.channelsTable.reloadData()
+        }
+        
+        ChannelFacade.didRemoveChannel() {
+            channel in
+            for (index, value) in self.channels!.enumerated() {
+                if value.id ==  channel.id {
+                    self.channels!.remove(at: index)
+                    self.channelsTable.reloadData()
+                    break
+                }
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        ChannelFacade.dismmissChannelObservers()
     }
     
     @IBAction func createChannel(_ sender: UIButton) {
         guard newItemTxtField.text != "" else { return newItemTxtField.shake() }
         
-        ChannelFacade.create(channel: PublicChannel(name: newItemTxtField.text!))
+        ChannelFacade.create(channel: Channel(name: newItemTxtField.text!))
         textFieldClear(newItemTxtField)
         channelsTable.reloadData()
     }
@@ -69,7 +68,7 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channels.count
+        return channels?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
@@ -77,18 +76,18 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let channel = channels[indexPath.row]
+        let channel = channels?[indexPath.row]
         let cell = channelsTable.dequeueReusableCell(withIdentifier:"cell",for: indexPath) as! ChannelCell
         
-        cell.titleLbl.text = channel.name as String?
+        cell.titleLbl.text = channel?.name as String?
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let channel = channels[indexPath.row]
+            let channel = channels?[indexPath.row]
             
-            ChannelFacade.delete(channel: channel)
+            ChannelFacade.delete(channel: channel!)
         }
     }
     
@@ -97,7 +96,7 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
         let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         
         chatViewController.user = self.user
-        chatViewController.channel = channels[indexPath.row]
+        chatViewController.channel = channels?[indexPath.row]
         self.navigationController?.pushViewController(chatViewController, animated: true)
     }
     

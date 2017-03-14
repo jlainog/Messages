@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct PublicChannel: FirebaseObject {
-    
+struct Channel: FirebaseObject {
+   
     var id: String?
     var name: String
     
@@ -23,9 +23,7 @@ struct PublicChannel: FirebaseObject {
     }
   
     func toDictionary() -> NSDictionary {
-        let dictionary = NSMutableDictionary()
-        
-        dictionary["channelName"] = name
-        return dictionary
+        return ["channelName":name]
     }
+
 }

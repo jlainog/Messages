@@ -8,48 +8,47 @@
 
 import Foundation
 
-typealias ChannelListHandler  = ([PublicChannel]) -> Void
+typealias ChannelListHandler  = ( [Channel] ) -> Void
 
 protocol ChannelServiceProtocol {
-    static func listChannels(completionHandler: @escaping ChannelListHandler)
-    static func create(channel: PublicChannel)
-    static func delete(channel: PublicChannel)
+    static func didRemoveChannel(completionHandler: @escaping (Channel) -> Void)
+    static func inlclusiveListChannels(completionHandler: @escaping (Channel) -> Void)
+    static func dismmissChannelObservers()
+    static func create(channel: Channel)
+    static func delete(channel: Channel)
 }
 
 struct ChannelFacade: ChannelServiceProtocol {
-    
     static let nodeKey: String = "channels"
-    static let service = FireBaseService<PublicChannel>()
-    
-     static func listChannels(completionHandler: @escaping ChannelListHandler) {
-        service.list(withNodeKey: nodeKey) {
-            list in
-            completionHandler( list.map { $0 as! PublicChannel } )
-        }
-    }
-    
-     static func didAddChannel(completionHandler: @escaping (PublicChannel) -> Void) {
-        service.didAddObject(atNodeKey: nodeKey) { (firebaseObject) in
+    static let service = FireBaseService<Channel>()
+
+    static func inlclusiveListChannels(completionHandler: @escaping (Channel) -> Void) {
+        service.inlclusiveList(atNodeKey: nodeKey) { (firebaseObject) in
             guard let newObject = firebaseObject else { return }
             
-            completionHandler(newObject as! PublicChannel)
+            completionHandler(newObject as! Channel)
         }
     }
     
-    static func didRemoveChannel(completionHandler: @escaping (PublicChannel) -> Void) {
+    static func didRemoveChannel(completionHandler: @escaping (Channel) -> Void) {
         service.didRemoveObject(atNodeKey: nodeKey) { (firebaseObject) in
             guard let newObject = firebaseObject else { return }
             
-            completionHandler(newObject as! PublicChannel)
+            completionHandler(newObject as! Channel)
         }
     }
     
-    static func create(channel: PublicChannel) {
+    static func create(channel: Channel) {
         service.create(withNodeKey: nodeKey, object: channel)
     }
     
-    static func delete(channel: PublicChannel) {
+    static func delete(channel: Channel) {
         service.delete(withNodeKey: nodeKey, object: channel)
     }
+    
+    internal static func dismmissChannelObservers() {
+        service.dismmissObservers()
+    }
+
     
 }

@@ -17,7 +17,7 @@ final class ChatViewController: JSQMessagesViewController {
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     var user:User?
-    var channel:PublicChannel?
+    var channel:Channel?
     
  // MARK: DataSource & Delegate
     override func viewDidLoad() {
