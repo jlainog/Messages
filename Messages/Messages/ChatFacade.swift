@@ -13,6 +13,7 @@ typealias ChatResponseHandler = (_ chatResponse : Message) -> Void
 
 struct ChatFacade {
     static let ref : FIRDatabaseReference! = FIRDatabase.database().reference().child("messages")
+    
     static func observeMessages(byListingLast last: UInt, channelId: String, completion: @escaping ChatResponseHandler) {
         let refChat = ref.child(channelId).queryLimited(toLast: last)
         
