@@ -88,6 +88,7 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
             let channel = channels?[indexPath.row]
             
             ChannelFacade.delete(channel: channel!)
+            ChatFacade.removeMessages(channelId: channel!.id!)
         }
     }
     
