@@ -16,6 +16,7 @@
 		1236DED21E76FFA9006D42E5 /* ChannelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */; };
 		12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B811E733D3500D87B11 /* FireBaseService.swift */; };
 		12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B831E73421C00D87B11 /* ChannelFacade.swift */; };
+		48CF92011E73432800071DB6 /* UserFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF92001E73432800071DB6 /* UserFacade.swift */; };
 		48DFCE911E70AFC10097CA42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DFCE901E70AFC10097CA42 /* LoginViewController.swift */; };
 		48E68D6C1E6F19F00046BD1A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E68D6B1E6F19F00046BD1A /* User.swift */; };
 		48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E68D6E1E706FD70046BD1A /* UserInfo.swift */; };
@@ -60,6 +61,7 @@
 		1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChannelStoryboard.storyboard; sourceTree = "<group>"; };
 		12E80B811E733D3500D87B11 /* FireBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		12E80B831E73421C00D87B11 /* ChannelFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelFacade.swift; sourceTree = "<group>"; };
+		48CF92001E73432800071DB6 /* UserFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFacade.swift; sourceTree = "<group>"; };
 		48DFCE901E70AFC10097CA42 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48E68D6B1E6F19F00046BD1A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		48E68D6E1E706FD70046BD1A /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -121,10 +123,10 @@
 			isa = PBXGroup;
 			children = (
 				1236DED51E7728B7006D42E5 /* RestService */,
-				12271DED1E6F16EB00E87884 /* Channel.swift */,
-				12E80B831E73421C00D87B11 /* ChannelFacade.swift */,
 				1236DEC41E76FF37006D42E5 /* Controller */,
 				1236DEC31E76FF2F006D42E5 /* View */,
+				12271DED1E6F16EB00E87884 /* Channel.swift */,
+				12E80B831E73421C00D87B11 /* ChannelFacade.swift */,
 			);
 			name = Channel;
 			sourceTree = "<group>";
@@ -158,7 +160,6 @@
 		1236DECA1E76FF8B006D42E5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				48E68D6D1E6F1A010046BD1A /* Login */,
 				1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */,
 			);
 			name = Extensions;
@@ -170,6 +171,14 @@
 				12E80B811E733D3500D87B11 /* FireBaseService.swift */,
 			);
 			name = RestService;
+			sourceTree = "<group>";
+		};
+		48CF91FD1E73370100071DB6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				48CF92001E73432800071DB6 /* UserFacade.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		48DFCE8F1E70AF9B0097CA42 /* Controller */ = {
@@ -192,6 +201,7 @@
 		48E68D6D1E6F1A010046BD1A /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				48CF91FD1E73370100071DB6 /* Services */,
 				48DFCE8F1E70AF9B0097CA42 /* Controller */,
 				48E68D6A1E6F19D80046BD1A /* Model */,
 			);
@@ -262,6 +272,7 @@
 		F52ACAA21E6DFBCB007AB8EA /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				48E68D6D1E6F1A010046BD1A /* Login */,
 				E2A72F581E6F4355001EE4AD /* Chat */,
 				1236DECA1E76FF8B006D42E5 /* Extensions */,
 				1236DEC71E76FF7B006D42E5 /* Protocols */,
@@ -581,6 +592,7 @@
 			files = (
 				12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */,
 				12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */,
+				48CF92011E73432800071DB6 /* UserFacade.swift in Sources */,
 				1236DECC1E76FF9A006D42E5 /* UITextField+Shake.swift in Sources */,
 				1236DED01E76FFA9006D42E5 /* ChannelCell.swift in Sources */,
 				48DFCE911E70AFC10097CA42 /* LoginViewController.swift in Sources */,

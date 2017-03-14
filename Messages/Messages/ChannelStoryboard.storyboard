@@ -10,7 +10,7 @@
         <!--Channel View Controller-->
         <scene sceneID="ZSw-VS-67Z">
             <objects>
-                <viewController storyboardIdentifier="ChannelStoryboard" id="gBo-wJ-H8Q" customClass="ChannelViewController" customModule="Messages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChannelViewController" automaticallyAdjustsScrollViewInsets="NO" id="gBo-wJ-H8Q" customClass="ChannelViewController" customModule="Messages" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VKt-Ld-wOC"/>
                         <viewControllerLayoutGuide type="bottom" id="epR-BQ-si9"/>
