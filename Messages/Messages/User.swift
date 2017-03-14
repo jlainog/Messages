@@ -9,11 +9,11 @@
 import Foundation
 
 class User: UserInfo {
-    var identifier: Int?
+    var identifier: String?
     var name: String?
     var email: String?
     
-    init(identifier:Int, name:String, email: String? = nil) {
+    init(identifier:String, name:String, email: String? = nil) {
         self.identifier = identifier
         self.name = name
         self.email = email
