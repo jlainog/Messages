@@ -13,20 +13,29 @@ import JSQMessagesViewController
 final class ChatViewController: JSQMessagesViewController {
     
  // MARK: Variable Definitions
-    private var messages: [JSQMessage] = []
+    private var messages: [Message] = []
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
-    var user:User?
-    var channel:Channel?
+    var user:User!
+    var channel:Channel!
     
  // MARK: DataSource & Delegate
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.senderId = "some"
-        self.senderDisplayName = "some"
-
+        self.senderId =  user.identifier
+        self.senderDisplayName =  user.name
+        
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
+        
+        configureObserver()
+    }
+    
+    func configureObserver() {
+        ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { message in
+            self.messages.append(message)
+            self.finishReceivingMessage()
+        }
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
@@ -44,7 +53,7 @@ final class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
         
-        if message.senderId == senderId {
+        if message.userId == senderId {
             return outgoingBubbleImageView
         } else {
             return incomingBubbleImageView
@@ -55,7 +64,7 @@ final class ChatViewController: JSQMessagesViewController {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
         
-        if message.senderId == senderId {
+        if message.userId == senderId {
             cell.textView?.textColor = UIColor.white
         } else {
             cell.textView?.textColor = UIColor.blue
@@ -82,12 +91,19 @@ final class ChatViewController: JSQMessagesViewController {
         finishSendingMessage()
     }
 
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        let refreshAlert = UIAlertController(title: "Function not yet implemented",
+                                             message: "This functionality is not yet implemented in the application.",
+                                             preferredStyle: UIAlertControllerStyle.alert)
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(refreshAlert, animated: true, completion: nil)
+    }
     
  // MARK: Private Methods
     private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            messages.append(message)
-        }
+        let message = Message(userId: id, userName: name, message: text)
+        
+        ChatFacade.createMessage(channelId: channel.id!, message: message)
     }
     
 }
