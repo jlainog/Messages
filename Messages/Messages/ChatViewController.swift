@@ -34,6 +34,7 @@ final class ChatViewController: JSQMessagesViewController {
     func configureObserver() {
         ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { message in
             self.messages.append(message)
+            JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
             self.finishReceivingMessage()
         }
     }
@@ -88,6 +89,7 @@ final class ChatViewController: JSQMessagesViewController {
         addMessage(withId: self.senderId,
                    name: self.senderDisplayName,
                    text: text)
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
     }
 
@@ -105,5 +107,4 @@ final class ChatViewController: JSQMessagesViewController {
         
         ChatFacade.createMessage(channelId: channel.id!, message: message)
     }
-    
 }
