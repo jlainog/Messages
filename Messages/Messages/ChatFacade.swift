@@ -30,4 +30,8 @@ struct ChatFacade {
     static func createMessage(channelId: String, message: Message) {
         ref.child(channelId).childByAutoId().setValue(message.buildJSON())
     }
+    
+    static func removeMessages(channelId: String) {
+        ref.child(channelId).removeValue()
+    }
 }
