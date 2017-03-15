@@ -33,7 +33,19 @@ struct FireBaseService <Object: FirebaseObject> {
         ref.child(nodeKey).childByAutoId().setValue(dictionary)
     }
     
-    func inlclusiveList(atNodeKey nodeKey: String, completionHandler: @escaping (FirebaseObject?) -> Void) {
+    func list(withNodeKey nodeKey: String, completionHandler: @escaping FirebaseListHandler) {
+        ref.child(nodeKey).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let objects = snapshot.value as? [String : Any] {
+                let objectsList = objects.map { Object(id: $0, json: $1 as! NSDictionary) }
+                
+                completionHandler(objectsList)
+            } else {
+                completionHandler([])
+            }
+        })
+    }
+    
+    func listAndObserve(atNodeKey nodeKey: String, completionHandler: @escaping (FirebaseObject?) -> Void) {
         ref.child(nodeKey).queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
             if let object = snapshot.value as? [String : Any] {
                 completionHandler(Object(id: snapshot.key, json: object as NSDictionary))
