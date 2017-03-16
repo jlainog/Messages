@@ -43,6 +43,42 @@ final class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        
+        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+    }
+    
+    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        
+        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    }
+    
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        addMessage(withId: self.senderId,
+                   name: self.senderDisplayName,
+                   text: text)
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        finishSendingMessage()
+    }
+
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        let refreshAlert = UIAlertController(title: "Function not yet implemented",
+                                             message: "This functionality is not yet implemented in the application.",
+                                             preferredStyle: UIAlertControllerStyle.alert)
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(refreshAlert, animated: true, completion: nil)
+    }
+    
+ // MARK: Private Function
+    private func addMessage(withId id: String, name: String, text: String) {
+        let message = Message(userId: id, userName: name, message: text)
+        
+        ChatFacade.createMessage(channelId: (channel.id!), message: message)
+    }
+
+// MARK: CollectionView Functions
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
@@ -77,38 +113,12 @@ final class ChatViewController: JSQMessagesViewController {
         return cell
     }
     
-    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        let message = messages[indexPath.item]
         
-        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-    }
-    
-    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        
-        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-    }
-    
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        addMessage(withId: self.senderId,
-                   name: self.senderDisplayName,
-                   text: text)
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        finishSendingMessage()
-    }
-
-    override func didPressAccessoryButton(_ sender: UIButton!) {
-        let refreshAlert = UIAlertController(title: "Function not yet implemented",
-                                             message: "This functionality is not yet implemented in the application.",
-                                             preferredStyle: UIAlertControllerStyle.alert)
-        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        present(refreshAlert, animated: true, completion: nil)
-    }
-    
- // MARK: Private Methods
-    private func addMessage(withId id: String, name: String, text: String) {
-        let message = Message(userId: id, userName: name, message: text)
-        
-        ChatFacade.createMessage(channelId: (channel.id!), message: message)
+        guard let senderDisplayName = message.senderDisplayName() else {
+            return nil
+        }
+        return NSAttributedString(string: senderDisplayName)
     }
 }
