@@ -74,6 +74,11 @@ final class ChatViewController: JSQMessagesViewController {
         return cell
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        ChatFacade.removeAllObservers()
+    }
+    
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         

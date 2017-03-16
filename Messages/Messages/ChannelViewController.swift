@@ -30,15 +30,13 @@ class ChannelViewController: UIViewController {
             self?.channels!.append(channel)
             self?.channelsTable.reloadData()
         }
+        
         //TODO - Handle nils
         ChannelFacade.didRemoveChannel() {
             [weak self] channel in
-            for (index, value) in self!.channels!.enumerated() {
-                if value.id ==  channel.id {
-                    self?.channels!.remove(at: index)
-                    self?.channelsTable.reloadData()
-                    break
-                }
+            if let channels = self?.channels {
+                self?.channels = channels.filter() { $0.id != channel.id }
+                self?.channelsTable.reloadData()
             }
         }
     }
@@ -47,6 +45,11 @@ class ChannelViewController: UIViewController {
         super.viewWillAppear(true)
         newItemTxtField.becomeFirstResponder()
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        ChannelFacade.dismmissChannelObservers()
     }
     
     @IBAction func createChannel(_ sender: UIButton) {
@@ -58,7 +61,7 @@ class ChannelViewController: UIViewController {
     }
 }
 
-extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
+extension ChannelViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Public Channels"
@@ -68,7 +71,7 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
         return channels?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+    private func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         return 200
     }
     
@@ -89,6 +92,10 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+}
+
+extension ChannelViewController:  UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
