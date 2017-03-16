@@ -98,11 +98,15 @@ final class ChatViewController: JSQMessagesViewController {
     }
 
     override func didPressAccessoryButton(_ sender: UIButton!) {
-        let refreshAlert = UIAlertController(title: "Function not yet implemented",
-                                             message: "This functionality is not yet implemented in the application.",
-                                             preferredStyle: UIAlertControllerStyle.alert)
-        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        present(refreshAlert, animated: true, completion: nil)
+        print("DidPressAccesoryButton")
+        
+        let sheet = UIAlertController(title: "Media Message", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
+        let location = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
+        
+        sheet.addAction(location)
+        sheet.addAction(cancel)
+        self.present(sheet, animated: true, completion: nil)
     }
     
  // MARK: Private Methods
