@@ -17,9 +17,9 @@ final class ChatViewController: JSQMessagesViewController {
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     var user:User!
-    var channel:Channel? {
+    var channel:Channel! {
         didSet {
-            title = channel?.name
+            title = channel!.name
         }
     }
     
