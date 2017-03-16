@@ -17,7 +17,11 @@ final class ChatViewController: JSQMessagesViewController {
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     var user:User!
-    var channel:Channel!
+    var channel:Channel! {
+        didSet {
+            title = channel.name
+        }
+    }
     
  // MARK: DataSource & Delegate
     override func viewDidLoad() {
@@ -32,7 +36,7 @@ final class ChatViewController: JSQMessagesViewController {
     }
     
     func configureObserver() {
-        ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { message in
+        ChatFacade.observeMessages(byListingLast: 25, channelId: (channel.id!)) { message in
             self.messages.append(message)
             JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
             self.finishReceivingMessage()
@@ -105,6 +109,6 @@ final class ChatViewController: JSQMessagesViewController {
     private func addMessage(withId id: String, name: String, text: String) {
         let message = Message(userId: id, userName: name, message: text)
         
-        ChatFacade.createMessage(channelId: channel.id!, message: message)
+        ChatFacade.createMessage(channelId: (channel.id!), message: message)
     }
 }
