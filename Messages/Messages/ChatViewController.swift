@@ -31,11 +31,12 @@ final class ChatViewController: JSQMessagesViewController {
         configureObserver()
     }
     
+    //TODO - Handle nils
     func configureObserver() {
-        ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { message in
-            self.messages.append(message)
+        ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { [weak self] message in
+            self?.messages.append(message)
             JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
-            self.finishReceivingMessage()
+            self?.finishReceivingMessage()
         }
     }
     
@@ -108,3 +109,6 @@ final class ChatViewController: JSQMessagesViewController {
         ChatFacade.createMessage(channelId: channel.id!, message: message)
     }
 }
+
+
+
