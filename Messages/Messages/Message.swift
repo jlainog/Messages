@@ -1,4 +1,4 @@
-//
+    //
 //  Message.swift
 //  Messages
 //
@@ -9,18 +9,9 @@
 import Foundation
 import JSQMessagesViewController
 
-enum MessageType {
+enum MessageType: String {
     case text
     case media
-}
-
-extension MessageType {
-    var type: String {
-        switch self {
-        case .text: return "text"
-        case .media: return "JSQMediaItem"
-        }
-    }
 }
 
 protocol MessageInfo : Parseable, JSQMessageData {
@@ -43,30 +34,33 @@ class Message : NSObject, MessageInfo {
     required init(json: NSDictionary) {
         self.userId = json["userId"] as? String ?? ""
         self.userName = json["userName"] as? String ?? ""
-        self.mediaItem = json["mediaItem"] as? UIImage
+        self.mediaItem = json["mediaItem"] as? UIImage ?? DataCoder.Image(fromBase64: json["mediaItem"] as? String)
         self.message = json["message"] as? String ?? ""
-        self.messageType = json["messageType"] as? MessageType ?? MessageType.text
+        self.messageType =  MessageType(rawValue: json["messageType"] as! String) ?? MessageType.text
         self.timestamp = json["timestamp"] as? Double ?? 0
     }
     
     convenience init(userId: String, userName: String, message: String, messageType: MessageType = .text, timestamp: TimeInterval = Date().timeIntervalSince1970) {
-        let json = ["userId": userId, "userName": userName, "message": message, "messageType": messageType, "timestamp": timestamp] as NSDictionary
+        let json = ["userId": userId, "userName": userName, "message": message, "messageType": messageType.rawValue, "timestamp": timestamp] as NSDictionary
         self.init(json: json)
     }
     
     convenience init(userId: String, userName: String, mediaItem: UIImage, messageType: MessageType = .media, timestamp: TimeInterval = Date().timeIntervalSince1970) {
-        let json = ["userId": userId, "userName": userName, "mediaItem": mediaItem, "messageType": messageType, "timestamp": timestamp] as NSDictionary
+        let json = ["userId": userId, "userName": userName, "mediaItem": mediaItem, "messageType": messageType.rawValue, "timestamp": timestamp] as NSDictionary
         self.init(json: json)
     }
+    
     
     func buildJSON() -> NSDictionary {
         var json = Dictionary<String, Any>()
         
         json["userId"] = userId
         json["userName"] = userName
+        json["mediaItem"] = DataCoder.base64(fromImage: mediaItem)
         json["message"] = message
-        json["messageType"] = messageType.type
+        json["messageType"] = messageType.rawValue
         json["timestamp"] = timestamp
+    
         return json as NSDictionary
     }
 }

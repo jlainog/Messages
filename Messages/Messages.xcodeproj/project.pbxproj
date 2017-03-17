@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12139E3C1E7C4BFC00C9EFAB /* DataCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12139E3B1E7C4BFC00C9EFAB /* DataCoder.swift */; };
 		12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12271DED1E6F16EB00E87884 /* Channel.swift */; };
 		1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DEC51E76FF72006D42E5 /* ChannelViewController.swift */; };
 		1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DEC81E76FF88006D42E5 /* Parseable.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12139E3B1E7C4BFC00C9EFAB /* DataCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCoder.swift; sourceTree = "<group>"; };
 		12271DED1E6F16EB00E87884 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		1236DEC51E76FF72006D42E5 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		1236DEC81E76FF88006D42E5 /* Parseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parseable.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				1236DECA1E76FF8B006D42E5 /* Extensions */,
 				127C7EBD1E7B14AD006810DB /* FileManager */,
 				129EC3511E79EB05004FB6DB /* ObserverManager */,
+				129EC3521E79EB1E004FB6DB /* ObserverManager.swift */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -213,7 +216,7 @@
 		129EC3511E79EB05004FB6DB /* ObserverManager */ = {
 			isa = PBXGroup;
 			children = (
-				129EC3521E79EB1E004FB6DB /* ObserverManager.swift */,
+				12139E3B1E7C4BFC00C9EFAB /* DataCoder.swift */,
 			);
 			name = ObserverManager;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				E2C5A52A1E704460002D37EF /* ChatViewController.swift in Sources */,
 				129EC3531E79EB1E004FB6DB /* ObserverManager.swift in Sources */,
 				12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */,
+				12139E3C1E7C4BFC00C9EFAB /* DataCoder.swift in Sources */,
 				1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */,
 				48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */,
 			);

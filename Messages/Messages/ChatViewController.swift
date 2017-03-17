@@ -108,11 +108,7 @@ final class ChatViewController: JSQMessagesViewController {
     
     // TODO - Configure imagepicker in his controller
     override func didPressAccessoryButton(_ sender: UIButton!) {
-        imagePicker.allowsEditing = true
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
         present(imagePicker, animated: true, completion: nil)
-        
     }
     
  // MARK: Private Methods
@@ -125,10 +121,8 @@ final class ChatViewController: JSQMessagesViewController {
     fileprivate func addMessageWithPhoto(withId id: String, userName: String, media: UIImage) {
         let message = Message(userId: id, userName: userName, mediaItem: media)
        
-        messages.append(message)
+        ChatFacade.createMessage(channelId: channel.id!, message: message)
         super.collectionView.reloadData()
-        
-        // ChatFacade.createMessage(channelId: channel.id!, message: message)
     }
 }
 

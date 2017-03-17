@@ -10,5 +10,10 @@ import UIKit
 
 class ChatImagePickeViewController: UIImagePickerController {
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.allowsEditing = true
+        self.sourceType = .photoLibrary
+        self.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+    }
 }
