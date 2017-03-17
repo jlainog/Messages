@@ -11,13 +11,18 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var singInSelector: UISegmentedControl!
     @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var passwordTextField: UITextField!
     
 //Manage the keyboard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.userNameTextField.delegate = self
+        logInButton.layer.cornerRadius = 5
+        passwordTextField.isHidden = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -28,6 +33,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return(true)
     }
+    
+    //SignIn Selector State
+    
+    @IBAction func signInSelectorChanged(_ sender: AnyObject) {
+        if (singInSelector.selectedSegmentIndex == 0) {
+            
+            logInButton.setTitle("Go anonymously", for: .normal)
+            userNameTextField.placeholder = "Enter your Nickname"
+            passwordTextField.isHidden = true
+           
+           
+           
+        }else{
+            if (singInSelector.selectedSegmentIndex == 1){
+                
+                userNameTextField.placeholder = "Email"
+                passwordTextField.isHidden = false
+                passwordTextField.isSecureTextEntry = true
+                passwordTextField.placeholder = "Password"
+                logInButton.setTitle("Log in", for: .normal)
+                
+            }
+        }
+    }
+    
     
     @IBAction func userLogIn(_ sender: AnyObject) {
         let userFacade = UserFacade()
