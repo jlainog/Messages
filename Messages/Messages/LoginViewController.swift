@@ -45,7 +45,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            let storyBoard: UIStoryboard = UIStoryboard(name: "ChannelStoryboard", bundle: nil)
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
             
             newViewController.user = loggedUser
