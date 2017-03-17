@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import JSQMessagesViewController
 
 typealias ChatResponseHandler = (_ chatResponse : Message) -> Void
 

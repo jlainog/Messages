@@ -99,6 +99,46 @@
             </objects>
             <point key="canvasLocation" x="978" y="72"/>
         </scene>
+        <!--Test View Controller-->
+        <scene sceneID="BYi-Fp-im7">
+            <objects>
+                <viewController storyboardIdentifier="TestViewController" id="RbC-hZ-ahs" customClass="TestViewController" customModule="Messages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pea-JC-hH6"/>
+                        <viewControllerLayoutGuide type="bottom" id="8wC-eH-ny8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aBz-Wc-Onu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kJY-Jd-YAh"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6C-uk-cBI">
+                                <state key="normal" title="Load Image"/>
+                                <connections>
+                                    <action selector="pickImageFromLibrary:" destination="RbC-hZ-ahs" eventType="touchUpInside" id="pTV-zE-lGi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="k6C-uk-cBI" firstAttribute="top" secondItem="kJY-Jd-YAh" secondAttribute="bottom" id="2Yb-n1-GAZ"/>
+                            <constraint firstAttribute="trailing" secondItem="kJY-Jd-YAh" secondAttribute="trailing" id="HEN-zi-L9d"/>
+                            <constraint firstItem="k6C-uk-cBI" firstAttribute="top" secondItem="kJY-Jd-YAh" secondAttribute="bottom" id="Jkr-NR-6WN"/>
+                            <constraint firstItem="kJY-Jd-YAh" firstAttribute="leading" secondItem="aBz-Wc-Onu" secondAttribute="leading" id="O7c-I7-Mqg"/>
+                            <constraint firstItem="8wC-eH-ny8" firstAttribute="top" secondItem="k6C-uk-cBI" secondAttribute="bottom" id="bs5-ju-Qsu"/>
+                            <constraint firstAttribute="trailing" secondItem="k6C-uk-cBI" secondAttribute="trailing" id="kaL-tA-Tnv"/>
+                            <constraint firstItem="k6C-uk-cBI" firstAttribute="leading" secondItem="aBz-Wc-Onu" secondAttribute="leading" id="kmM-PW-0bO"/>
+                            <constraint firstItem="kJY-Jd-YAh" firstAttribute="top" secondItem="pea-JC-hH6" secondAttribute="bottom" id="o9e-Hs-9yO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="kJY-Jd-YAh" id="Tui-86-TsI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gyo-KH-e9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2237.5999999999999" y="-280.20989505247377"/>
+        </scene>
     </scenes>
     <resources>
         <image name="msgIcon" width="490" height="498"/>

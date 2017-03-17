@@ -11,12 +11,14 @@ import JSQMessagesViewController
 
 enum MessageType {
     case text
+    case media
 }
 
 extension MessageType {
     var type: String {
         switch self {
         case .text: return "text"
+        case .media: return "JSQMediaItem"
         }
     }
 }
@@ -24,21 +26,24 @@ extension MessageType {
 protocol MessageInfo : Parseable, JSQMessageData {
     var userId: String { get }
     var userName: String { get }
-    var message: String { get }
+    var message: String? { get }
     var messageType : MessageType { get }
+    var mediaItem: UIImage? {get}
     var timestamp: Double { get }
 }
 
 class Message : NSObject, MessageInfo {
     var userId: String
     var userName: String
-    var message: String
+    var mediaItem: UIImage?
+    var message: String?
     var messageType: MessageType
     var timestamp: Double
     
     required init(json: NSDictionary) {
         self.userId = json["userId"] as? String ?? ""
         self.userName = json["userName"] as? String ?? ""
+        self.mediaItem = json["mediaItem"] as? UIImage
         self.message = json["message"] as? String ?? ""
         self.messageType = json["messageType"] as? MessageType ?? MessageType.text
         self.timestamp = json["timestamp"] as? Double ?? 0
@@ -46,6 +51,11 @@ class Message : NSObject, MessageInfo {
     
     convenience init(userId: String, userName: String, message: String, messageType: MessageType = .text, timestamp: TimeInterval = Date().timeIntervalSince1970) {
         let json = ["userId": userId, "userName": userName, "message": message, "messageType": messageType, "timestamp": timestamp] as NSDictionary
+        self.init(json: json)
+    }
+    
+    convenience init(userId: String, userName: String, mediaItem: UIImage, messageType: MessageType = .media, timestamp: TimeInterval = Date().timeIntervalSince1970) {
+        let json = ["userId": userId, "userName": userName, "mediaItem": mediaItem, "messageType": messageType, "timestamp": timestamp] as NSDictionary
         self.init(json: json)
     }
     
@@ -72,6 +82,9 @@ extension Message {
         return self.userName
     }
     
+    func media() -> JSQMessageMediaData! {
+        return JSQPhotoMediaItem(image: self.mediaItem)
+    }
     func text() -> String! {
         return self.message
     }
@@ -88,3 +101,4 @@ extension Message {
         return UInt(self.hashValue)
     }
 }
+
