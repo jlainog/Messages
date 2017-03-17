@@ -64,11 +64,15 @@ final class ChatViewController: JSQMessagesViewController {
     }
 
     override func didPressAccessoryButton(_ sender: UIButton!) {
-        let refreshAlert = UIAlertController(title: "Function not yet implemented",
-                                             message: "This functionality is not yet implemented in the application.",
-                                             preferredStyle: UIAlertControllerStyle.alert)
-        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        present(refreshAlert, animated: true, completion: nil)
+        print("didPressAccesoryButton")
+        
+        let sheet = UIAlertController(title: "Media Messages", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
+        let sendLocation = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
+        
+        sheet.addAction(cancel)
+        sheet.addAction(sendLocation)
+        self.present(sheet, animated: true, completion: nil)
     }
     
  // MARK: Private Function
@@ -120,5 +124,16 @@ final class ChatViewController: JSQMessagesViewController {
             return nil
         }
         return NSAttributedString(string: senderDisplayName)
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let latestLocation: CLLocation = locations[locations.count-1]
+        let loc: JSQLocationMediaItem = JSQLocationMediaItem(location: latestLocation)
+        let locmessage: JSQMessage = JSQMessage(senderId: self.senderId, senderDisplayName: self.senderDisplayName, date: NSDate() as Date!, media: loc)
+        
+        loc.appliesMediaViewMaskAsOutgoing = true
+        
+        messages.append(locmessage.media as! Message)
+        self.finishSendingMessage(animated: true)
     }
 }
