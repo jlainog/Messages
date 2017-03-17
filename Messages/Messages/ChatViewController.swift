@@ -99,10 +99,12 @@ final class ChatViewController: JSQMessagesViewController {
 
     override func didPressAccessoryButton(_ sender: UIButton!) {
         print("DidPressAccesoryButton")
-        
+    
         let sheet = UIAlertController(title: "Media Message", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
-        let location = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
+        let location = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in
+            //self.locationManager(manager: locationManager, didUpdateLocations: true)
+        }
         
         sheet.addAction(location)
         sheet.addAction(cancel)
@@ -115,4 +117,15 @@ final class ChatViewController: JSQMessagesViewController {
         
         ChatFacade.createMessage(channelId: (channel.id!), message: message)
     }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let latestLocation: CLLocation = locations[locations.count-1]
+        let loc: JSQLocationMediaItem = JSQLocationMediaItem(location: latestLocation)
+        let locmessage: JSQMessage = JSQMessage(senderId: self.senderId, senderDisplayName: self.senderDisplayName, date: NSDate() as Date!, media: loc)
+        
+        loc.appliesMediaViewMaskAsOutgoing = true
+        messages.append(locmessage.media as! Message)
+        self.finishSendingMessage(animated: true)
+    }
+    
 }
