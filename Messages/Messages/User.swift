@@ -18,4 +18,20 @@ class User: UserInfo {
         self.name = name
         self.email = email
     }
+    
+    convenience init(json: NSDictionary) {
+        let identifier = json["identifier"] as? String ?? ""
+        let name = json["name"] as? String ?? ""
+        let email = json["email"] as? String ?? ""
+        self.init(identifier: identifier, name: name, email: email)
+    }
+    
+    func buildJSON() -> NSDictionary {
+        var json = Dictionary<String, Any>()
+        
+        json["identifier"] = identifier
+        json["name"] = name
+        json["email"] = email
+        return json as NSDictionary
+    }
 }

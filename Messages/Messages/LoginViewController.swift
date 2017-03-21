@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, UITabBarDelegate {
     
     @IBOutlet weak var userNameTextField: UITextField!
     
@@ -46,9 +46,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "TabViewController") as! UITabBarController
             
-            newViewController.user = loggedUser
+            SessionCache.sharedInstance.user = loggedUser
+            UserListFacade.createUser(user: loggedUser)
+            //newViewController.user = loggedUser
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
         
