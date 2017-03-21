@@ -179,9 +179,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LSO-lw-XjG">
-                                <rect key="frame" x="0.0" y="28" width="375" height="590"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LSO-lw-XjG">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userCell" textLabel="aWS-Jq-mjh" style="IBUITableViewCellStyleDefault" id="kMU-bW-NIw">
@@ -209,6 +208,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LSO-lw-XjG" secondAttribute="trailing" id="MKX-CX-raS"/>
+                            <constraint firstItem="a4D-gX-ccO" firstAttribute="top" secondItem="LSO-lw-XjG" secondAttribute="bottom" id="OBm-9N-YQl"/>
+                            <constraint firstItem="LSO-lw-XjG" firstAttribute="leading" secondItem="ilG-Zg-AzS" secondAttribute="leading" id="Oy3-TR-KoW"/>
+                            <constraint firstItem="LSO-lw-XjG" firstAttribute="top" secondItem="qLL-1H-Jz9" secondAttribute="bottom" id="bDt-zS-610"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="bxj-8t-RtU"/>
                     <connections>

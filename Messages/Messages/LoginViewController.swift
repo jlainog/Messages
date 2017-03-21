@@ -49,7 +49,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UITabBarDelega
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "TabViewController") as! UITabBarController
             
             SessionCache.sharedInstance.user = loggedUser
+            SessionCache.sharedInstance.saveUser()
             UserListFacade.createUser(user: loggedUser)
+            
             //newViewController.user = loggedUser
             self.navigationController?.pushViewController(newViewController, animated: true)
         }

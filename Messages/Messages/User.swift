@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User: UserInfo {
+class User: NSObject, NSCoding, UserInfo {
     var identifier: String?
     var name: String?
     var email: String?
@@ -33,5 +33,19 @@ class User: UserInfo {
         json["name"] = name
         json["email"] = email
         return json as NSDictionary
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        guard let identifier = aDecoder.decodeObject(forKey: "identifier") as? String,
+        let name = aDecoder.decodeObject(forKey: "name") as? String,
+        let email = aDecoder.decodeObject(forKey: "email") as? String
+            else { return nil }
+        self.init(identifier: identifier, name: name, email: email)
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.identifier, forKey: "identifier")
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.email, forKey: "email")
     }
 }
