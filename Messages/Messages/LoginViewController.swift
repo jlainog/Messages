@@ -16,7 +16,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     
-//Manage the keyboard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +42,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             userNameTextField.placeholder = "Enter your Nickname"
             passwordTextField.isHidden = true
            
-           
-           
-        }else{
-            if (singInSelector.selectedSegmentIndex == 1){
+        } else {
+            if (singInSelector.selectedSegmentIndex == 1) {
                 
                 userNameTextField.placeholder = "Email"
                 passwordTextField.isHidden = false
@@ -58,7 +55,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     @IBAction func userLogIn(_ sender: AnyObject) {
         let userFacade = UserFacade()
         
@@ -67,20 +63,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        userFacade.anonymousLogIn(userName: userNameTextField.text!) { (user, error) in
+        if(singInSelector.selectedSegmentIndex == 0) {
+            
+            userFacade.anonymousLogIn(userName: userNameTextField.text!) { (user, error) in
             guard let loggedUser = user else {
-                let alert = UIAlertController(title: "Try Again", message: nil, preferredStyle: .alert)
-               
-                self.present(alert, animated: true, completion: nil)
+                self.alertAcctionManager()
+                
                 return
             }
+                
+            self.changeViewController(user: loggedUser)
+           
+            }
             
-            let storyBoard: UIStoryboard = UIStoryboard(name: "ChannelStoryboard", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
+        } else {
             
-            newViewController.user = loggedUser
-            self.navigationController?.pushViewController(newViewController, animated: true)
+            if (singInSelector.selectedSegmentIndex == 1) {
+                userFacade.emailPasswordLogIn(email: userNameTextField.text!, userName: userNameTextField.text!, password: passwordTextField.text!) {(user, error) in
+                    guard let loggedUser = user else {
+                        self.alertAcctionManager()
+                        
+                        return
+                    }
+                    self.changeViewController(user: loggedUser)
+                }
+            }
         }
+
+    }
+    
+    func changeViewController(user: User){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "ChannelStoryboard", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
+        
+        newViewController.user = user
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
+    
+    func alertAcctionManager(){
+        let alert = UIAlertController(title: "Try Again", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title:  "OK", style: UIAlertActionStyle.default)
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
         
     }
+
 }
