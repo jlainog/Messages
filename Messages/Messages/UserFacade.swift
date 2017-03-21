@@ -20,6 +20,7 @@ struct UserFacade {
                 
                 return
             }
+            
             let userObj : User = User(identifier: user!.uid, name: userName, email: email)
             completion(userObj, nil)
             
@@ -38,4 +39,18 @@ struct UserFacade {
             completion(userObj, nil)
         })
     }
+    
+    func userSingIn(email: String, password: String, userName: String, completion: @escaping (_ user: User?, _ error: Error?) -> Void ){
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            if(error != nil)  {
+                completion(nil, error!)
+                
+                return
+            }
+            
+            let userObj : User = User(identifier: user!.uid, name: userName, email: email)
+            completion(userObj, nil)
+        })
+    }
 }
+

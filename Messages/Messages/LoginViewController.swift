@@ -51,6 +51,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 passwordTextField.placeholder = "Password"
                 logInButton.setTitle("Log in", for: .normal)
                 
+            } else {
+                if (singInSelector.selectedSegmentIndex == 2) {
+                    
+                    userNameTextField.placeholder = "Email"
+                    passwordTextField.isHidden = false
+                    passwordTextField.isSecureTextEntry = true
+                    passwordTextField.placeholder = "Password"
+                    logInButton.setTitle("Register", for: .normal)
+                    
+                }
             }
         }
     }
@@ -87,9 +97,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     }
                     self.changeViewController(user: loggedUser)
                 }
+            } else {
+                if (singInSelector.selectedSegmentIndex == 2) {
+                    userFacade.userSingIn(email: userNameTextField.text!, password: passwordTextField.text!, userName: userNameTextField.text!) {(user, error) in
+                        guard let loggedUser = user else {
+                            self.alertAcctionManager()
+                            
+                            return
+                        }
+                        self.changeViewController(user: loggedUser)
+                    }
+                }
             }
         }
-
     }
     
     func changeViewController(user: User){
