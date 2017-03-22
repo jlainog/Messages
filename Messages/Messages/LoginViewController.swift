@@ -70,14 +70,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         if (self.userNameTextField.text?.isEmpty)! {
             self.userNameTextField.shake()
+    
             return
-        }
-        
+        }         
         if(singInSelector.selectedSegmentIndex == 0) {
             
             userFacade.anonymousLogIn(userName: userNameTextField.text!) { (user, error) in
             guard let loggedUser = user else {
-                self.alertAcctionManager()
+                self.alertActionManager()
                 
                 return
             }
@@ -91,7 +91,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if (singInSelector.selectedSegmentIndex == 1) {
                 userFacade.emailPasswordLogIn(email: userNameTextField.text!, userName: userNameTextField.text!, password: passwordTextField.text!) {(user, error) in
                     guard let loggedUser = user else {
-                        self.alertAcctionManager()
+                        self.alertActionManager()
                         
                         return
                     }
@@ -101,7 +101,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if (singInSelector.selectedSegmentIndex == 2) {
                     userFacade.userSingIn(email: userNameTextField.text!, password: passwordTextField.text!, userName: userNameTextField.text!) {(user, error) in
                         guard let loggedUser = user else {
-                            self.alertAcctionManager()
+                            self.alertActionManager()
                             
                             return
                         }
@@ -120,7 +120,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
-    func alertAcctionManager(){
+    func alertActionManager(){
         let alert = UIAlertController(title: "Try Again", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title:  "OK", style: UIAlertActionStyle.default)
         
