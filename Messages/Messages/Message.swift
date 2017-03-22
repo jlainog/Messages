@@ -19,14 +19,14 @@ protocol MessageInfo : Parseable, JSQMessageData {
     var userName: String { get }
     var message: String? { get }
     var messageType : MessageType { get }
-    var mediaItem: UIImage? {get}
+    var mediaUrl: String? {get}
     var timestamp: Double { get }
 }
-
+// TODO - Hacer el una clase para manejar las iamgenes
 class Message : NSObject, MessageInfo {
     var userId: String
     var userName: String
-    var mediaItem: UIImage?
+    var mediaUrl: String?
     var message: String?
     var messageType: MessageType
     var timestamp: Double
@@ -34,7 +34,7 @@ class Message : NSObject, MessageInfo {
     required init(json: NSDictionary) {
         self.userId = json["userId"] as? String ?? ""
         self.userName = json["userName"] as? String ?? ""
-        self.mediaItem = json["mediaItem"] as? UIImage ?? DataCoder.Image(fromBase64: json["mediaItem"] as? String)
+        self.mediaUrl = json["mediaUrl"] as? String ?? ""
         self.message = json["message"] as? String ?? ""
         self.messageType =  MessageType(rawValue: json["messageType"] as! String) ?? MessageType.text
         self.timestamp = json["timestamp"] as? Double ?? 0
@@ -45,8 +45,8 @@ class Message : NSObject, MessageInfo {
         self.init(json: json)
     }
     
-    convenience init(userId: String, userName: String, mediaItem: UIImage, messageType: MessageType = .media, timestamp: TimeInterval = Date().timeIntervalSince1970) {
-        let json = ["userId": userId, "userName": userName, "mediaItem": mediaItem, "messageType": messageType.rawValue, "timestamp": timestamp] as NSDictionary
+    convenience init(userId: String, userName: String, mediaUrl: String, messageType: MessageType = .text, timestamp: TimeInterval = Date().timeIntervalSince1970) {
+        let json = ["userId": userId, "userName": userName, "mediaUrl": mediaUrl, "messageType": messageType.rawValue, "timestamp": timestamp] as NSDictionary
         self.init(json: json)
     }
     
@@ -56,7 +56,7 @@ class Message : NSObject, MessageInfo {
         
         json["userId"] = userId
         json["userName"] = userName
-        json["mediaItem"] = DataCoder.base64(fromImage: mediaItem)
+        json["mediaUrl"] = mediaUrl
         json["message"] = message
         json["messageType"] = messageType.rawValue
         json["timestamp"] = timestamp
@@ -76,9 +76,6 @@ extension Message {
         return self.userName
     }
     
-    func media() -> JSQMessageMediaData! {
-        return JSQPhotoMediaItem(image: self.mediaItem)
-    }
     func text() -> String! {
         return self.message
     }

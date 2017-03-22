@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import JSQMessagesViewController
+import AlamofireImage
 
 final class ChatViewController: JSQMessagesViewController {
     
@@ -68,11 +69,6 @@ final class ChatViewController: JSQMessagesViewController {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
         
-        if message.isMediaMessage() {
-            let image  =  message.mediaItem  //UIImage obtained.
-            cell.avatarImageView.image = image
-        }
-        
         if message.userId == senderId {
             cell.textView?.textColor = UIColor.white
         } else {
@@ -119,9 +115,8 @@ final class ChatViewController: JSQMessagesViewController {
     }
     
     fileprivate func addMessageWithPhoto(withId id: String, userName: String, media: UIImage) {
-        let message = Message(userId: id, userName: userName, mediaItem: media)
-       
-        ChatFacade.createMessage(channelId: channel.id!, message: message)
+        
+        FirebaseStorageFacade.save(withId: id, userName: userName, media: media, channelId: channel.id!)
         super.collectionView.reloadData()
     }
 }
