@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-typealias UserResponseHandler = (_ chatResponse : User) -> Void
+typealias UserResponseHandler = (_ userResponse : User) -> Void
 
 struct UserListFacade {
     static let ref : FIRDatabaseReference! = FIRDatabase.database().reference().child("users")
@@ -26,7 +26,7 @@ struct UserListFacade {
     }
     
     static func createUser(user: User) {
-        ref.child(user.identifier!).setValue(user.buildJSON())
+        ref.child(user.identifier).setValue(user.buildJSON())
     }
     
     static func removeObservers() {

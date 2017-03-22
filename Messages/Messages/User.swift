@@ -9,8 +9,8 @@
 import Foundation
 
 class User: NSObject, NSCoding, UserInfo {
-    var identifier: String?
-    var name: String?
+    var identifier: String
+    var name: String
     var email: String?
     
     init(identifier:String, name:String, email: String? = nil) {

@@ -16,7 +16,7 @@ final class ChatViewController: JSQMessagesViewController {
     private var messages: [Message] = []
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
-    var user: User! = SessionCache.sharedInstance.user
+    var user: User!
     var channel: Channel! {
         didSet {
             title = channel.name

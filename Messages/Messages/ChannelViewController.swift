@@ -96,7 +96,7 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         
-        //chatViewController.user = self.user
+        chatViewController.user = self.user
         chatViewController.channel = channels?[indexPath.row]
         self.navigationController?.pushViewController(chatViewController, animated: true)
     }

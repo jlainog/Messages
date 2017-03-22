@@ -9,11 +9,16 @@
 import Foundation
 
 class SessionCache: NSObject, NSCoding {
-    var user = User(identifier: "Default", name: "Default")
+    var user = User(identifier: "Default", name: "Default") {
+        didSet {
+            self.saveSession()
+        }
+    }
     
     private static var filePath: String {
         let manager = FileManager.default
         let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        
         return (url?.appendingPathComponent("Data").path)!
     }
     
@@ -21,12 +26,13 @@ class SessionCache: NSObject, NSCoding {
         if let data = NSKeyedUnarchiver.unarchiveObject(withFile: SessionCache.filePath) as? SessionCache {
             return data
         }
+        
         return SessionCache()
     }()
     
     required init?(coder aDecoder: NSCoder) {
-        guard let user = aDecoder.decodeObject(forKey: "user") as? User
-            else { return nil }
+        guard let user = aDecoder.decodeObject(forKey: "user") as? User else { return nil }
+        
         self.user = user
     }
     
@@ -36,7 +42,7 @@ class SessionCache: NSObject, NSCoding {
     
     private override init (){ }
     
-    func saveUser() {
+    private func saveSession() {
         NSKeyedArchiver.archiveRootObject(self, toFile: SessionCache.filePath)
     }
     
