@@ -18,17 +18,6 @@ struct MediaImage {
     var id: String?
     var imgView: UIImageView
     
-    init(id: String) {
-        self.id = id
-        self.imgView = UIImageView()
-        
-        let activityIndicator = JSQMessagesMediaPlaceholderView.withActivityIndicator()
-        
-        activityIndicator!.frame = imgView.frame
-        self.imgView.addSubview(activityIndicator!)
-        
-    }
-    
     init(id: String, image: UIImage?) {
         self.id = id
         self.imgView = UIImageView()

@@ -32,11 +32,23 @@ final class ChatViewController: JSQMessagesViewController {
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
         configureObserver()
+        super.collectionView.reloadData()
     }
     
     //TODO - Handle nils
     func configureObserver() {
         ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { [weak self] message in
+            
+            guard message.isMediaMessage() else {
+                self?.messages.append(message)
+                JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+                self?.finishReceivingMessage()
+                return
+            }
+        
+            let mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: false)
+            
+            message.mediaItem = mediaItem
             self?.messages.append(message)
             JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
             self?.finishReceivingMessage()
@@ -68,7 +80,7 @@ final class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
-        
+
         if message.userId == senderId {
             cell.textView?.textColor = UIColor.white
         } else {
@@ -115,9 +127,9 @@ final class ChatViewController: JSQMessagesViewController {
     }
     
     fileprivate func addMessageWithPhoto(withId id: String, userName: String, media: UIImage) {
-        
         FirebaseStorageFacade.save(withId: id, userName: userName, media: media, channelId: channel.id!)
         super.collectionView.reloadData()
+        finishSendingMessage()  
     }
 }
 

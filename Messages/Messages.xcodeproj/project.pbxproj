@@ -16,6 +16,7 @@
 		1236DED11E76FFA9006D42E5 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */; };
 		1236DED21E76FFA9006D42E5 /* ChannelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */; };
 		123B49481E81A83400123444 /* FirebaseStorageFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123B49471E81A83400123444 /* FirebaseStorageFacade.swift */; };
+		1245D24D1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */; };
 		127C7EC01E7B1501006810DB /* ChatImagePickeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C7EBF1E7B1501006810DB /* ChatImagePickeViewController.swift */; };
 		127C7EC21E7B16F2006810DB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C7EC11E7B16F2006810DB /* TestViewController.swift */; };
 		129D84011E81798400E0FCF4 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129D84001E81798400E0FCF4 /* Media.swift */; };
@@ -69,6 +70,7 @@
 		1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChannelStoryboard.storyboard; sourceTree = "<group>"; };
 		123B49471E81A83400123444 /* FirebaseStorageFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageFacade.swift; sourceTree = "<group>"; };
+		1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPhotoMediaItemCusto.swift; sourceTree = "<group>"; };
 		127C7EBF1E7B1501006810DB /* ChatImagePickeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatImagePickeViewController.swift; sourceTree = "<group>"; };
 		127C7EC11E7B16F2006810DB /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		129D84001E81798400E0FCF4 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			children = (
 				F865259E1E719F870024BDC9 /* Message.swift */,
 				129D84001E81798400E0FCF4 /* Media.swift */,
+				1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
 				E2C5A52A1E704460002D37EF /* ChatViewController.swift in Sources */,
 				129EC3531E79EB1E004FB6DB /* ObserverManager.swift in Sources */,
+				1245D24D1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift in Sources */,
 				12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */,
 				12139E3C1E7C4BFC00C9EFAB /* DataCoder.swift in Sources */,
 				1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */,

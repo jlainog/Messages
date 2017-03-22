@@ -21,6 +21,7 @@ protocol MessageInfo : Parseable, JSQMessageData {
     var messageType : MessageType { get }
     var mediaUrl: String? {get}
     var timestamp: Double { get }
+    var mediaItem: JSQPhotoMediaItem?  { get }
 }
 // TODO - Hacer el una clase para manejar las iamgenes
 class Message : NSObject, MessageInfo {
@@ -30,6 +31,7 @@ class Message : NSObject, MessageInfo {
     var message: String?
     var messageType: MessageType
     var timestamp: Double
+    var mediaItem: JSQPhotoMediaItem?
     
     required init(json: NSDictionary) {
         self.userId = json["userId"] as? String ?? ""
@@ -38,6 +40,7 @@ class Message : NSObject, MessageInfo {
         self.message = json["message"] as? String ?? ""
         self.messageType =  MessageType(rawValue: json["messageType"] as! String) ?? MessageType.text
         self.timestamp = json["timestamp"] as? Double ?? 0
+        self.mediaItem = json["mediaItem"] as? JSQPhotoMediaItem
     }
     
     convenience init(userId: String, userName: String, message: String, messageType: MessageType = .text, timestamp: TimeInterval = Date().timeIntervalSince1970) {
@@ -45,8 +48,9 @@ class Message : NSObject, MessageInfo {
         self.init(json: json)
     }
     
-    convenience init(userId: String, userName: String, mediaUrl: String, messageType: MessageType = .text, timestamp: TimeInterval = Date().timeIntervalSince1970) {
-        let json = ["userId": userId, "userName": userName, "mediaUrl": mediaUrl, "messageType": messageType.rawValue, "timestamp": timestamp] as NSDictionary
+    convenience init(userId: String, userName: String, mediaUrl: String, messageType: MessageType = .media, timestamp: TimeInterval = Date().timeIntervalSince1970, mediaItem: JSQPhotoMediaItem?) {
+        let json = ["userId": userId, "userName": userName, "mediaUrl": mediaUrl, "messageType": messageType.rawValue, "timestamp": timestamp, "mediaItem": mediaItem] as NSDictionary
+        
         self.init(json: json)
     }
     
@@ -78,6 +82,10 @@ extension Message {
     
     func text() -> String! {
         return self.message
+    }
+    
+    func media() -> JSQMessageMediaData! {
+       return self.mediaItem
     }
     
     func isMediaMessage() -> Bool {

@@ -9,8 +9,9 @@ target 'Messages' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
+    pod 'FirebaseUI/Storage'
     pod 'JSQMessagesViewController'
-    pod 'AlamofireImage', '~> 3.1'
+    pod 'FirebaseUI/Storage'
        
   target 'MessagesTests' do
     inherit! :search_paths

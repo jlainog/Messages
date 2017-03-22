@@ -22,13 +22,14 @@ struct FirebaseStorageFacade {
             let uploadTask = storageRef.child("\(mediaData.id!).png").put(uploadData, metadata: nil)
             
             uploadTask.observe(.success) { snapshot in
-                let message = Message(userId: id, userName: userName, mediaUrl: (snapshot.metadata!.downloadURL()!.absoluteString))
+                let message = Message(userId: id,
+                                      userName: userName,
+                                      mediaUrl: (snapshot.metadata!.downloadURL()!.absoluteString),
+                                      mediaItem: nil)
                 ChatFacade.createMessage(channelId: channelId, message: message)
             }
         }
         
     }
-    
 
-    
 }
