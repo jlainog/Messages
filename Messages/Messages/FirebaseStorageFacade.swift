@@ -41,15 +41,16 @@ struct FirebaseStorageFacade {
         let progressView = UIProgressView(frame: rect)
         alertView.view.addSubview(progressView)
         alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        viewController.present(alertView, animated: true)
         
         if let uploadData = UIImagePNGRepresentation((mediaData.imgView.image)!) {
             let uploadTask = storageRef.child("\(mediaData.id!).png").put(uploadData, metadata: nil)
             
-            viewController.present(alertView, animated: true)
-            
             uploadTask.observe(.progress) { snapshot in
+                DispatchQueue.main.async {
+                    viewController.present(alertView, animated: true)
+                }
                 progressView.progress  = 100.0 * Float(snapshot.progress!.completedUnitCount) / Float(snapshot.progress!.totalUnitCount)
-                
             }
             
             uploadTask.observe(.success) { snapshot in

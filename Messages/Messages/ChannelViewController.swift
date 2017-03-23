@@ -18,20 +18,19 @@ class ChannelViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("controllador cargo")
         channelsTable.delegate = self
         newItemTxtField.delegate = self
         channelsTable.dataSource = self
         channelsTable.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "cell")
         channels = [Channel]()
         
-        //TODO - Handle nils
         ChannelFacade.listAndObserveChannels() {
             [weak self] channel in
             self?.channels!.append(channel)
             self?.channelsTable.reloadData()
         }
         
-        //TODO - Handle nils
         ChannelFacade.didRemoveChannel() {
             [weak self] channel in
             if let channels = self?.channels {
@@ -41,16 +40,16 @@ class ChannelViewController: UIViewController {
         }
     }
     
+    deinit {
+        ChannelFacade.dismmissChannelObservers()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         newItemTxtField.becomeFirstResponder()
         self.hideKeyboardWhenTappedAround()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        ChannelFacade.dismmissChannelObservers()
-    }
     
     @IBAction func createChannel(_ sender: UIButton) {
         guard newItemTxtField.text != "" else { return newItemTxtField.shake() }

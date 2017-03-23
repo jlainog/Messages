@@ -89,8 +89,7 @@ final class ChatViewController: JSQMessagesViewController {
         return cell
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+    deinit {
         ChatFacade.removeAllObservers()
     }
     
