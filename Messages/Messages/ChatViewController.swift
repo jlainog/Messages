@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 import JSQMessagesViewController
+import CoreLocation
 
-final class ChatViewController: JSQMessagesViewController {
+final class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     
  // MARK: Variable Definitions
     private var messages: [Message] = []
@@ -68,7 +69,18 @@ final class ChatViewController: JSQMessagesViewController {
         
         let sheet = UIAlertController(title: "Media Messages", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
-        let sendLocation = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
+        
+        let sendLocation = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in
+            
+            let currentLocation = LocationMonitor().currentPosition
+            
+            let message = Message(userId: self.senderId,
+                                  userName: self.senderDisplayName,
+                                  location: currentLocation)
+            
+            ChatFacade.createMessage(channelId: (self.channel.id!), message: message)
+            self.finishSendingMessage(animated: true)
+        }
         
         sheet.addAction(cancel)
         sheet.addAction(sendLocation)
@@ -125,15 +137,5 @@ final class ChatViewController: JSQMessagesViewController {
         }
         return NSAttributedString(string: senderDisplayName)
     }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let latestLocation: CLLocation = locations[locations.count-1]
-        let loc: JSQLocationMediaItem = JSQLocationMediaItem(location: latestLocation)
-        let locmessage: JSQMessage = JSQMessage(senderId: self.senderId, senderDisplayName: self.senderDisplayName, date: NSDate() as Date!, media: loc)
-        
-        loc.appliesMediaViewMaskAsOutgoing = true
-        
-        messages.append(locmessage.media as! Message)
-        self.finishSendingMessage(animated: true)
-    }
+
 }

@@ -9,16 +9,9 @@
 import Foundation
 import JSQMessagesViewController
 
-enum MessageType {
+enum MessageType : String {
     case text
-}
-
-extension MessageType {
-    var type: String {
-        switch self {
-        case .text: return "text"
-        }
-    }
+    case location
 }
 
 protocol MessageInfo : Parseable, JSQMessageData {
@@ -27,6 +20,8 @@ protocol MessageInfo : Parseable, JSQMessageData {
     var message: String { get }
     var messageType : MessageType { get }
     var timestamp: Double { get }
+    var latitude: Double { get }
+    var Longitude: Double { get }
 }
 
 class Message : NSObject, MessageInfo {
@@ -35,18 +30,38 @@ class Message : NSObject, MessageInfo {
     var message: String
     var messageType: MessageType
     var timestamp: Double
+    var latitude: Double
+    var Longitude: Double
     
     required init(json: NSDictionary) {
         self.userId = json["userId"] as? String ?? ""
         self.userName = json["userName"] as? String ?? ""
         self.message = json["message"] as? String ?? ""
-        self.messageType = json["messageType"] as? MessageType ?? MessageType.text
         self.timestamp = json["timestamp"] as? Double ?? 0
+        self.latitude = json["latitude"] as? Double ?? 0
+        self.Longitude = json["longitude"] as? Double ?? 0
+        self.messageType = MessageType.text
+        
+        guard let messageTypeString = json["messageType"] as? String else {
+            return
+        }
+        
+        self.messageType = MessageType(rawValue: messageTypeString)!
     }
     
     convenience init(userId: String, userName: String, message: String, messageType: MessageType = .text, timestamp: TimeInterval = Date().timeIntervalSince1970) {
         let json = ["userId": userId, "userName": userName, "message": message, "messageType": messageType, "timestamp": timestamp] as NSDictionary
         self.init(json: json)
+    }
+    
+    convenience init(userId: String, userName: String, location: CLLocation) {
+        let json = ["userId": userId, "userName": userName] as NSDictionary
+        self.init(json: json)
+        
+        self.timestamp = Date().timeIntervalSince1970
+        self.messageType = MessageType.location
+        self.latitude = location.coordinate.latitude
+        self.Longitude = location.coordinate.longitude
     }
     
     func buildJSON() -> NSDictionary {
@@ -55,8 +70,10 @@ class Message : NSObject, MessageInfo {
         json["userId"] = userId
         json["userName"] = userName
         json["message"] = message
-        json["messageType"] = messageType.type
+        json["messageType"] = messageType.rawValue
         json["timestamp"] = timestamp
+        json["latitude"] = latitude
+        json["longitude"] = Longitude
         return json as NSDictionary
     }
 }
@@ -78,6 +95,17 @@ extension Message {
     
     func isMediaMessage() -> Bool {
         return self.messageType != .text
+    }
+    
+    func media() -> JSQMessageMediaData! {
+        if self.messageType == .location {
+            let locationMediaItem = JSQLocationMediaItem(location: CLLocation(latitude: latitude, longitude: Longitude))
+            
+            locationMediaItem?.appliesMediaViewMaskAsOutgoing = true
+            return locationMediaItem
+        }
+        
+        return nil
     }
     
     func date() -> Date! {
