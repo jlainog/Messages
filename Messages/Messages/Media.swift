@@ -9,8 +9,6 @@
 import Foundation
 import Firebase
 import JSQMessagesViewController
-import AlamofireImage
-import Alamofire
 import UIKit
 
 struct MediaImage {
@@ -24,16 +22,4 @@ struct MediaImage {
         imgView.image = image
         
     }
-    
-    func toDic() -> [String: Any] {
-        return ["content": DataCoder.base64(fromImage: imgView.image)]
-    }
-}
-
-extension MediaImage {
-    
-    func toMediaItem() -> JSQMessageMediaData! {
-        return JSQPhotoMediaItem(image: self.imgView.image)
-    }
-    
 }

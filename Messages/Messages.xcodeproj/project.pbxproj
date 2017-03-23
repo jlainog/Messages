@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		12139E3C1E7C4BFC00C9EFAB /* DataCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12139E3B1E7C4BFC00C9EFAB /* DataCoder.swift */; };
 		12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12271DED1E6F16EB00E87884 /* Channel.swift */; };
 		1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DEC51E76FF72006D42E5 /* ChannelViewController.swift */; };
 		1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DEC81E76FF88006D42E5 /* Parseable.swift */; };
@@ -18,9 +17,7 @@
 		123B49481E81A83400123444 /* FirebaseStorageFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123B49471E81A83400123444 /* FirebaseStorageFacade.swift */; };
 		1245D24D1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */; };
 		127C7EC01E7B1501006810DB /* ChatImagePickeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C7EBF1E7B1501006810DB /* ChatImagePickeViewController.swift */; };
-		127C7EC21E7B16F2006810DB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C7EC11E7B16F2006810DB /* TestViewController.swift */; };
 		129D84011E81798400E0FCF4 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129D84001E81798400E0FCF4 /* Media.swift */; };
-		129EC3531E79EB1E004FB6DB /* ObserverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EC3521E79EB1E004FB6DB /* ObserverManager.swift */; };
 		12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B811E733D3500D87B11 /* FireBaseService.swift */; };
 		12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B831E73421C00D87B11 /* ChannelFacade.swift */; };
 		48CF92011E73432800071DB6 /* UserFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF92001E73432800071DB6 /* UserFacade.swift */; };
@@ -61,7 +58,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		12139E3B1E7C4BFC00C9EFAB /* DataCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCoder.swift; sourceTree = "<group>"; };
 		12271DED1E6F16EB00E87884 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		1236DEC51E76FF72006D42E5 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		1236DEC81E76FF88006D42E5 /* Parseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parseable.swift; sourceTree = "<group>"; };
@@ -72,9 +68,7 @@
 		123B49471E81A83400123444 /* FirebaseStorageFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageFacade.swift; sourceTree = "<group>"; };
 		1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPhotoMediaItemCusto.swift; sourceTree = "<group>"; };
 		127C7EBF1E7B1501006810DB /* ChatImagePickeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatImagePickeViewController.swift; sourceTree = "<group>"; };
-		127C7EC11E7B16F2006810DB /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		129D84001E81798400E0FCF4 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
-		129EC3521E79EB1E004FB6DB /* ObserverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverManager.swift; sourceTree = "<group>"; };
 		12E80B811E733D3500D87B11 /* FireBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		12E80B831E73421C00D87B11 /* ChannelFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelFacade.swift; sourceTree = "<group>"; };
 		48CF92001E73432800071DB6 /* UserFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFacade.swift; sourceTree = "<group>"; };
@@ -194,18 +188,17 @@
 		127C7EBD1E7B14AD006810DB /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
-				127C7EBE1E7B14CA006810DB /* Photos */,
+				127C7EBE1E7B14CA006810DB /* ImagePicker */,
 			);
 			name = FileManager;
 			sourceTree = "<group>";
 		};
-		127C7EBE1E7B14CA006810DB /* Photos */ = {
+		127C7EBE1E7B14CA006810DB /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
 				127C7EBF1E7B1501006810DB /* ChatImagePickeViewController.swift */,
-				127C7EC11E7B16F2006810DB /* TestViewController.swift */,
 			);
-			name = Photos;
+			name = ImagePicker;
 			sourceTree = "<group>";
 		};
 		129EC3501E79EAFB004FB6DB /* General */ = {
@@ -213,18 +206,8 @@
 			children = (
 				1236DECA1E76FF8B006D42E5 /* Extensions */,
 				127C7EBD1E7B14AD006810DB /* FileManager */,
-				129EC3511E79EB05004FB6DB /* ObserverManager */,
-				129EC3521E79EB1E004FB6DB /* ObserverManager.swift */,
 			);
 			name = General;
-			sourceTree = "<group>";
-		};
-		129EC3511E79EB05004FB6DB /* ObserverManager */ = {
-			isa = PBXGroup;
-			children = (
-				12139E3B1E7C4BFC00C9EFAB /* DataCoder.swift */,
-			);
-			name = ObserverManager;
 			sourceTree = "<group>";
 		};
 		48CF91FD1E73370100071DB6 /* Services */ = {
@@ -666,7 +649,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */,
-				127C7EC21E7B16F2006810DB /* TestViewController.swift in Sources */,
 				123B49481E81A83400123444 /* FirebaseStorageFacade.swift in Sources */,
 				12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */,
 				48CF92011E73432800071DB6 /* UserFacade.swift in Sources */,
@@ -682,10 +664,8 @@
 				1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
 				E2C5A52A1E704460002D37EF /* ChatViewController.swift in Sources */,
-				129EC3531E79EB1E004FB6DB /* ObserverManager.swift in Sources */,
 				1245D24D1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift in Sources */,
 				12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */,
-				12139E3C1E7C4BFC00C9EFAB /* DataCoder.swift in Sources */,
 				1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */,
 				48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */,
 			);

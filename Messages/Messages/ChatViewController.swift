@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import JSQMessagesViewController
-import AlamofireImage
 
 final class ChatViewController: JSQMessagesViewController {
     
@@ -46,8 +45,7 @@ final class ChatViewController: JSQMessagesViewController {
                 return
             }
         
-            let mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: false)
-            
+            let mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: true)
             message.mediaItem = mediaItem
             self?.messages.append(message)
             JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
@@ -63,7 +61,9 @@ final class ChatViewController: JSQMessagesViewController {
         return messages.count
     }
     
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!,
+                                 layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!,
+                                 heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
         return 15
     }
     
@@ -127,7 +127,7 @@ final class ChatViewController: JSQMessagesViewController {
     }
     
     fileprivate func addMessageWithPhoto(withId id: String, userName: String, media: UIImage) {
-        FirebaseStorageFacade.save(withId: id, userName: userName, media: media, channelId: channel.id!)
+        FirebaseStorageFacade.saveMediaWithProgress(id: id, userName: userName, media: media, channelId: channel.id!, presentIn: self)
         super.collectionView.reloadData()
         finishSendingMessage()  
     }

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import JSQMessagesViewController
+import Firebase
 import AlamofireImage
 
 class JSQPhotoMediaItemCustom: JSQPhotoMediaItem {
@@ -36,22 +37,15 @@ class JSQPhotoMediaItemCustom: JSQPhotoMediaItem {
         imgView.addSubview(activityIndicator!)
         
         JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMask(toMediaView: self.imgView, isOutgoing: self.appliesMediaViewMaskAsOutgoing)
-        
-        let downloader = ImageDownloader()
-        let urlRequest = URLRequest(url: URL(string: url)!)
-        
-        downloader.download(urlRequest) { response in
-            print(response.request)
-            print(response.response)
-            debugPrint(response.result)
-            
+
+        let urldata = URL(string: url)
+        imgView.af_setImage(withURL: urldata!){ response in
             let image = response.result.value
             if  image != nil{
                 
                 activityIndicator?.removeFromSuperview()
                 self.imgView.image = image
             }
-            self.imgView.image = image
         }
 
     }
