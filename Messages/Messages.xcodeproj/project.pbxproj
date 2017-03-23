@@ -14,7 +14,6 @@
 		1236DED01E76FFA9006D42E5 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */; };
 		1236DED11E76FFA9006D42E5 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */; };
 		1236DED21E76FFA9006D42E5 /* ChannelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */; };
-		129EC3531E79EB1E004FB6DB /* ObserverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129EC3521E79EB1E004FB6DB /* ObserverManager.swift */; };
 		12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B811E733D3500D87B11 /* FireBaseService.swift */; };
 		12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B831E73421C00D87B11 /* ChannelFacade.swift */; };
 		48CF92011E73432800071DB6 /* UserFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF92001E73432800071DB6 /* UserFacade.swift */; };
@@ -62,7 +61,6 @@
 		1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChannelStoryboard.storyboard; sourceTree = "<group>"; };
-		129EC3521E79EB1E004FB6DB /* ObserverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverManager.swift; sourceTree = "<group>"; };
 		12E80B811E733D3500D87B11 /* FireBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		12E80B831E73421C00D87B11 /* ChannelFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelFacade.swift; sourceTree = "<group>"; };
 		48CF92001E73432800071DB6 /* UserFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFacade.swift; sourceTree = "<group>"; };
@@ -179,22 +177,6 @@
 			name = RestService;
 			sourceTree = "<group>";
 		};
-		129EC3501E79EAFB004FB6DB /* General */ = {
-			isa = PBXGroup;
-			children = (
-				129EC3511E79EB05004FB6DB /* ObserverManager */,
-			);
-			name = General;
-			sourceTree = "<group>";
-		};
-		129EC3511E79EB05004FB6DB /* ObserverManager */ = {
-			isa = PBXGroup;
-			children = (
-				129EC3521E79EB1E004FB6DB /* ObserverManager.swift */,
-			);
-			name = ObserverManager;
-			sourceTree = "<group>";
-		};
 		48CF91FD1E73370100071DB6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +268,6 @@
 		F52ACAA21E6DFBCB007AB8EA /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				129EC3501E79EAFB004FB6DB /* General */,
 				48E68D6D1E6F1A010046BD1A /* Login */,
 				F86525971E6F10AB0024BDC9 /* Chat */,
 				1236DECA1E76FF8B006D42E5 /* Extensions */,
@@ -644,7 +625,6 @@
 				1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
 				E2C5A52A1E704460002D37EF /* ChatViewController.swift in Sources */,
-				129EC3531E79EB1E004FB6DB /* ObserverManager.swift in Sources */,
 				12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */,
 				1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */,
 				48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */,
