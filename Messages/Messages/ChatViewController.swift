@@ -17,7 +17,11 @@ final class ChatViewController: JSQMessagesViewController {
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     var user:User!
-    var channel:Channel!
+    var channel:Channel! {
+        didSet {
+            title = channel.name
+        }
+    }
     
  // MARK: DataSource & Delegate
     override func viewDidLoad() {
@@ -40,6 +44,47 @@ final class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        
+        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+    }
+    
+    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        
+        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    }
+    
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        addMessage(withId: self.senderId,
+                   name: self.senderDisplayName,
+                   text: text)
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        finishSendingMessage()
+    }
+
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        let refreshAlert = UIAlertController(title: "Function not yet implemented",
+                                             message: "This functionality is not yet implemented in the application.",
+                                             preferredStyle: UIAlertControllerStyle.alert)
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(refreshAlert, animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        ChatFacade.removeAllObservers()
+    }
+    
+ // MARK: Private Function
+    private func addMessage(withId id: String, name: String, text: String) {
+        let message = Message(userId: id, userName: name, message: text)
+        
+        ChatFacade.createMessage(channelId: (channel.id!), message: message)
+    }
+
+// MARK: CollectionView Functions
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
@@ -74,45 +119,14 @@ final class ChatViewController: JSQMessagesViewController {
         return cell
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        ChatFacade.removeAllObservers()
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        let message = messages[indexPath.item]
+        guard let senderDisplayName = message.senderDisplayName() else {
+            return nil
+        }
+        return NSAttributedString(string: senderDisplayName)
     }
     
-    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        
-        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-    }
-    
-    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        
-        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-    }
-    
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        addMessage(withId: self.senderId,
-                   name: self.senderDisplayName,
-                   text: text)
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        finishSendingMessage()
-    }
-
-    override func didPressAccessoryButton(_ sender: UIButton!) {
-        let refreshAlert = UIAlertController(title: "Function not yet implemented",
-                                             message: "This functionality is not yet implemented in the application.",
-                                             preferredStyle: UIAlertControllerStyle.alert)
-        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        present(refreshAlert, animated: true, completion: nil)
-    }
-    
- // MARK: Private Methods
-    private func addMessage(withId id: String, name: String, text: String) {
-        let message = Message(userId: id, userName: name, message: text)
-        
-        ChatFacade.createMessage(channelId: channel.id!, message: message)
-    }
 }
 
 
