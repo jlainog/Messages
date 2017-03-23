@@ -29,6 +29,10 @@ class UserListViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         UserListFacade.removeObservers()
     }
+    
+    deinit {
+        UserListFacade.removeObservers()
+    }
 }
 
 extension UserListViewController : UITableViewDelegate, UITableViewDataSource {
