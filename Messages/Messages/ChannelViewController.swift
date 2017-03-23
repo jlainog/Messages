@@ -47,8 +47,7 @@ class ChannelViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+    deinit {
         ChannelFacade.dismmissChannelObservers()
     }
     

@@ -72,11 +72,10 @@ final class ChatViewController: JSQMessagesViewController {
         present(refreshAlert, animated: true, completion: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+    deinit {
         ChatFacade.removeAllObservers()
     }
-    
+
  // MARK: Private Function
     private func addMessage(withId id: String, name: String, text: String) {
         let message = Message(userId: id, userName: name, message: text)
