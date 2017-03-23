@@ -35,22 +35,21 @@ struct FirebaseStorageFacade {
     static func saveMediaWithProgress(id: String, userName: String, media: UIImage, channelId: String, presentIn viewController: JSQMessagesViewController) {
    
         let mediaData = MediaImage.init(id: String(Date().timeIntervalSince1970), image: media)
-        let alertView = UIAlertController(title: "Please wait", message: "Need to download some files.", preferredStyle: .alert)
-        let margin:CGFloat = 8.0
-        let rect = CGRect(x: margin, y: 72, width: alertView.view.frame.width - margin * 2.0, height: 2)
-        let progressView = UIProgressView(frame: rect)
+        var alertView = UIAlertController(title: "Please wait", message: "Uploading File", preferredStyle: .alert)
+        let progressView = UIProgressView(progressViewStyle: .default)
+    
+        progressView.frame = CGRect(x: 10, y: 70, width: 250, height: 0)
         alertView.view.addSubview(progressView)
-        alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        viewController.present(alertView, animated: true)
         
         if let uploadData = UIImagePNGRepresentation((mediaData.imgView.image)!) {
             let uploadTask = storageRef.child("\(mediaData.id!).png").put(uploadData, metadata: nil)
             
+            DispatchQueue.main.async {
+                viewController.present(alertView, animated: true)
+            }
             uploadTask.observe(.progress) { snapshot in
-                DispatchQueue.main.async {
-                    viewController.present(alertView, animated: true)
-                }
-                progressView.progress  = 100.0 * Float(snapshot.progress!.completedUnitCount) / Float(snapshot.progress!.totalUnitCount)
+                let progress = Float(snapshot.progress!.completedUnitCount) / Float(snapshot.progress!.totalUnitCount)
+                progressView.progress += progress
             }
             
             uploadTask.observe(.success) { snapshot in
@@ -61,6 +60,16 @@ struct FirebaseStorageFacade {
                 alertView.dismiss(animated: true)
                 ChatFacade.createMessage(channelId: channelId, message: message)
             }
+            
+            uploadTask.observe(.failure) { snapshot in
+                alertView.dismiss(animated: true)
+                alertView = UIAlertController(title: "Error", message: "Something Whent wrong", preferredStyle: .alert)
+                alertView.addAction(UIAlertAction(title: "accept", style: UIAlertActionStyle.default, handler: nil))
+                DispatchQueue.main.async {
+                    viewController.present(alertView, animated: true)
+                }
+            }
+            
         }
 
     }
