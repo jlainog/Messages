@@ -20,6 +20,7 @@ final class ChatViewController: JSQMessagesViewController {
     var channel:Channel!
     var lastMessage: String?
     let imagePicker = ChatImagePickeViewController()
+    let photoPicker = ChatPhotoPickeViewController()
     
  // MARK: DataSource & Delegate
     override func viewDidLoad() {
@@ -27,6 +28,7 @@ final class ChatViewController: JSQMessagesViewController {
         self.senderId =  user.identifier
         self.senderDisplayName =  user.name
         imagePicker.delegate = self
+        photoPicker.delegate = self
         
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
@@ -93,7 +95,12 @@ final class ChatViewController: JSQMessagesViewController {
     
     // TODO - Configure imagepicker in this func
     override func didPressAccessoryButton(_ sender: UIButton!) {
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            present(photoPicker, animated: true, completion: nil)
+        } else {
+            noCamera()
+        }
+//        present(imagePicker, animated: true, completion: nil)
     }
     
     // MARK: Private Methods
@@ -123,12 +130,12 @@ final class ChatViewController: JSQMessagesViewController {
                 return
             }
             
-            self?.configureMediaImage(message)
+            self?.configureMediaImgage(message)
         }
     }
     
-    func configureMediaImage(_ message: Message) {
-        let mediaItem: JSQPhotoMediaItemCustom?
+    func configureMediaImgage(_ message: Message) {
+        let mediaItem: JSQPhotoMediaItemCustom
         
         if message.userId == self.senderId {
             mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: true)
@@ -159,7 +166,7 @@ extension ChatViewController: UIImagePickerControllerDelegate,UINavigationContro
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
+
 }
 
 

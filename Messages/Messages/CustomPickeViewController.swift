@@ -18,3 +18,15 @@ class ChatImagePickeViewController: UIImagePickerController {
     }
     
 }
+
+class ChatPhotoPickeViewController: UIImagePickerController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.sourceType = .camera
+        self.cameraCaptureMode = .photo
+        self.modalPresentationStyle = .fullScreen
+    }
+}
+
+
