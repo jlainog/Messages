@@ -14,6 +14,7 @@
 		1236DED01E76FFA9006D42E5 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */; };
 		1236DED11E76FFA9006D42E5 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */; };
 		1236DED21E76FFA9006D42E5 /* ChannelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */; };
+		12391CC31E85B46300A8F22C /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391CC21E85B46300A8F22C /* UIImage+FixOrientation.swift */; };
 		123B49481E81A83400123444 /* MediaFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123B49471E81A83400123444 /* MediaFacade.swift */; };
 		124509BB1E85B0FA00E956AC /* JSQMessagesViewController+noCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124509BA1E85B0FA00E956AC /* JSQMessagesViewController+noCamera.swift */; };
 		1245D24D1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */; };
@@ -65,6 +66,7 @@
 		1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChannelStoryboard.storyboard; sourceTree = "<group>"; };
+		12391CC21E85B46300A8F22C /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		123B49471E81A83400123444 /* MediaFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFacade.swift; sourceTree = "<group>"; };
 		124509BA1E85B0FA00E956AC /* JSQMessagesViewController+noCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSQMessagesViewController+noCamera.swift"; sourceTree = "<group>"; };
 		1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPhotoMediaItemCusto.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */,
 				124509BA1E85B0FA00E956AC /* JSQMessagesViewController+noCamera.swift */,
+				12391CC21E85B46300A8F22C /* UIImage+FixOrientation.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12391CC31E85B46300A8F22C /* UIImage+FixOrientation.swift in Sources */,
 				12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */,
 				123B49481E81A83400123444 /* MediaFacade.swift in Sources */,
 				12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */,
@@ -821,12 +825,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N4DLG75YF7;
 				INFOPLIST_FILE = Messages/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.Messages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -837,12 +841,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N4DLG75YF7;
 				INFOPLIST_FILE = Messages/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.Messages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

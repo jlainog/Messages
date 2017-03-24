@@ -120,9 +120,7 @@ final class ChatViewController: JSQMessagesViewController {
     
     func configureObserver() {
         ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { [weak self] message in
-            
             guard message.id != self?.lastMessage else { return }
-            
             guard message.isMediaMessage()  else {
                 self?.messages.append(message)
                 JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
@@ -159,7 +157,7 @@ extension ChatViewController: UIImagePickerControllerDelegate,UINavigationContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        addMessageWithPhoto(withId: user.identifier!, userName: user.name!, media: chosenImage)
+        addMessageWithPhoto(withId: user.identifier!, userName: user.name!, media: chosenImage.fixedOrientation())
         dismiss(animated:true, completion: nil)
     }
     

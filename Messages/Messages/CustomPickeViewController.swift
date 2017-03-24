@@ -23,6 +23,7 @@ class ChatPhotoPickeViewController: UIImagePickerController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.allowsEditing = true
         self.sourceType = .camera
         self.cameraCaptureMode = .photo
         self.modalPresentationStyle = .fullScreen
