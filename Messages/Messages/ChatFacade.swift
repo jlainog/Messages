@@ -22,7 +22,7 @@ struct ChatFacade {
             guard let value = snapshot.value as? [String : Any] else {
                 return
             }
-            completion(Message(json: value as NSDictionary))
+            completion(Message(id: snapshot.key, json: value as NSDictionary))
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -30,6 +30,12 @@ struct ChatFacade {
     
     static func createMessage(channelId: String, message: Message) {
         ref.child(channelId).childByAutoId().setValue(message.buildJSON())
+    }
+    
+    static func createMediaMessage(channelId: String, message: Message) -> String {
+        let messageRef = ref.child(channelId).childByAutoId()
+        messageRef.setValue(message.buildJSON())
+        return messageRef.key
     }
     
     static func removeMessages(channelId: String) {

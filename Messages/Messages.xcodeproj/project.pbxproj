@@ -14,10 +14,9 @@
 		1236DED01E76FFA9006D42E5 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */; };
 		1236DED11E76FFA9006D42E5 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */; };
 		1236DED21E76FFA9006D42E5 /* ChannelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */; };
-		123B49481E81A83400123444 /* FirebaseStorageFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123B49471E81A83400123444 /* FirebaseStorageFacade.swift */; };
+		123B49481E81A83400123444 /* MediaFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123B49471E81A83400123444 /* MediaFacade.swift */; };
 		1245D24D1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */; };
 		127C7EC01E7B1501006810DB /* ChatImagePickeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C7EBF1E7B1501006810DB /* ChatImagePickeViewController.swift */; };
-		129D84011E81798400E0FCF4 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129D84001E81798400E0FCF4 /* Media.swift */; };
 		12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B811E733D3500D87B11 /* FireBaseService.swift */; };
 		12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B831E73421C00D87B11 /* ChannelFacade.swift */; };
 		48CF92011E73432800071DB6 /* UserFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF92001E73432800071DB6 /* UserFacade.swift */; };
@@ -65,10 +64,9 @@
 		1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChannelStoryboard.storyboard; sourceTree = "<group>"; };
-		123B49471E81A83400123444 /* FirebaseStorageFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageFacade.swift; sourceTree = "<group>"; };
+		123B49471E81A83400123444 /* MediaFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFacade.swift; sourceTree = "<group>"; };
 		1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPhotoMediaItemCusto.swift; sourceTree = "<group>"; };
 		127C7EBF1E7B1501006810DB /* ChatImagePickeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatImagePickeViewController.swift; sourceTree = "<group>"; };
-		129D84001E81798400E0FCF4 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		12E80B811E733D3500D87B11 /* FireBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		12E80B831E73421C00D87B11 /* ChannelFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelFacade.swift; sourceTree = "<group>"; };
 		48CF92001E73432800071DB6 /* UserFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFacade.swift; sourceTree = "<group>"; };
@@ -349,7 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				F865259C1E6F170B0024BDC9 /* ChatFacade.swift */,
-				123B49471E81A83400123444 /* FirebaseStorageFacade.swift */,
+				123B49471E81A83400123444 /* MediaFacade.swift */,
 			);
 			name = Facade;
 			sourceTree = "<group>";
@@ -358,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				F865259E1E719F870024BDC9 /* Message.swift */,
-				129D84001E81798400E0FCF4 /* Media.swift */,
 				1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */,
 			);
 			name = Model;
@@ -441,6 +438,7 @@
 				TargetAttributes = {
 					F52ACA9F1E6DFBCB007AB8EA = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = N4DLG75YF7;
 						ProvisioningStyle = Automatic;
 					};
 					F52ACAB31E6DFBCB007AB8EA = {
@@ -649,11 +647,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */,
-				123B49481E81A83400123444 /* FirebaseStorageFacade.swift in Sources */,
+				123B49481E81A83400123444 /* MediaFacade.swift in Sources */,
 				12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */,
 				48CF92011E73432800071DB6 /* UserFacade.swift in Sources */,
 				1236DECC1E76FF9A006D42E5 /* UITextField+Shake.swift in Sources */,
-				129D84011E81798400E0FCF4 /* Media.swift in Sources */,
 				1236DED01E76FFA9006D42E5 /* ChannelCell.swift in Sources */,
 				127C7EC01E7B1501006810DB /* ChatImagePickeViewController.swift in Sources */,
 				48DFCE911E70AFC10097CA42 /* LoginViewController.swift in Sources */,
@@ -762,7 +759,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -805,7 +802,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -818,12 +815,14 @@
 			baseConfigurationReference = 9F2127F2C7DA2640C99C63B6 /* Pods-Messages.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = N4DLG75YF7;
 				INFOPLIST_FILE = Messages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.Messages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -832,12 +831,14 @@
 			baseConfigurationReference = 5C298D3371EEB9649D79DE9E /* Pods-Messages.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = N4DLG75YF7;
 				INFOPLIST_FILE = Messages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JLainoG.Messages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

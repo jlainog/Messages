@@ -15,6 +15,7 @@ enum MessageType: String {
 }
 
 protocol MessageInfo : Parseable, JSQMessageData {
+    var id: String? { get }
     var userId: String { get }
     var userName: String { get }
     var message: String? { get }
@@ -23,8 +24,10 @@ protocol MessageInfo : Parseable, JSQMessageData {
     var timestamp: Double { get }
     var mediaItem: JSQPhotoMediaItem?  { get }
 }
-// TODO - Hacer el una clase para manejar las iamgenes
+
 class Message : NSObject, MessageInfo {
+    
+    var id: String?
     var userId: String
     var userName: String
     var mediaUrl: String?
@@ -54,10 +57,15 @@ class Message : NSObject, MessageInfo {
         self.init(json: json)
     }
     
+    convenience init(id:String, json: NSDictionary) {
+        self.init(json: json)
+        self.id = id
+    }
+    
     
     func buildJSON() -> NSDictionary {
         var json = Dictionary<String, Any>()
-        
+
         json["userId"] = userId
         json["userName"] = userName
         json["mediaUrl"] = mediaUrl
@@ -67,11 +75,12 @@ class Message : NSObject, MessageInfo {
     
         return json as NSDictionary
     }
+    
 }
 
 //MARK: JSQMessageData
-
 extension Message {
+    
     func senderId() -> String! {
         return self.userId
     }
@@ -99,5 +108,6 @@ extension Message {
     func messageHash() -> UInt {
         return UInt(self.hashValue)
     }
+    
 }
 

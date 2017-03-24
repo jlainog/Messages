@@ -9,9 +9,7 @@ target 'Messages' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
-    pod 'FirebaseUI/Storage'
     pod 'JSQMessagesViewController'
-    pod 'FirebaseUI/Storage'
     pod 'AlamofireImage', '~> 3.1'
        
   target 'MessagesTests' do

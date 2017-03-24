@@ -16,4 +16,5 @@ class ChatImagePickeViewController: UIImagePickerController {
         self.sourceType = .photoLibrary
         self.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
     }
+    
 }
