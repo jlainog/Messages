@@ -12,6 +12,7 @@ import JSQMessagesViewController
 enum MessageType : String {
     case text
     case location
+    case media
 }
 
 protocol MessageInfo : Parseable, JSQMessageData {
@@ -21,7 +22,7 @@ protocol MessageInfo : Parseable, JSQMessageData {
     var messageType : MessageType { get }
     var timestamp: Double { get }
     var latitude: Double { get }
-    var Longitude: Double { get }
+    var longitude: Double { get }
 }
 
 class Message : NSObject, MessageInfo {
@@ -31,7 +32,8 @@ class Message : NSObject, MessageInfo {
     var messageType: MessageType
     var timestamp: Double
     var latitude: Double
-    var Longitude: Double
+    var longitude: Double
+    let locationMediaItem = JSQLocationMediaItem(maskAsOutgoing: true)
     
     required init(json: NSDictionary) {
         self.userId = json["userId"] as? String ?? ""
@@ -39,7 +41,7 @@ class Message : NSObject, MessageInfo {
         self.message = json["message"] as? String ?? ""
         self.timestamp = json["timestamp"] as? Double ?? 0
         self.latitude = json["latitude"] as? Double ?? 0
-        self.Longitude = json["longitude"] as? Double ?? 0
+        self.longitude = json["longitude"] as? Double ?? 0
         self.messageType = MessageType.text
         
         guard let messageTypeString = json["messageType"] as? String else {
@@ -60,8 +62,10 @@ class Message : NSObject, MessageInfo {
         
         self.timestamp = Date().timeIntervalSince1970
         self.messageType = MessageType.location
-        self.latitude = location.coordinate.latitude
-        self.Longitude = location.coordinate.longitude
+//        self.latitude = location.coordinate.latitude
+//        self.longitude = location.coordinate.longitude
+        self.latitude = 10
+        self.longitude = 10
     }
     
     func buildJSON() -> NSDictionary {
@@ -73,7 +77,7 @@ class Message : NSObject, MessageInfo {
         json["messageType"] = messageType.rawValue
         json["timestamp"] = timestamp
         json["latitude"] = latitude
-        json["longitude"] = Longitude
+        json["longitude"] = longitude
         return json as NSDictionary
     }
 }
@@ -99,9 +103,7 @@ extension Message {
     
     func media() -> JSQMessageMediaData! {
         if self.messageType == .location {
-            let locationMediaItem = JSQLocationMediaItem(location: CLLocation(latitude: latitude, longitude: Longitude))
-            
-            locationMediaItem?.appliesMediaViewMaskAsOutgoing = true
+            print("location \(locationMediaItem?.location)")
             return locationMediaItem
         }
         

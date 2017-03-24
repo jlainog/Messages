@@ -38,9 +38,19 @@ final class ChatViewController: JSQMessagesViewController, CLLocationManagerDele
     
     func configureObserver() {
         ChatFacade.observeMessages(byListingLast: 25, channelId: (channel.id!)) { message in
-            self.messages.append(message)
-            JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
-            self.finishReceivingMessage()
+            guard message.isMediaMessage() else {
+                self.messages.append(message)
+                JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+                self.finishReceivingMessage()
+                super.collectionView.reloadData()
+                  return
+            }
+            message.locationMediaItem?.setLocation(CLLocation(latitude: 6.20748, longitude: -75.560), withCompletionHandler: {
+                self.finishReceivingMessage()
+                self.messages.append(message)
+                JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+                super.collectionView.reloadData()
+            })
         }
     }
     
@@ -66,14 +76,13 @@ final class ChatViewController: JSQMessagesViewController, CLLocationManagerDele
 
     override func didPressAccessoryButton(_ sender: UIButton!) {
         print("didPressAccesoryButton")
-        
         let sheet = UIAlertController(title: "Media Messages", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
         
         let sendLocation = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in
             
+
             let currentLocation = LocationMonitor().currentPosition
-            
             let message = Message(userId: self.senderId,
                                   userName: self.senderDisplayName,
                                   location: currentLocation)
@@ -96,7 +105,7 @@ final class ChatViewController: JSQMessagesViewController, CLLocationManagerDele
 
 // MARK: CollectionView Functions
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
-        return messages[indexPath.item]
+        return messages[indexPath.row]
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -108,7 +117,7 @@ final class ChatViewController: JSQMessagesViewController, CLLocationManagerDele
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let message = messages[indexPath.item]
+        let message = messages[indexPath.row]
         
         if message.userId == senderId {
             return outgoingBubbleImageView
@@ -137,5 +146,8 @@ final class ChatViewController: JSQMessagesViewController, CLLocationManagerDele
         }
         return NSAttributedString(string: senderDisplayName)
     }
-
+    
+    func HandleLocationMediaItemCompletionBlock() -> Void {
+        self.collectionView.reloadData()
+    }
 }
