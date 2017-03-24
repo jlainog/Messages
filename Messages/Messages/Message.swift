@@ -106,7 +106,6 @@ extension Message {
             print("location \(locationMediaItem?.location)")
             return locationMediaItem
         }
-        
         return nil
     }
     
