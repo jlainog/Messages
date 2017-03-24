@@ -45,7 +45,7 @@ final class ChatViewController: JSQMessagesViewController, CLLocationManagerDele
                 super.collectionView.reloadData()
                   return
             }
-            message.locationMediaItem?.setLocation(CLLocation(latitude: 6.20748, longitude: -75.560), withCompletionHandler: {
+            message.locationMediaItem?.setLocation(CLLocation(latitude: message.latitude, longitude: message.longitude), withCompletionHandler: {
                 self.finishReceivingMessage()
                 self.messages.append(message)
                 JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()

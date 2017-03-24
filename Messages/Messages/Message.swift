@@ -62,10 +62,8 @@ class Message : NSObject, MessageInfo {
         
         self.timestamp = Date().timeIntervalSince1970
         self.messageType = MessageType.location
-//        self.latitude = location.coordinate.latitude
-//        self.longitude = location.coordinate.longitude
-        self.latitude = 10
-        self.longitude = 10
+        self.latitude = location.coordinate.latitude
+        self.longitude = location.coordinate.longitude
     }
     
     func buildJSON() -> NSDictionary {
