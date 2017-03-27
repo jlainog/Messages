@@ -60,16 +60,27 @@ final class ChatViewController: JSQMessagesViewController {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
     }
-
-    // TODO - Configure imagepicker in this func
+    
     override func didPressAccessoryButton(_ sender: UIButton!) {
-//        if UIImagePickerController.isSourceTypeAvailable(.camera){
-//            present(photoPicker, animated: true, completion: nil)
-//        } else {
-//            noCamera()
-//        }
+        let sheet = UIAlertController(title: "Media Messages", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
         
-        present(imagePicker, animated: true, completion: nil)
+        let takePhoto = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.default) { alert in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                self.present(self.photoPicker, animated: true, completion: nil)
+            } else {
+                self.noCamera()
+            }
+        }
+        
+        let selectImage = UIAlertAction(title: "Select Image", style: UIAlertActionStyle.default) { alert in
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        sheet.addAction(takePhoto)
+        sheet.addAction(selectImage)
+        sheet.addAction(cancel)
+        self.present(sheet, animated: true, completion: nil)
     }
    
  // MARK: Private Function
@@ -87,6 +98,40 @@ final class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    func configureObserver() {
+        ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { [weak self] message in
+            guard message.id != self?.lastMessage else { return }
+            
+            switch (message.messageType) {
+            case .text:
+                self?.messages.append(message)
+                JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+                self?.finishReceivingMessage()
+            case .media:
+                self?.configureMediaImage(message)
+            }
+        }
+    }
+    
+    deinit {
+        ChatFacade.removeAllObservers()
+    }
+    
+    func configureMediaImage(_ message: Message) {
+        let mediaItem: JSQPhotoMediaItemCustom
+        
+        if message.userId == self.senderId {
+            mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: true)
+
+        } else {
+            mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: false)
+        }
+        
+        message.mediaItem = mediaItem
+        self.messages.append(message)
+        JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+        self.finishReceivingMessage()
+    }
 
 // MARK: CollectionView Functions
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
@@ -125,37 +170,14 @@ final class ChatViewController: JSQMessagesViewController {
         return cell
     }
     
-    func configureObserver() {
-        ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { [weak self] message in
-            guard message.id != self?.lastMessage else { return }
-            guard message.isMediaMessage()  else {
-                self?.messages.append(message)
-                JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
-                self?.finishReceivingMessage()
-                return
-            }
-            
-            self?.configureMediaImgage(message)
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
+        let detailImageController = ChatDetailViewController(nibName: "ChatdetailView", bundle: nil)
+        let message = messages[indexPath.item]
+        guard let media = message.mediaItem?.mediaView() as? UIImageView else {
+            return
         }
-    }
-    
-    deinit {
-        ChatFacade.removeAllObservers()
-    }
-    
-    func configureMediaImgage(_ message: Message) {
-        let mediaItem: JSQPhotoMediaItemCustom
-        
-        if message.userId == self.senderId {
-            mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: true)
-        } else {
-            mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: false)
-        }
-        
-        message.mediaItem = mediaItem
-        self.messages.append(message)
-        JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
-        self.finishReceivingMessage()
+        detailImageController.image  = media.image
+        self.navigationController?.pushViewController(detailImageController, animated: true)
     }
     
 }
@@ -181,6 +203,3 @@ extension ChatViewController: UIImagePickerControllerDelegate,UINavigationContro
     }
     
 }
-
-
-

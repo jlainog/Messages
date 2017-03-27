@@ -18,6 +18,8 @@
 		12391D331E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */; };
 		12391D341E85BF3D00A8F22C /* MediaFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2F1E85BF3D00A8F22C /* MediaFacade.swift */; };
 		12391D351E85BF3D00A8F22C /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */; };
+		12702D391E8978B800306F6C /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12702D381E8978B800306F6C /* ChatDetailViewController.swift */; };
+		12702D3B1E8978FC00306F6C /* ChatdetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12702D3A1E8978FC00306F6C /* ChatdetailView.xib */; };
 		12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B811E733D3500D87B11 /* FireBaseService.swift */; };
 		12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B831E73421C00D87B11 /* ChannelFacade.swift */; };
 		48CF92011E73432800071DB6 /* UserFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF92001E73432800071DB6 /* UserFacade.swift */; };
@@ -69,6 +71,8 @@
 		12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPhotoMediaItemCusto.swift; sourceTree = "<group>"; };
 		12391D2F1E85BF3D00A8F22C /* MediaFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFacade.swift; sourceTree = "<group>"; };
 		12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
+		12702D381E8978B800306F6C /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
+		12702D3A1E8978FC00306F6C /* ChatdetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatdetailView.xib; sourceTree = "<group>"; };
 		12E80B811E733D3500D87B11 /* FireBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		12E80B831E73421C00D87B11 /* ChannelFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelFacade.swift; sourceTree = "<group>"; };
 		48CF92001E73432800071DB6 /* UserFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFacade.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			children = (
 				1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */,
 				12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */,
+				12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -264,6 +269,8 @@
 			isa = PBXGroup;
 			children = (
 				E2C5A5291E704460002D37EF /* ChatViewController.swift */,
+				12702D381E8978B800306F6C /* ChatDetailViewController.swift */,
+				12702D3A1E8978FC00306F6C /* ChatdetailView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -358,7 +365,6 @@
 			isa = PBXGroup;
 			children = (
 				12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */,
-				12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift */,
 				F865259E1E719F870024BDC9 /* Message.swift */,
 			);
 			name = Model;
@@ -484,6 +490,7 @@
 				F52ACAAE1E6DFBCB007AB8EA /* LaunchScreen.storyboard in Resources */,
 				F52ACAD21E6DFDF1007AB8EA /* GoogleService-Info.plist in Resources */,
 				F52ACAAB1E6DFBCB007AB8EA /* Assets.xcassets in Resources */,
+				12702D3B1E8978FC00306F6C /* ChatdetailView.xib in Resources */,
 				F52ACAA91E6DFBCB007AB8EA /* Main.storyboard in Resources */,
 				1236DED11E76FFA9006D42E5 /* ChannelCell.xib in Resources */,
 			);
@@ -659,6 +666,7 @@
 				48E68D6C1E6F19F00046BD1A /* User.swift in Sources */,
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
 				F865259D1E6F170B0024BDC9 /* ChatFacade.swift in Sources */,
+				12702D391E8978B800306F6C /* ChatDetailViewController.swift in Sources */,
 				F865259F1E719F870024BDC9 /* Message.swift in Sources */,
 				12391D321E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift in Sources */,
 				1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */,
