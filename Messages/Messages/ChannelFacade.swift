@@ -49,7 +49,6 @@ struct ChannelFacade: ChannelServiceProtocol {
     internal static func dismmissChannelObservers() {
         service.dismmissObservers()
     }
-
     
 }
 

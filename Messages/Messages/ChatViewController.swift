@@ -17,10 +17,14 @@ final class ChatViewController: JSQMessagesViewController {
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     var user:User!
-    var channel:Channel!
     var lastMessage: String?
     let imagePicker = ChatImagePickeViewController()
     let photoPicker = ChatPhotoPickeViewController()
+    var channel:Channel! {
+        didSet {
+            title = channel.name
+        }
+    }
     
  // MARK: DataSource & Delegate
     override func viewDidLoad() {
@@ -37,6 +41,54 @@ final class ChatViewController: JSQMessagesViewController {
         super.collectionView.reloadData()
     }
     
+    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        
+        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+    }
+    
+    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        
+        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    }
+    
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        addMessage(withId: self.senderId,
+                   name: self.senderDisplayName,
+                   text: text)
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        finishSendingMessage()
+    }
+
+    // TODO - Configure imagepicker in this func
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+//        if UIImagePickerController.isSourceTypeAvailable(.camera){
+//            present(photoPicker, animated: true, completion: nil)
+//        } else {
+//            noCamera()
+//        }
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+   
+ // MARK: Private Function
+    private func addMessage(withId id: String, name: String, text: String) {
+        let message = Message(userId: id, userName: name, message: text)
+        
+        ChatFacade.createMessage(channelId: (channel.id!), message: message)
+    }
+    
+    fileprivate func addMessageWithPhoto(withId id: String, userName: String, media: UIImage) {
+        MediaFacade.saveMediaWithProgress(id: id, userName: userName, media: media, presentIn: self){ message in
+            self.lastMessage = ChatFacade.createMediaMessage(channelId: self.channel.id!, message: message)
+            self.messages.append(message)
+            self.finishSendingMessage()
+        }
+    }
+    
+
+// MARK: CollectionView Functions
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
@@ -73,51 +125,6 @@ final class ChatViewController: JSQMessagesViewController {
         return cell
     }
     
-    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        
-        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-    }
-    
-    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        
-        return bubbleImageFactory!.incomingMessagesBubbleImage	(with: UIColor.jsq_messageBubbleLightGray())
-    }
-    
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        addMessage(withId: self.senderId,
-                   name: self.senderDisplayName,
-                   text: text)
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        finishSendingMessage()
-    }
-    
-    // TODO - Configure imagepicker in this func
-    override func didPressAccessoryButton(_ sender: UIButton!) {
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-            present(photoPicker, animated: true, completion: nil)
-        } else {
-            noCamera()
-        }
-//        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    // MARK: Private Methods
-    private func addMessage(withId id: String, name: String, text: String) {
-        let message = Message(userId: id, userName: name, message:text)
-        
-        ChatFacade.createMessage(channelId: channel.id!, message: message)
-    }
-    
-    fileprivate func addMessageWithPhoto(withId id: String, userName: String, media: UIImage) {
-        MediaFacade.saveMediaWithProgress(id: id, userName: userName, media: media, presentIn: self){ message in
-            self.lastMessage = ChatFacade.createMediaMessage(channelId: self.channel.id!, message: message)
-            self.messages.append(message)
-            self.finishSendingMessage()
-        }
-    }
-    
     func configureObserver() {
         ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { [weak self] message in
             guard message.id != self?.lastMessage else { return }
@@ -130,6 +137,10 @@ final class ChatViewController: JSQMessagesViewController {
             
             self?.configureMediaImgage(message)
         }
+    }
+    
+    deinit {
+        ChatFacade.removeAllObservers()
     }
     
     func configureMediaImgage(_ message: Message) {
@@ -147,10 +158,6 @@ final class ChatViewController: JSQMessagesViewController {
         self.finishReceivingMessage()
     }
     
-    deinit {
-        ChatFacade.removeAllObservers()
-    }
-    
 }
 
 extension ChatViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
@@ -165,6 +172,14 @@ extension ChatViewController: UIImagePickerControllerDelegate,UINavigationContro
         dismiss(animated: true, completion: nil)
     }
 
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        let message = messages[indexPath.item]
+        guard let senderDisplayName = message.senderDisplayName() else {
+            return nil
+        }
+        return NSAttributedString(string: senderDisplayName)
+    }
+    
 }
 
 

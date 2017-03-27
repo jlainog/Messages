@@ -13,12 +13,11 @@
 		1236DECC1E76FF9A006D42E5 /* UITextField+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */; };
 		1236DED01E76FFA9006D42E5 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */; };
 		1236DED11E76FFA9006D42E5 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */; };
-		1236DED21E76FFA9006D42E5 /* ChannelStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */; };
-		12391CC31E85B46300A8F22C /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391CC21E85B46300A8F22C /* UIImage+FixOrientation.swift */; };
-		123B49481E81A83400123444 /* MediaFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123B49471E81A83400123444 /* MediaFacade.swift */; };
-		124509BB1E85B0FA00E956AC /* JSQMessagesViewController+noCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124509BA1E85B0FA00E956AC /* JSQMessagesViewController+noCamera.swift */; };
-		1245D24D1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */; };
-		127C7EC01E7B1501006810DB /* CustomPickeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127C7EBF1E7B1501006810DB /* CustomPickeViewController.swift */; };
+		12391D311E85BF3D00A8F22C /* CustomPickeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2C1E85BF3D00A8F22C /* CustomPickeViewController.swift */; };
+		12391D321E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift */; };
+		12391D331E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */; };
+		12391D341E85BF3D00A8F22C /* MediaFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2F1E85BF3D00A8F22C /* MediaFacade.swift */; };
+		12391D351E85BF3D00A8F22C /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */; };
 		12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B811E733D3500D87B11 /* FireBaseService.swift */; };
 		12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B831E73421C00D87B11 /* ChannelFacade.swift */; };
 		48CF92011E73432800071DB6 /* UserFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF92001E73432800071DB6 /* UserFacade.swift */; };
@@ -65,12 +64,11 @@
 		1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Shake.swift"; sourceTree = "<group>"; };
 		1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
-		1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChannelStoryboard.storyboard; sourceTree = "<group>"; };
-		12391CC21E85B46300A8F22C /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
-		123B49471E81A83400123444 /* MediaFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFacade.swift; sourceTree = "<group>"; };
-		124509BA1E85B0FA00E956AC /* JSQMessagesViewController+noCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSQMessagesViewController+noCamera.swift"; sourceTree = "<group>"; };
-		1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPhotoMediaItemCusto.swift; sourceTree = "<group>"; };
-		127C7EBF1E7B1501006810DB /* CustomPickeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPickeViewController.swift; sourceTree = "<group>"; };
+		12391D2C1E85BF3D00A8F22C /* CustomPickeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPickeViewController.swift; sourceTree = "<group>"; };
+		12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSQMessagesViewController+noCamera.swift"; sourceTree = "<group>"; };
+		12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPhotoMediaItemCusto.swift; sourceTree = "<group>"; };
+		12391D2F1E85BF3D00A8F22C /* MediaFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFacade.swift; sourceTree = "<group>"; };
+		12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
 		12E80B811E733D3500D87B11 /* FireBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		12E80B831E73421C00D87B11 /* ChannelFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelFacade.swift; sourceTree = "<group>"; };
 		48CF92001E73432800071DB6 /* UserFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFacade.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 		1236DEC31E76FF2F006D42E5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1236DECF1E76FFA9006D42E5 /* ChannelStoryboard.storyboard */,
 				1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */,
 				1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */,
 			);
@@ -175,8 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */,
-				124509BA1E85B0FA00E956AC /* JSQMessagesViewController+noCamera.swift */,
-				12391CC21E85B46300A8F22C /* UIImage+FixOrientation.swift */,
+				12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -189,29 +185,21 @@
 			name = RestService;
 			sourceTree = "<group>";
 		};
-		127C7EBD1E7B14AD006810DB /* FileManager */ = {
+		12391D2A1E85BF0F00A8F22C /* General */ = {
 			isa = PBXGroup;
 			children = (
-				127C7EBE1E7B14CA006810DB /* ImagePicker */,
-			);
-			name = FileManager;
-			sourceTree = "<group>";
-		};
-		127C7EBE1E7B14CA006810DB /* ImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				127C7EBF1E7B1501006810DB /* CustomPickeViewController.swift */,
-			);
-			name = ImagePicker;
-			sourceTree = "<group>";
-		};
-		129EC3501E79EAFB004FB6DB /* General */ = {
-			isa = PBXGroup;
-			children = (
+				12391D2B1E85BF1B00A8F22C /* DefaultImagePicker */,
 				1236DECA1E76FF8B006D42E5 /* Extensions */,
-				127C7EBD1E7B14AD006810DB /* FileManager */,
 			);
 			name = General;
+			sourceTree = "<group>";
+		};
+		12391D2B1E85BF1B00A8F22C /* DefaultImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				12391D2C1E85BF3D00A8F22C /* CustomPickeViewController.swift */,
+			);
+			name = DefaultImagePicker;
 			sourceTree = "<group>";
 		};
 		48CF91FD1E73370100071DB6 /* Services */ = {
@@ -305,7 +293,8 @@
 		F52ACAA21E6DFBCB007AB8EA /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				129EC3501E79EAFB004FB6DB /* General */,
+				12391D2A1E85BF0F00A8F22C /* General */,
+				F849DC9E1E7C23FC003897EE /* UserList */,
 				48E68D6D1E6F1A010046BD1A /* Login */,
 				F86525971E6F10AB0024BDC9 /* Chat */,
 				1236DEC71E76FF7B006D42E5 /* Protocols */,
@@ -339,6 +328,13 @@
 			path = MessagesUITests;
 			sourceTree = "<group>";
 		};
+		F849DC9E1E7C23FC003897EE /* UserList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UserList;
+			sourceTree = "<group>";
+		};
 		F86525971E6F10AB0024BDC9 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,8 +348,8 @@
 		F86525981E6F10C00024BDC9 /* Facade */ = {
 			isa = PBXGroup;
 			children = (
+				12391D2F1E85BF3D00A8F22C /* MediaFacade.swift */,
 				F865259C1E6F170B0024BDC9 /* ChatFacade.swift */,
-				123B49471E81A83400123444 /* MediaFacade.swift */,
 			);
 			name = Facade;
 			sourceTree = "<group>";
@@ -361,8 +357,9 @@
 		F86525991E6F10EF0024BDC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */,
+				12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift */,
 				F865259E1E719F870024BDC9 /* Message.swift */,
-				1245D24C1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -485,7 +482,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F52ACAAE1E6DFBCB007AB8EA /* LaunchScreen.storyboard in Resources */,
-				1236DED21E76FFA9006D42E5 /* ChannelStoryboard.storyboard in Resources */,
 				F52ACAD21E6DFDF1007AB8EA /* GoogleService-Info.plist in Resources */,
 				F52ACAAB1E6DFBCB007AB8EA /* Assets.xcassets in Resources */,
 				F52ACAA91E6DFBCB007AB8EA /* Main.storyboard in Resources */,
@@ -652,24 +648,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12391CC31E85B46300A8F22C /* UIImage+FixOrientation.swift in Sources */,
+				12391D351E85BF3D00A8F22C /* UIImage+FixOrientation.swift in Sources */,
 				12271DEE1E6F16EB00E87884 /* Channel.swift in Sources */,
-				123B49481E81A83400123444 /* MediaFacade.swift in Sources */,
 				12E80B841E73421C00D87B11 /* ChannelFacade.swift in Sources */,
 				48CF92011E73432800071DB6 /* UserFacade.swift in Sources */,
 				1236DECC1E76FF9A006D42E5 /* UITextField+Shake.swift in Sources */,
-				124509BB1E85B0FA00E956AC /* JSQMessagesViewController+noCamera.swift in Sources */,
+				12391D311E85BF3D00A8F22C /* CustomPickeViewController.swift in Sources */,
 				1236DED01E76FFA9006D42E5 /* ChannelCell.swift in Sources */,
-				127C7EC01E7B1501006810DB /* CustomPickeViewController.swift in Sources */,
 				48DFCE911E70AFC10097CA42 /* LoginViewController.swift in Sources */,
 				48E68D6C1E6F19F00046BD1A /* User.swift in Sources */,
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
 				F865259D1E6F170B0024BDC9 /* ChatFacade.swift in Sources */,
 				F865259F1E719F870024BDC9 /* Message.swift in Sources */,
+				12391D321E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift in Sources */,
 				1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,
 				E2C5A52A1E704460002D37EF /* ChatViewController.swift in Sources */,
-				1245D24D1E82BA9700A81687 /* JSQPhotoMediaItemCusto.swift in Sources */,
+				12391D331E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift in Sources */,
+				12391D341E85BF3D00A8F22C /* MediaFacade.swift in Sources */,
 				12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */,
 				1236DEC61E76FF72006D42E5 /* ChannelViewController.swift in Sources */,
 				48E68D6F1E706FD70046BD1A /* UserInfo.swift in Sources */,
@@ -767,7 +763,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -810,7 +806,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

@@ -51,7 +51,7 @@ struct FireBaseService <Object: FirebaseObject> {
                 completionHandler(Object(id: snapshot.key, json: object as NSDictionary))
             } else {
                 completionHandler(nil)
-            }
+            } 
         })
     }
     

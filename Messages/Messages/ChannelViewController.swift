@@ -50,7 +50,6 @@ class ChannelViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
     }
     
-    
     @IBAction func createChannel(_ sender: UIButton) {
         guard newItemTxtField.text != "" else { return newItemTxtField.shake() }
         
