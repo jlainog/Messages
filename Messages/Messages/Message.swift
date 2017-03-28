@@ -101,7 +101,6 @@ extension Message {
     
     func media() -> JSQMessageMediaData! {
         if self.messageType == .location {
-            print("location \(locationMediaItem?.location)")
             return locationMediaItem
         }
         return nil
