@@ -16,7 +16,6 @@ struct ChatFacade {
     
     static func observeMessages(byListingLast last: UInt, channelId: String, completion: @escaping ChatResponseHandler) {
         let refChat = ref.child(channelId).queryLimited(toLast: last)
-        
         refChat.observe(.childAdded, with: { (snapshot) in
             guard let value = snapshot.value as? [String : Any] else {
                 return
@@ -34,4 +33,10 @@ struct ChatFacade {
     static func removeMessages(channelId: String) {
         ref.child(channelId).removeValue()
     }
+    
+    static func removeAllObservers() {
+        ref.removeAllObservers()
+    }
+    
 }
+    
