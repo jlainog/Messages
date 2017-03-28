@@ -14,7 +14,7 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var newItemTxtField: UITextField!
     
     fileprivate var channels: [Channel]?
-    var user: User!
+    var user: User! = SessionCache.sharedInstance.user
     
     override func viewDidLoad() {
         super.viewDidLoad()

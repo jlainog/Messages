@@ -89,6 +89,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     return
                 }
+                
                 self.presentNextViewController(user: loggedUser)
             }
             break
@@ -100,6 +101,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     return
                 }
+
                 self.presentNextViewController(user: loggedUser)
             }
             break
@@ -110,19 +112,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     return
                 }
+
                 self.presentNextViewController(user: loggedUser)
             }
             break
+
         }
         
     }
     
     
     func presentNextViewController(user: User){
-        let storyBoard: UIStoryboard = UIStoryboard(name: "ChannelStoryboard", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
+        SessionCache.sharedInstance.user = user
+        UserListFacade.createUser(user: user)
         
-        newViewController.user = user
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "TabViewController") as! UITabBarController
+        
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
     
