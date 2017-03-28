@@ -42,7 +42,6 @@ class JSQPhotoMediaItemCustom: JSQPhotoMediaItem {
                 self.imgView.image = image
             }
         }
-
     }
     
     override func mediaView() -> UIView! {

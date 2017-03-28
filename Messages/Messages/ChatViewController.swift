@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
-final class ChatViewController: JSQMessagesViewController {
+ class ChatViewController: JSQMessagesViewController {
     
  // MARK: Variable Definitions
     fileprivate var messages: [Message] = []
@@ -173,10 +173,8 @@ final class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
         let detailImageController = ChatDetailViewController(nibName: "ChatdetailView", bundle: nil)
         let message = messages[indexPath.item]
-        guard let media = message.mediaItem?.mediaView() as? UIImageView else {
-            return
-        }
-        detailImageController.image  = media.image
+        detailImageController.messageType = message.messageType
+        detailImageController.URLImage = URL(string: message.mediaUrl!)
         self.navigationController?.pushViewController(detailImageController, animated: true)
     }
     

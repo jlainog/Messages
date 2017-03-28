@@ -18,6 +18,7 @@
 		12391D331E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */; };
 		12391D341E85BF3D00A8F22C /* MediaFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2F1E85BF3D00A8F22C /* MediaFacade.swift */; };
 		12391D351E85BF3D00A8F22C /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */; };
+		124A957F1E8AEC2E0093DCFB /* LocationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A957E1E8AEC2E0093DCFB /* LocationMonitor.swift */; };
 		12702D391E8978B800306F6C /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12702D381E8978B800306F6C /* ChatDetailViewController.swift */; };
 		12702D3B1E8978FC00306F6C /* ChatdetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12702D3A1E8978FC00306F6C /* ChatdetailView.xib */; };
 		12E80B821E733D3500D87B11 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E80B811E733D3500D87B11 /* FireBaseService.swift */; };
@@ -71,6 +72,7 @@
 		12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPhotoMediaItemCusto.swift; sourceTree = "<group>"; };
 		12391D2F1E85BF3D00A8F22C /* MediaFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFacade.swift; sourceTree = "<group>"; };
 		12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
+		124A957E1E8AEC2E0093DCFB /* LocationMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMonitor.swift; sourceTree = "<group>"; };
 		12702D381E8978B800306F6C /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
 		12702D3A1E8978FC00306F6C /* ChatdetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatdetailView.xib; sourceTree = "<group>"; };
 		12E80B811E733D3500D87B11 /* FireBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 			children = (
 				12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */,
 				F865259E1E719F870024BDC9 /* Message.swift */,
+				124A957E1E8AEC2E0093DCFB /* LocationMonitor.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				48E68D6C1E6F19F00046BD1A /* User.swift in Sources */,
 				F52ACAA61E6DFBCB007AB8EA /* ViewController.swift in Sources */,
 				F865259D1E6F170B0024BDC9 /* ChatFacade.swift in Sources */,
+				124A957F1E8AEC2E0093DCFB /* LocationMonitor.swift in Sources */,
 				12702D391E8978B800306F6C /* ChatDetailViewController.swift in Sources */,
 				F865259F1E719F870024BDC9 /* Message.swift in Sources */,
 				12391D321E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift in Sources */,
