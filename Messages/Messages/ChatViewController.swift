@@ -16,11 +16,11 @@ import JSQMessagesViewController
     fileprivate var messages: [Message] = []
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
-    var user:User!
     var lastMessage: String?
     let imagePicker = ChatImagePickeViewController()
     let photoPicker = ChatPhotoPickeViewController()
-    var channel:Channel! {
+    var user: User!
+    var channel: Channel! {
         didSet {
             title = channel.name
         }
@@ -184,7 +184,7 @@ extension ChatViewController: UIImagePickerControllerDelegate,UINavigationContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        addMessageWithPhoto(withId: user.identifier!, userName: user.name!, media: chosenImage.fixedOrientation())
+        addMessageWithPhoto(withId: user.identifier, userName: user.name, media: chosenImage.fixedOrientation())
         dismiss(animated:true, completion: nil)
     }
     
