@@ -12,7 +12,6 @@ import CoreLocation
 class LocationMonitorSingleton : NSObject {
     
     var currentPosition = CLLocation()
-    var locationFixAchieved : Bool = false
     fileprivate static let sharedInstance = LocationMonitorSingleton()
     fileprivate let locationManager = CLLocationManager()
     fileprivate var handler: ((CLLocation) -> Void)?
