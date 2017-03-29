@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
    
-    
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var sendButton: UIButton!
     

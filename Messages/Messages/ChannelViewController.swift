@@ -14,7 +14,7 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var newItemTxtField: UITextField!
     
     fileprivate var channels: [Channel]?
-    var user: User!
+    var user: User! = SessionCache.sharedInstance.user
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,33 +22,32 @@ class ChannelViewController: UIViewController {
         newItemTxtField.delegate = self
         channelsTable.dataSource = self
         channelsTable.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "cell")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        newItemTxtField.becomeFirstResponder()
-        self.hideKeyboardWhenTappedAround()
         channels = [Channel]()
         
+        //TODO - Handle nils
         ChannelFacade.listAndObserveChannels() {
-            channel in
-            self.channels!.append(channel)
-            self.channelsTable.reloadData()
+            [weak self] channel in
+            self?.channels!.append(channel)
+            self?.channelsTable.reloadData()
         }
         
+        //TODO - Handle nils
         ChannelFacade.didRemoveChannel() {
-            channel in
-            for (index, value) in self.channels!.enumerated() {
-                if value.id ==  channel.id {
-                    self.channels!.remove(at: index)
-                    self.channelsTable.reloadData()
-                    break
-                }
+            [weak self] channel in
+            if let channels = self?.channels {
+                self?.channels = channels.filter() { $0.id != channel.id }
+                self?.channelsTable.reloadData()
             }
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        newItemTxtField.becomeFirstResponder()
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    deinit {
         ChannelFacade.dismmissChannelObservers()
     }
     
@@ -61,7 +60,7 @@ class ChannelViewController: UIViewController {
     }
 }
 
-extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
+extension ChannelViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Public Channels"
@@ -71,7 +70,7 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
         return channels?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+    private func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         return 200
     }
     
@@ -92,6 +91,10 @@ extension ChannelViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+}
+
+extension ChannelViewController:  UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController

@@ -16,8 +16,8 @@ final class ChatViewController: JSQMessagesViewController {
     private var messages: [Message] = []
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
-    var user:User!
-    var channel:Channel! {
+    var user: User!
+    var channel: Channel! {
         didSet {
             title = channel.name
         }
@@ -35,6 +35,7 @@ final class ChatViewController: JSQMessagesViewController {
         configureObserver()
     }
     
+    //TODO - Handle nils
     func configureObserver() {
         ChatFacade.observeMessages(byListingLast: 25, channelId: (channel.id!)) { message in
             guard message.isMediaMessage() else {
@@ -88,6 +89,10 @@ final class ChatViewController: JSQMessagesViewController {
         self.present(sheet, animated: true, completion: nil)
     }
     
+    deinit {
+        ChatFacade.removeAllObservers()
+    }
+
  // MARK: Private Function
     private func addMessage(withId id: String, name: String, text: String) {
         let message = Message(userId: id, userName: name, message: text)
@@ -139,10 +144,13 @@ final class ChatViewController: JSQMessagesViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
         let message = messages[indexPath.item]
-        
         guard let senderDisplayName = message.senderDisplayName() else {
             return nil
         }
         return NSAttributedString(string: senderDisplayName)
     }
+    
 }
+
+
+
