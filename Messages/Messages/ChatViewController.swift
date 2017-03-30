@@ -40,7 +40,7 @@ final class ChatViewController: JSQMessagesViewController {
         ChatFacade.observeMessages(byListingLast: 25, channelId: (channel.id!)) { message in
             guard message.isMediaMessage() else {
                 self.receiveMessage(message: message)
-                  return
+                return
             }
             message.locationMediaItem?.setLocation(CLLocation(latitude: message.latitude, longitude: message.longitude), withCompletionHandler: {
                 self.receiveMessage(message: message)
@@ -61,22 +61,21 @@ final class ChatViewController: JSQMessagesViewController {
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
         
         let sendLocation = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in
-
             LocationMonitorSingleton.sharedInstance.getPosAsync(handler: {  location, error  in
-                guard location != nil else {
+                guard let currentLocation = location else { //return }
+                //guard location != nil else {
                     let alertError = UIAlertController(title: "Ups", message: error?.localizedDescription, preferredStyle: .alert)
-                    let aceptar = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.cancel)
+                    let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel)
                     
-                    alertError.addAction(aceptar)
+                    alertError.addAction(ok)
                     return self.present(alertError, animated: true, completion: nil)
                 }
                 let message = Message(userId: self.senderId,
                                       userName: self.senderDisplayName,
-                                      location: location!)
+                                      location: currentLocation)
                 self.createMessage(message)
             })
         }
-        
         sheet.addAction(cancel)
         sheet.addAction(sendLocation)
         self.present(sheet, animated: true, completion: nil)
