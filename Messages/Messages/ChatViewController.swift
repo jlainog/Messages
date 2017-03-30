@@ -48,18 +48,6 @@ final class ChatViewController: JSQMessagesViewController {
         }
     }
     
-    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        
-        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-    }
-    
-    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        
-        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-    }
-    
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         addMessage(withId: self.senderId,
                    name: self.senderDisplayName,
@@ -73,15 +61,20 @@ final class ChatViewController: JSQMessagesViewController {
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
         
         let sendLocation = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in
-            
 
-            let currentLocation = LocationMonitorSingleton().currentPosition
-            let message = Message(userId: self.senderId,
-                                  userName: self.senderDisplayName,
-                                  location: currentLocation)
-            
-            ChatFacade.createMessage(channelId: (self.channel.id!), message: message)
-            self.finishSendingMessage(animated: true)
+            LocationMonitorSingleton.sharedInstance.getPosAsync(handler: {  location, error  in
+                guard location != nil else {
+                    let alertError = UIAlertController(title: "Ups", message: error?.localizedDescription, preferredStyle: .alert)
+                    let aceptar = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.cancel)
+                    
+                    alertError.addAction(aceptar)
+                    return self.present(alertError, animated: true, completion: nil)
+                }
+                let message = Message(userId: self.senderId,
+                                      userName: self.senderDisplayName,
+                                      location: location!)
+                self.createMessage(message)
+            })
         }
         
         sheet.addAction(cancel)
@@ -104,7 +97,23 @@ final class ChatViewController: JSQMessagesViewController {
         self.messages.append(message)
         JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
         self.finishReceivingMessage()
-        super.collectionView.reloadData()
+    }
+    
+    private func createMessage(_ message: Message) {
+        ChatFacade.createMessage(channelId: (self.channel.id!), message: message)
+        self.finishSendingMessage(animated: true)
+    }
+    
+    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        
+        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+    }
+    
+    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        
+        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
 
 // MARK: CollectionView Functions
@@ -151,6 +160,3 @@ final class ChatViewController: JSQMessagesViewController {
     }
     
 }
-
-
-

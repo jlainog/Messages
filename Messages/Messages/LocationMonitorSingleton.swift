@@ -9,31 +9,38 @@
 import Foundation
 import CoreLocation
 
-class LocationMonitorSingleton : NSObject {
+typealias handler = (CLLocation?, Error?) -> Void
+
+protocol LocationMonitorProtocol {
+    func getPosAsync(handler: @escaping (handler))
+}
+
+class LocationMonitorSingleton : NSObject, LocationMonitorProtocol {
+
+    fileprivate var handlers = [handler]()
+    fileprivate let manager = CLLocationManager()
+    static var sharedInstance = LocationMonitorSingleton()
     
-    var currentPosition = CLLocation()
-    fileprivate let locationManager = CLLocationManager()
-    fileprivate var handler: ((CLLocation) -> Void)?
-    
-    override init() {
-        super.init()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+    func getPosAsync(handler: @escaping (handler)) {
+        manager.requestLocation()
+        self.handlers.append(handler)
     }
     
-    deinit {
-        locationManager.stopUpdatingLocation()
+    override private init() {
+        super.init()
+        manager.delegate = self
     }
 }
 
 extension LocationMonitorSingleton : CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationManager.stopUpdatingLocation()
-        self.handler?(locations.last!)
+        for handler in handlers { handler(locations.last, nil) }
+        handlers.removeAll()
     }
     
-    func getLocation(handler: @escaping (CLLocation) -> Void) {
-        self.handler = handler
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        for handler in handlers { handler(nil, error) }
+        handlers.removeAll()
     }
 }
