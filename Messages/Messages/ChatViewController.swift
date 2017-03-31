@@ -62,8 +62,7 @@ final class ChatViewController: JSQMessagesViewController {
         
         let sendLocation = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in
             LocationMonitorSingleton.sharedInstance.getPosAsync(handler: {  location, error  in
-                guard let currentLocation = location else { //return }
-                //guard location != nil else {
+                guard let currentLocation = location else { 
                     let alertError = UIAlertController(title: "Ups", message: error?.localizedDescription, preferredStyle: .alert)
                     let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel)
                     
