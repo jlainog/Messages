@@ -58,24 +58,12 @@ final class ChatViewController: JSQMessagesViewController {
 
     override func didPressAccessoryButton(_ sender: UIButton!) {
         let sheet = UIAlertController(title: "Media Messages", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
-        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
         
         let sendLocation = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in
-            LocationMonitorSingleton.sharedInstance.getPosAsync(handler: {  location, error  in
-                guard let currentLocation = location else {
-                    let alertError = UIAlertController(title: "Ups", message: error?.localizedDescription, preferredStyle: .alert)
-                    let alertConfirm = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel)
-                    
-                    alertError.addAction(alertConfirm)
-                    return self.present(alertError, animated: true, completion: nil)
-                }
-                let message = Message(userId: self.senderId,
-                                      userName: self.senderDisplayName,
-                                      location: currentLocation)
-                self.createMessage(message)
-            })
+            self.locationMessage()
         }
-        sheet.addAction(cancel)
+        sheet.addAction(cancelAction)
         sheet.addAction(sendLocation)
         self.present(sheet, animated: true, completion: nil)
     }
@@ -100,6 +88,22 @@ final class ChatViewController: JSQMessagesViewController {
     private func createMessage(_ message: Message) {
         ChatFacade.createMessage(channelId: (self.channel.id!), message: message)
         self.finishSendingMessage(animated: true)
+    }
+    
+    private func locationMessage () {
+        LocationMonitorSingleton.sharedInstance.getPosAsync(handler: {  location, error  in
+            guard let currentLocation = location else {
+                let alertError = UIAlertController(title: "Ups", message: error?.localizedDescription, preferredStyle: .alert)
+                let alertConfirm = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel)
+                
+                alertError.addAction(alertConfirm)
+                return self.present(alertError, animated: true, completion: nil)
+            }
+            let message = Message(userId: self.senderId,
+                                  userName: self.senderDisplayName,
+                                  location: currentLocation)
+            self.createMessage(message)
+        })
     }
     
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {

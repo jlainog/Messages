@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Vamos a usar esa vuelta</string>
+	<string>Location Always Description</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Vamos a usar esa vuelta</string>
+	<string>Location When In Use Description</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Vamos a usar esa vuelta</string>
+	<string>Location Description</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
