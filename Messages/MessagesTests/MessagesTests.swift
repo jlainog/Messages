@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Messages
+
 
 class MessagesTests: XCTestCase {
     

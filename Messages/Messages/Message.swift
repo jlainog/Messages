@@ -1,4 +1,4 @@
-//
+    //
 //  Message.swift
 //  Messages
 //
@@ -9,61 +9,81 @@
 import Foundation
 import JSQMessagesViewController
 
-enum MessageType {
+enum MessageType: String {
     case text
-}
-
-extension MessageType {
-    var type: String {
-        switch self {
-        case .text: return "text"
-        }
-    }
+    case media
 }
 
 protocol MessageInfo : Parseable, JSQMessageData {
+    var id: String? { get }
     var userId: String { get }
     var userName: String { get }
-    var message: String { get }
+    var message: String? { get }
     var messageType : MessageType { get }
+    var mediaUrl: String? {get}
     var timestamp: Double { get }
+    var mediaItem: JSQPhotoMediaItem?  { get }
 }
 
 class Message : NSObject, MessageInfo {
+    
+    var id: String?
     var userId: String
     var userName: String
-    var message: String
+    var mediaUrl: String?
+    var message: String?
     var messageType: MessageType
     var timestamp: Double
+    var mediaItem: JSQPhotoMediaItem?
     
     required init(json: NSDictionary) {
+        
+        let messageTypeRawValue: String = json["messageType"] as? String ?? MessageType.text.rawValue
+        
         self.userId = json["userId"] as? String ?? ""
         self.userName = json["userName"] as? String ?? ""
+        self.mediaUrl = json["mediaUrl"] as? String ?? ""
         self.message = json["message"] as? String ?? ""
-        self.messageType = json["messageType"] as? MessageType ?? MessageType.text
+        self.messageType =  MessageType(rawValue: messageTypeRawValue)!
         self.timestamp = json["timestamp"] as? Double ?? 0
+        self.mediaItem = json["mediaItem"] as? JSQPhotoMediaItem
+        
     }
     
     convenience init(userId: String, userName: String, message: String, messageType: MessageType = .text, timestamp: TimeInterval = Date().timeIntervalSince1970) {
-        let json = ["userId": userId, "userName": userName, "message": message, "messageType": messageType, "timestamp": timestamp] as NSDictionary
+        let json = ["userId": userId, "userName": userName, "message": message, "messageType": messageType.rawValue, "timestamp": timestamp] as NSDictionary
         self.init(json: json)
+    }
+    
+    convenience init(userId: String, userName: String, mediaUrl: String, messageType: MessageType = .media, timestamp: TimeInterval = Date().timeIntervalSince1970, mediaItem: JSQPhotoMediaItem?) {
+        let json = ["userId": userId, "userName": userName, "mediaUrl": mediaUrl, "messageType": messageType.rawValue, "timestamp": timestamp, "mediaItem": mediaItem] as NSDictionary
+        
+        self.init(json: json)
+    }
+    
+    convenience init(id:String, json: NSDictionary) {
+        self.init(json: json)
+        self.id = id
     }
     
     func buildJSON() -> NSDictionary {
         var json = Dictionary<String, Any>()
-        
+
         json["userId"] = userId
         json["userName"] = userName
+        json["mediaUrl"] = mediaUrl
         json["message"] = message
-        json["messageType"] = messageType.type
+        json["messageType"] = messageType.rawValue
         json["timestamp"] = timestamp
+    
         return json as NSDictionary
     }
+    
 }
 
 //MARK: JSQMessageData
-
 extension Message {
+    
     func senderId() -> String! {
         return self.userId
     }
@@ -74,6 +94,10 @@ extension Message {
     
     func text() -> String! {
         return self.message
+    }
+    
+    func media() -> JSQMessageMediaData! {
+       return self.mediaItem
     }
     
     func isMediaMessage() -> Bool {
@@ -87,4 +111,5 @@ extension Message {
     func messageHash() -> UInt {
         return UInt(self.hashValue)
     }
+    
 }
