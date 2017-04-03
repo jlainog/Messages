@@ -11,20 +11,22 @@ import AlamofireImage
 
 class ChatDetailViewController: UIViewController {
 
-    @IBOutlet var mediaContainer: UIView!
+    @IBOutlet weak var mediaContainer: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var messageType: MessageType?
     var image: UIImage?
     var URLImage: URL?
     private var imgViewDetail: UIImageView?
-    private let defaultMedia = UIImage(contentsOfFile: "placeholder")
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        activityIndicator.startAnimating()
         switch messageType! {
         case .media:
             setImage()
         case .text:
-           return
+            return
         }
     }
     
@@ -32,12 +34,17 @@ class ChatDetailViewController: UIViewController {
         imgViewDetail = UIImageView()
         imgViewDetail?.contentMode = .scaleAspectFit;
         imgViewDetail?.frame = view.bounds
-        imgViewDetail!.af_setImage(
-            withURL: URLImage!,
-            placeholderImage: UIImage(named: "grey-image-placeholder"),
-            filter: nil,
-            imageTransition: .crossDissolve(0.2))
-        view.addSubview(imgViewDetail!)
+        
+        guard let image = self.image else {
+            imgViewDetail?.af_setImage(withURL: URLImage!) { _ in
+                self.activityIndicator.stopAnimating()
+            }
+            return self.view.addSubview(self.imgViewDetail!)
+        }
+        
+        imgViewDetail?.image = image
+        self.activityIndicator.stopAnimating()
+        self.view.addSubview(imgViewDetail!)
     }
     
 }

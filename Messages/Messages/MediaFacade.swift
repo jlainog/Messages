@@ -46,6 +46,11 @@ struct MediaFacade {
             let uploadTask = storageRef.child("\(String(Date().timeIntervalSince1970)).png").put(uploadData, metadata: nil)
             
             DispatchQueue.main.async {
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                    uploadTask.cancel()
+                }
+                
+                alertView.addAction(cancelAction)
                 viewController.present(alertView, animated: true)
             }
             uploadTask.observe(.progress) { snapshot in
@@ -63,10 +68,11 @@ struct MediaFacade {
                 messageHandler(message)
             }
             
+            
             uploadTask.observe(.failure) { snapshot in
                 alertView.dismiss(animated: true)
-                alertView = UIAlertController(title: "Error", message: "Something Whent wrong", preferredStyle: .alert)
-                alertView.addAction(UIAlertAction(title: "accept", style: UIAlertActionStyle.default, handler: nil))
+                alertView = UIAlertController(title: "Error", message: "Cound't upload the file", preferredStyle: .alert)
+                alertView.addAction(UIAlertAction(title: "Accept", style: UIAlertActionStyle.default, handler: nil))
                 DispatchQueue.main.async {
                     viewController.present(alertView, animated: true)
                 }

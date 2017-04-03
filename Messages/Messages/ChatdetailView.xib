@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatDetailViewController" customModule="Messages" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="e51-PZ-k1W" id="DOX-Be-Zue"/>
                 <outlet property="mediaContainer" destination="iN0-l3-epB" id="tFA-u7-kSh"/>
                 <outlet property="view" destination="iN0-l3-epB" id="JXh-iJ-qHp"/>
             </connections>
@@ -16,7 +17,14 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e51-PZ-k1W"/>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="e51-PZ-k1W" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IMs-8b-OTT"/>
+                <constraint firstItem="e51-PZ-k1W" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SVN-Ix-94L"/>
+            </constraints>
             <point key="canvasLocation" x="-369" y="-59"/>
         </view>
     </objects>

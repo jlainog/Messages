@@ -168,6 +168,10 @@ import JSQMessagesViewController
         let detailImageController = ChatDetailViewController(nibName: "ChatdetailView", bundle: nil)
         let message = messages[indexPath.item]
         
+        if let imageView = message.mediaItem?.mediaView() as? UIImageView {
+            detailImageController.image = imageView.image
+        }
+        
         detailImageController.messageType = message.messageType
         detailImageController.URLImage = URL(string: message.mediaUrl!)
         self.navigationController?.pushViewController(detailImageController, animated: true)
