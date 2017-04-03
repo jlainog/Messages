@@ -37,11 +37,73 @@ final class ChatViewController: JSQMessagesViewController {
     
     //TODO - Handle nils
     func configureObserver() {
-        ChatFacade.observeMessages(byListingLast: 25, channelId: channel.id!) { [weak self] message in
-            self?.messages.append(message)
-            JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
-            self?.finishReceivingMessage()
+        ChatFacade.observeMessages(byListingLast: 25, channelId: (channel.id!)) { message in
+            guard message.isMediaMessage() else {
+                self.receiveMessage(message: message)
+                return
+            }
+            message.locationMediaItem?.setLocation(CLLocation(latitude: message.latitude, longitude: message.longitude), withCompletionHandler: {
+                self.receiveMessage(message: message)
+            })
         }
+    }
+    
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        addMessage(withId: self.senderId,
+                   name: self.senderDisplayName,
+                   text: text)
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        finishSendingMessage()
+    }
+
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        let sheet = UIAlertController(title: "Media Messages", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
+        
+        let sendLocation = UIAlertAction(title: "Send Location", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in
+            self.locationMessage()
+        }
+        sheet.addAction(cancelAction)
+        sheet.addAction(sendLocation)
+        self.present(sheet, animated: true, completion: nil)
+    }
+    
+    deinit {
+        ChatFacade.removeAllObservers()
+    }
+
+ // MARK: Private Function
+    private func addMessage(withId id: String, name: String, text: String) {
+        let message = Message(userId: id, userName: name, message: text)
+        
+        ChatFacade.createMessage(channelId: (channel.id!), message: message)
+    }
+    
+    private func receiveMessage(message : Message) {
+        self.messages.append(message)
+        JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+        self.finishReceivingMessage()
+    }
+    
+    private func createMessage(_ message: Message) {
+        ChatFacade.createMessage(channelId: (self.channel.id!), message: message)
+        self.finishSendingMessage(animated: true)
+    }
+    
+    private func locationMessage () {
+        LocationMonitorSingleton.sharedInstance.getPosAsync(handler: {  location, error  in
+            guard let currentLocation = location else {
+                let alertError = UIAlertController(title: "Ups", message: error?.localizedDescription, preferredStyle: .alert)
+                let alertConfirm = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel)
+                
+                alertError.addAction(alertConfirm)
+                return self.present(alertError, animated: true, completion: nil)
+            }
+            let message = Message(userId: self.senderId,
+                                  userName: self.senderDisplayName,
+                                  location: currentLocation)
+            self.createMessage(message)
+        })
     }
     
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
@@ -54,33 +116,6 @@ final class ChatViewController: JSQMessagesViewController {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-    }
-    
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        addMessage(withId: self.senderId,
-                   name: self.senderDisplayName,
-                   text: text)
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        finishSendingMessage()
-    }
-
-    override func didPressAccessoryButton(_ sender: UIButton!) {
-        let refreshAlert = UIAlertController(title: "Function not yet implemented",
-                                             message: "This functionality is not yet implemented in the application.",
-                                             preferredStyle: UIAlertControllerStyle.alert)
-        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        present(refreshAlert, animated: true, completion: nil)
-    }
-    
-    deinit {
-        ChatFacade.removeAllObservers()
-    }
-
- // MARK: Private Function
-    private func addMessage(withId id: String, name: String, text: String) {
-        let message = Message(userId: id, userName: name, message: text)
-        
-        ChatFacade.createMessage(channelId: (channel.id!), message: message)
     }
 
 // MARK: CollectionView Functions
@@ -127,6 +162,3 @@ final class ChatViewController: JSQMessagesViewController {
     }
     
 }
-
-
-
