@@ -11,7 +11,7 @@ import JSQMessagesViewController
 
 extension JSQMessagesViewController {
     
-    func noCamera(){
+    func detectCameraInDevice(){
         let alertVC = UIAlertController(
             title: "No Camera",
             message: "Sorry, this device has no camera",

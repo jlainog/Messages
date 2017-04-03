@@ -14,6 +14,7 @@ class ChatImagePickeViewController: UIImagePickerController {
         super.viewDidLoad()
         self.allowsEditing = true
         self.sourceType = .photoLibrary
+        self.modalPresentationStyle = .fullScreen
         self.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
     }
     
@@ -29,5 +30,3 @@ class ChatPhotoPickeViewController: UIImagePickerController {
         self.modalPresentationStyle = .fullScreen
     }
 }
-
-

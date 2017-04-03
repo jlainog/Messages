@@ -37,13 +37,17 @@ class Message : NSObject, MessageInfo {
     var mediaItem: JSQPhotoMediaItem?
     
     required init(json: NSDictionary) {
+        
+        let messageTypeRawValue: String = json["messageType"] as? String ?? MessageType.text.rawValue
+        
         self.userId = json["userId"] as? String ?? ""
         self.userName = json["userName"] as? String ?? ""
         self.mediaUrl = json["mediaUrl"] as? String ?? ""
         self.message = json["message"] as? String ?? ""
-        self.messageType =  MessageType(rawValue: json["messageType"] as! String) ?? MessageType.text
+        self.messageType =  MessageType(rawValue: messageTypeRawValue)!
         self.timestamp = json["timestamp"] as? Double ?? 0
         self.mediaItem = json["mediaItem"] as? JSQPhotoMediaItem
+        
     }
     
     convenience init(userId: String, userName: String, message: String, messageType: MessageType = .text, timestamp: TimeInterval = Date().timeIntervalSince1970) {
@@ -61,7 +65,6 @@ class Message : NSObject, MessageInfo {
         self.init(json: json)
         self.id = id
     }
-    
     
     func buildJSON() -> NSDictionary {
         var json = Dictionary<String, Any>()

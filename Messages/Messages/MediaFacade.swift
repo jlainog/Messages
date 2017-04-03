@@ -13,10 +13,8 @@ import JSQMessagesViewController
 struct MediaFacade {
     
     static let storageRef = FIRStorage.storage().reference().child("Devices_Images")
-
+    
     static func saveMedia(withId id: String, userName: String, media: UIImage, channelId: String, messageHandler: () -> Message) {
- 
-        
         if let uploadData = UIImagePNGRepresentation(media) {
             let uploadTask = storageRef.child("\(String(Date().timeIntervalSince1970)).png").put(uploadData, metadata: nil)
             

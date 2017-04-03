@@ -14,7 +14,7 @@
 		1236DED01E76FFA9006D42E5 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */; };
 		1236DED11E76FFA9006D42E5 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */; };
 		12391D311E85BF3D00A8F22C /* CustomPickeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2C1E85BF3D00A8F22C /* CustomPickeViewController.swift */; };
-		12391D321E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift */; };
+		12391D321E85BF3D00A8F22C /* JSQMessagesViewController+detectCameraInDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+detectCameraInDevice.swift */; };
 		12391D331E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */; };
 		12391D341E85BF3D00A8F22C /* MediaFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D2F1E85BF3D00A8F22C /* MediaFacade.swift */; };
 		12391D351E85BF3D00A8F22C /* UIImage+FixOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */; };
@@ -71,7 +71,7 @@
 		1236DECD1E76FFA9006D42E5 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		1236DECE1E76FFA9006D42E5 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		12391D2C1E85BF3D00A8F22C /* CustomPickeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPickeViewController.swift; sourceTree = "<group>"; };
-		12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSQMessagesViewController+noCamera.swift"; sourceTree = "<group>"; };
+		12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+detectCameraInDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSQMessagesViewController+detectCameraInDevice.swift"; sourceTree = "<group>"; };
 		12391D2E1E85BF3D00A8F22C /* JSQPhotoMediaItemCusto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQPhotoMediaItemCusto.swift; sourceTree = "<group>"; };
 		12391D2F1E85BF3D00A8F22C /* MediaFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFacade.swift; sourceTree = "<group>"; };
 		12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FixOrientation.swift"; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 			children = (
 				1236DECB1E76FF9A006D42E5 /* UITextField+Shake.swift */,
 				12391D301E85BF3D00A8F22C /* UIImage+FixOrientation.swift */,
-				12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift */,
+				12391D2D1E85BF3D00A8F22C /* JSQMessagesViewController+detectCameraInDevice.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -699,7 +699,7 @@
 				124A957F1E8AEC2E0093DCFB /* LocationMonitor.swift in Sources */,
 				12702D391E8978B800306F6C /* ChatDetailViewController.swift in Sources */,
 				F865259F1E719F870024BDC9 /* Message.swift in Sources */,
-				12391D321E85BF3D00A8F22C /* JSQMessagesViewController+noCamera.swift in Sources */,
+				12391D321E85BF3D00A8F22C /* JSQMessagesViewController+detectCameraInDevice.swift in Sources */,
 				1236DEC91E76FF88006D42E5 /* Parseable.swift in Sources */,
 				F8AD026C1E81B865000C3EB6 /* UserListViewController.swift in Sources */,
 				F52ACAA41E6DFBCB007AB8EA /* AppDelegate.swift in Sources */,

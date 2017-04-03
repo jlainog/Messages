@@ -63,24 +63,27 @@ import JSQMessagesViewController
     
     override func didPressAccessoryButton(_ sender: UIButton!) {
         let sheet = UIAlertController(title: "Media Messages", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
-        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (alert : UIAlertAction) in }
         
-        let takePhoto = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.default) { alert in
+        let takePhotoAction = UIAlertAction(title: "Take Photo", style: UIAlertActionStyle.default) { alert in
             if UIImagePickerController.isSourceTypeAvailable(.camera){
                 self.present(self.photoPicker, animated: true, completion: nil)
             } else {
-                self.noCamera()
+                self.detectCameraInDevice()
             }
         }
         
-        let selectImage = UIAlertAction(title: "Select Image", style: UIAlertActionStyle.default) { alert in
+        let selectImageAction = UIAlertAction(title: "Select Image", style: UIAlertActionStyle.default) { alert in
             self.present(self.imagePicker, animated: true, completion: nil)
         }
         
-        sheet.addAction(takePhoto)
-        sheet.addAction(selectImage)
-        sheet.addAction(cancel)
-        self.present(sheet, animated: true, completion: nil)
+        sheet.addAction(takePhotoAction)
+        sheet.addAction(selectImageAction)
+        sheet.addAction(cancelAction)
+        
+        self.present(sheet, animated: true){
+            JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        }
     }
    
  // MARK: Private Function
@@ -118,16 +121,7 @@ import JSQMessagesViewController
     }
     
     func configureMediaImage(_ message: Message) {
-        let mediaItem: JSQPhotoMediaItemCustom
-        
-        if message.userId == self.senderId {
-            mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: true)
-
-        } else {
-            mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isOperator: false)
-        }
-        
-        message.mediaItem = mediaItem
+        message.mediaItem = JSQPhotoMediaItemCustom(withURL: message.mediaUrl!, isIncomingBubble: message.userId == self.senderId)
         self.messages.append(message)
         JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
         self.finishReceivingMessage()
@@ -173,6 +167,7 @@ import JSQMessagesViewController
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
         let detailImageController = ChatDetailViewController(nibName: "ChatdetailView", bundle: nil)
         let message = messages[indexPath.item]
+        
         detailImageController.messageType = message.messageType
         detailImageController.URLImage = URL(string: message.mediaUrl!)
         self.navigationController?.pushViewController(detailImageController, animated: true)
@@ -184,6 +179,7 @@ extension ChatViewController: UIImagePickerControllerDelegate,UINavigationContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
         addMessageWithPhoto(withId: user.identifier, userName: user.name, media: chosenImage.fixedOrientation())
         dismiss(animated:true, completion: nil)
     }
@@ -194,6 +190,7 @@ extension ChatViewController: UIImagePickerControllerDelegate,UINavigationContro
 
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
         let message = messages[indexPath.item]
+        
         guard let senderDisplayName = message.senderDisplayName() else {
             return nil
         }

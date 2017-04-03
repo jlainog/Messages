@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import JSQMessagesViewController
-import Firebase
 import AlamofireImage
 
 class JSQPhotoMediaItemCustom: JSQPhotoMediaItem {
@@ -17,10 +16,10 @@ class JSQPhotoMediaItemCustom: JSQPhotoMediaItem {
     var imgView : UIImageView!
     var url     : String?
     
-    init(withURL url: String, isOperator: Bool) {
+    init(withURL url: String, isIncomingBubble: Bool) {
         super.init()
         self.url                        = url
-        appliesMediaViewMaskAsOutgoing  = (isOperator == true)
+        appliesMediaViewMaskAsOutgoing  = (isIncomingBubble == true)
         let size                        = super.mediaViewDisplaySize()
         imgView                         = UIImageView()
         imgView.frame                   = CGRect(x: 0, y: 0, width: size.width, height: size.height)
