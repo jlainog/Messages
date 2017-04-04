@@ -8,19 +8,26 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
+import Firebase
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
     
     @IBOutlet weak var signInSelector: UISegmentedControl!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var googleButton: GIDSignInButton!
+    
+    let userFacade = UserFacade()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.userNameTextField.delegate = self
         logInButton.layer.cornerRadius = 5
         passwordTextField.isHidden = true
+        configureGoogleSignInInstance()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -31,9 +38,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return(true)
     }
-    
-    //SignIn Selector State
 
+    //SignIn Selector State
     enum SignInSelectorState: Int {
         case anonymousLogIng = 0, emailLogIn = 1, register = 2
         
@@ -68,11 +74,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //Log In button management
+    //Google Sign In
     
-    @IBAction func userLogIn(_ sender: AnyObject) {
-        let userFacade = UserFacade()
+    func configureGoogleSignInInstance(){
         
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        
+        if let _ = error {
+            return
+        }
+        
+        guard let authentication = user.authentication else {return}
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if let _ = error {
+                return
+            }
+            let myUser = User(identifier: user!.providerID, name: (user?.displayName)!)
+            self.presentNextViewController(user: myUser)
+        })
+    }
+    
+    //Log In button management
+        
+    @IBAction func userLogIn(_ sender: AnyObject) {
         let signInSelector: SignInSelectorState = SignInSelectorState(rawValue: self.signInSelector.selectedSegmentIndex)!
         
         if (self.userNameTextField.text?.isEmpty)! {
@@ -115,12 +145,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
                 self.presentNextViewController(user: loggedUser)
             }
+            
             break
 
         }
         
+        func sign(inWillDispatch signIn: GIDSignIn!, error: Error!)  {
+            
+            if let firUser = FIRAuth.auth()?.currentUser{
+                let user = User(identifier: firUser.providerID, name: firUser.displayName!)
+                presentNextViewController(user: user)
+            }
+        }
+        
     }
-    
     
     func presentNextViewController(user: User){
         SessionCache.sharedInstance.user = user

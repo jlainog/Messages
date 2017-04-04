@@ -71,19 +71,50 @@
                                     <constraint firstAttribute="height" constant="101" id="HMI-ct-5m5"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Or -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8O-Bd-a6o">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="61" id="Epg-cO-bsH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lUy-kH-bhp">
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="s2o-T1-WXp">
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8kX-rI-Eju" customClass="GIDSignInButton">
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="8kX-rI-Eju" secondAttribute="bottom" id="fmT-Zh-ets"/>
+                                            <constraint firstItem="8kX-rI-Eju" firstAttribute="leading" secondItem="s2o-T1-WXp" secondAttribute="leading" id="mAN-H9-u76"/>
+                                            <constraint firstAttribute="trailing" secondItem="8kX-rI-Eju" secondAttribute="trailing" id="rml-k5-Dzi"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.3529411764705882" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="d8O-Bd-a6o" firstAttribute="top" secondItem="gYf-om-Ig4" secondAttribute="bottom" constant="35" id="7YZ-rK-zIs"/>
+                            <constraint firstItem="lUy-kH-bhp" firstAttribute="leading" secondItem="UZ7-6V-REq" secondAttribute="leadingMargin" constant="82" id="EBO-nf-Pn2"/>
                             <constraint firstItem="DIq-uP-jIj" firstAttribute="leading" secondItem="UZ7-6V-REq" secondAttribute="leadingMargin" constant="98" id="K0W-nq-FjL"/>
+                            <constraint firstItem="d8O-Bd-a6o" firstAttribute="centerX" secondItem="lUy-kH-bhp" secondAttribute="centerX" id="Lhk-Yc-RWK"/>
                             <constraint firstItem="DIq-uP-jIj" firstAttribute="top" secondItem="fED-Xr-Mle" secondAttribute="bottom" constant="8" symbolic="YES" id="SKu-CH-GRd"/>
+                            <constraint firstItem="nsY-bG-wpC" firstAttribute="top" secondItem="lUy-kH-bhp" secondAttribute="bottom" constant="174" id="UPq-P7-rOo"/>
                             <constraint firstItem="nsY-bG-wpC" firstAttribute="top" secondItem="gYf-om-Ig4" secondAttribute="bottom" constant="288" id="WB9-bM-jbX"/>
                             <constraint firstItem="gYf-om-Ig4" firstAttribute="leading" secondItem="UZ7-6V-REq" secondAttribute="leadingMargin" id="b8g-ps-xdD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gYf-om-Ig4" secondAttribute="trailing" id="cST-c6-F9E"/>
                             <constraint firstItem="DIq-uP-jIj" firstAttribute="centerX" secondItem="gYf-om-Ig4" secondAttribute="centerX" id="lxB-D1-Wvs"/>
+                            <constraint firstItem="lUy-kH-bhp" firstAttribute="top" secondItem="d8O-Bd-a6o" secondAttribute="bottom" constant="8" symbolic="YES" id="ogS-MP-cFi"/>
+                            <constraint firstItem="d8O-Bd-a6o" firstAttribute="centerX" secondItem="gYf-om-Ig4" secondAttribute="centerX" id="ylV-5n-f4f"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NyJ-YD-tlr"/>
                     <connections>
+                        <outlet property="googleButton" destination="8kX-rI-Eju" id="IPd-jc-B7W"/>
                         <outlet property="logInButton" destination="ih1-YZ-wXH" id="YaX-mv-IlC"/>
                         <outlet property="passwordTextField" destination="QS4-Nd-5vu" id="d8a-8l-Ugf"/>
                         <outlet property="signInSelector" destination="Z9v-UK-v0l" id="cSj-Cj-vI6"/>
@@ -92,14 +123,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfy-dC-EfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="86"/>
+            <point key="canvasLocation" x="224.80000000000001" y="71.514242878560722"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="85g-iS-AtA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ipX-6Z-MIX" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dIU-Yb-4DO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dIU-Yb-4DO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -262,6 +293,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGZ-dy-NCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1094" y="72"/>
         </scene>
     </scenes>
     <resources>

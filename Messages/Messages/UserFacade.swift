@@ -9,9 +9,14 @@
 import Foundation
 import Firebase
 import UIKit
+import GoogleSignIn
+
 
 struct UserFacade {
+    
     var firebase: FIRDatabaseReference?
+    weak var refence: LoginViewController?
+    
     
     //Email + Passowrd Log In
     func emailPasswordLogIn(email: String, userName: String, password: String, completion: @escaping (_ user: User?, _ error: Error?) -> Void ) {
@@ -54,17 +59,5 @@ struct UserFacade {
             let userObj : User = User(identifier: user!.uid, name: userName, email: email)
             completion(userObj, nil)
         })
-    }
-    
-    func userLogOut(){
-        let firebaseAuth = FIRAuth.auth()
-        
-        do {
-            try firebaseAuth?.signOut()
-            
-        } catch let signOutError as NSError {
-            
-            print ("Error signing out: %@", signOutError)
-        }
     }
 }
